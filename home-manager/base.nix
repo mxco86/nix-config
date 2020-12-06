@@ -3,7 +3,7 @@
 # 3. ln -s nix-home ~/.config/nixpkgs
 # ?? 4. nix-env -f '<nixpkgs>' -iA home-manager
 
-# 5. nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
+# 5. nix-channel --add https://github.com/rycee/home-manager/archive/release-20.09.tar.gz home-manager
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
@@ -42,4 +42,10 @@
     enable = true;
     initExtra = builtins.readFile ~/Config/system-config/zsh/.zshrc-antigen;
   };
+
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
+
 }
