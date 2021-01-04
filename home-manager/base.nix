@@ -15,9 +15,8 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    aspellDicts.en
     awscli
-    gnumake gcc # to build emacs libraries
+    # gnumake gcc # to build emacs libraries
     graphviz
     htop
     isync
@@ -33,8 +32,21 @@
 
   programs.git = {
     enable = true;
+    delta.enable = true;
+    delta.options =  {
+      features = "side-by-side";
+      syntax-theme = "Solarized (dark)";
+    };
     userName = "Matthew Ryall";
     userEmail = "matthew@mexico86.co.uk";
+    aliases = {
+      st = "status";
+      ci = "commit";
+      co = "checkout";
+      br = "branch";
+      ix = "diff --cached";
+      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+    };
     extraConfig = builtins.readFile ~/Config/system-config/git/.gitconfig;
   };
 

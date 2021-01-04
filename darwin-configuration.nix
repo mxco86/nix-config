@@ -6,10 +6,50 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+  # Emacs
   environment.systemPackages = with pkgs; [
     vim
-    emacs
     aspell
+    aspellDicts.en
+    (emacsWithPackagesFromUsePackage {
+      config = ~/.emacs;
+      extraEmacsPackages = epkgs: [
+        epkgs.ace-window
+        epkgs.ag
+        epkgs.base16-theme
+        epkgs.company
+        epkgs.company-org-roam
+        epkgs.counsel
+        epkgs.dap-mode
+        epkgs.direnv
+        epkgs.docker
+        epkgs.flx
+        epkgs.flycheck
+        epkgs.ivy
+        epkgs.kotlin-mode
+        epkgs.lsp-java
+        epkgs.lsp-mode
+        epkgs.magit
+        epkgs.nix-mode
+        epkgs.org-download
+        epkgs.org-roam
+        epkgs.org-roam-server
+        epkgs.paredit
+        epkgs.projectile
+        epkgs.racket-mode
+        epkgs.smex
+        epkgs.spaceline
+        epkgs.use-package
+        epkgs.use-package-ensure-system-package
+        epkgs.which-key
+      ];
+    })
   ];
 
   # Application environment

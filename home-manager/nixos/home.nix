@@ -15,6 +15,7 @@
     xorg.xdpyinfo
     xorg.xmodmap
     zoom-us
+    jetbrains.idea-community
   ];
 
   xresources.extraConfig = builtins.readFile ~/Config/system-config/thinkpad-x1/X/.Xresources;
