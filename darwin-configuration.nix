@@ -31,6 +31,7 @@
         epkgs.docker
         epkgs.flx
         epkgs.flycheck
+        epkgs.forge
         epkgs.ivy
         epkgs.kotlin-mode
         epkgs.lsp-java
