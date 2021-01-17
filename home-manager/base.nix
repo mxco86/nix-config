@@ -7,7 +7,7 @@
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -16,13 +16,15 @@
 
   home.packages = with pkgs; [
     awscli
-    # gnumake gcc # to build emacs libraries
     graphviz
     htop
     isync
     jq
     multimarkdown
+    # nix-linter
+    proselint
     python37Packages.yamllint
+    rnix-lsp
     shellcheck
     sqlite
     tree
