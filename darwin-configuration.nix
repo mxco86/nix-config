@@ -4,13 +4,17 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-    }))
-  ];
+    overlays = [
+      (import (builtins.fetchTarball {
+        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      }))
+    ];
+  };
 
   # Emacs
   environment = {
@@ -32,40 +36,55 @@
   # nix.package = pkgs.nix;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.bash.enable = true;
-  programs.zsh.enable = true;
-
-  programs.tmux = {
-    enable = true;
-    enableSensible = true;
-    enableMouse = true;
+  programs = {
+    bash = {
+      enable = true;
+    };
+    zsh = {
+      enable = true;
+    };
+    tmux = {
+      enable = true;
+      enableSensible = true;
+      enableMouse = true;
+    };
   };
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
-  nix.maxJobs = 4;
-  nix.buildCores = 1;
+  nix = {
+    maxJobs = 4;
+    buildCores = 1;
+  };
 
-  # Trackpad variables
-  system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+  system = {
+    # Used for backwards compatibility, please read the changelog before changing.
+    stateVersion = 4;
 
-  # Keyboard variables
-  system.keyboard.enableKeyMapping = true;
-  system.keyboard.remapCapsLockToControl = true;
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
+    };
 
-  # Spaces / Dock
-  system.defaults.dock.mru-spaces = false;
-  system.defaults.dock.show-recents = false;
-  system.defaults.dock.tilesize = 32;
+    defaults = {
+      NSGlobalDomain = {
+        # Trackpad variables
+        "com.apple.swipescrolldirection" = false;
+      };
+      dock = {
+        mru-spaces = false;
+        show-recents = false;
+        tilesize = 32;
+        autohide = false;
+      };
+    };
+  };
 
-  # Fonts
-  fonts.enableFontDir = true;
-  fonts.fonts = with pkgs; [
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
     dejavu_fonts
     hack-font
-  ];
+    ];
+  };
 }
