@@ -13,19 +13,19 @@
   ];
 
   # Emacs
-  environment.systemPackages = with pkgs; [
-    vim
-    mu
-    (aspellWithDicts (d: [d.en]))
-    (import ./modules/emacs.nix { inherit pkgs; })
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      vim
+      mu
+      (aspellWithDicts (d: [d.en]))
+      (import ./modules/emacs.nix { inherit pkgs; })
+    ];
+
+    pathsToLink = [ "/share/zsh" ];
+  };
 
   # Application environment
   launchd.user.envVariables.PATH = config.environment.systemPath;
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
@@ -34,15 +34,11 @@
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
   programs.zsh.enable = true;
-  # programs.fish.enable = true;
 
   programs.tmux = {
     enable = true;
-    extraConfig = ''
-       set-option -g default-shell $SHELL
-       setw -g mouse on
-       bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
-    '';
+    enableSensible = true;
+    enableMouse = true;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.

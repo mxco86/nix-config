@@ -15,6 +15,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    antigen
     awscli
     graphviz
     htop
@@ -54,12 +55,52 @@
 
   programs.zsh = {
     enable = true;
-    initExtra = builtins.readFile ~/Config/system-config/zsh/.zshrc-antigen;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    defaultKeymap = "emacs";
+    history = {
+      ignoreDups = true;
+    };
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "gitfast"
+        "sudo"
+        "colorize"
+        "docker"
+        "aws"
+      ];
+    };
+
+    plugins = [
+      {
+        name = "fast-syntax-highlighting";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }
+    ];
+
+    prezto = {
+      enable = true;
+      color = true;
+      editor = {
+        promptContext = true;
+        dotExpansion = true;
+      };
+      prompt = {
+        theme = "pure";
+      };
+    };
   };
 
   programs.direnv = {
     enable = true;
     enableNixDirenvIntegration = true;
+    enableZshIntegration = true;
   };
 
+  programs.tmux = {
+    shell = "${pkgs.zsh}/bin/zsh";
+  };
 }
