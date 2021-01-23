@@ -15,7 +15,6 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    antigen
     awscli
     graphviz
     htop
@@ -50,7 +49,25 @@
       ix = "diff --cached";
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
     };
-    extraConfig = builtins.readFile ~/Config/system-config/git/.gitconfig;
+
+    extraConfig = {
+      core = {
+        editor = "${pkgs.emacs}/bin/emacsclient";
+        whitespace = "nowarn";
+      };
+      color = {
+        branch = "auto";
+        diff = "auto";
+        status = "auto";
+      };
+
+      push = {
+        default = "simple";
+      };
+      credential = {
+        helper = "osxkeychain";
+      };
+    };
   };
 
   programs.zsh = {
