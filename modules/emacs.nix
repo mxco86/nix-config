@@ -1,7 +1,7 @@
 { pkgs }:
 
-(pkgs.emacsPackagesGen pkgs.emacs).emacsWithPackages
-  (epkgs: (with epkgs.melpaPackages; [
+(pkgs.emacsPackagesGen pkgs.emacs).emacsWithPackages (epkgs:
+  (with epkgs.melpaPackages; [
     ace-window
     add-node-modules-path
     ag
@@ -55,6 +55,5 @@
     yaml-mode
     yasnippet
     yasnippet-snippets
-  ]) ++ (with epkgs.orgPackages; [
-    org-plus-contrib
-  ]))
+  ]) ++ (with epkgs.orgPackages; [ org-plus-contrib ]))
+

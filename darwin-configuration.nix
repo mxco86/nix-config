@@ -5,13 +5,12 @@
   # $ nix-env -qaP | grep wget
 
   nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
+    config = { allowUnfree = true; };
 
     overlays = [
       (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+        url =
+          "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
       }))
     ];
   };
@@ -21,7 +20,7 @@
     systemPackages = with pkgs; [
       vim
       mu
-      (aspellWithDicts (d: [d.en]))
+      (aspellWithDicts (d: [ d.en ]))
       (import ./modules/emacs.nix { inherit pkgs; })
     ];
 
@@ -37,12 +36,8 @@
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs = {
-    bash = {
-      enable = true;
-    };
-    zsh = {
-      enable = true;
-    };
+    bash = { enable = true; };
+    zsh = { enable = true; };
     tmux = {
       enable = true;
       enableSensible = true;
@@ -82,9 +77,6 @@
 
   fonts = {
     enableFontDir = true;
-    fonts = with pkgs; [
-    dejavu_fonts
-    hack-font
-    ];
+    fonts = with pkgs; [ dejavu_fonts hack-font ];
   };
 }

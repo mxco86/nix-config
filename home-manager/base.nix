@@ -12,10 +12,6 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  programs.home-manager = {
-    enable = true;
-  };
-
   home = {
     packages = with pkgs; [
       awscli
@@ -37,10 +33,13 @@
   };
 
   programs = {
+
+    home-manager = { enable = true; };
+
     git = {
       enable = true;
       delta.enable = true;
-      delta.options =  {
+      delta.options = {
         features = "side-by-side";
         syntax-theme = "Solarized (dark)";
       };
@@ -52,7 +51,8 @@
         co = "checkout";
         br = "branch";
         ix = "diff --cached";
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        lg =
+          "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       };
       extraConfig = {
         core = {
@@ -65,12 +65,8 @@
           status = "auto";
         };
 
-        push = {
-          default = "simple";
-        };
-        credential = {
-          helper = "osxkeychain";
-        };
+        push = { default = "simple"; };
+        credential = { helper = "osxkeychain"; };
       };
     };
 
@@ -79,26 +75,15 @@
       enableCompletion = true;
       enableAutosuggestions = true;
       defaultKeymap = "emacs";
-      history = {
-        ignoreDups = true;
-      };
+      history = { ignoreDups = true; };
       oh-my-zsh = {
         enable = true;
-        plugins = [
-          "git"
-          "gitfast"
-          "sudo"
-          "colorize"
-          "docker"
-          "aws"
-        ];
+        plugins = [ "git" "gitfast" "sudo" "colorize" "docker" "aws" ];
       };
-      plugins = [
-        {
-          name = "fast-syntax-highlighting";
-          src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-        }
-      ];
+      plugins = [{
+        name = "fast-syntax-highlighting";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }];
       prezto = {
         enable = true;
         color = true;
@@ -106,9 +91,7 @@
           promptContext = true;
           dotExpansion = true;
         };
-        prompt = {
-          theme = "pure";
-        };
+        prompt = { theme = "pure"; };
       };
     };
 
@@ -118,9 +101,7 @@
       enableZshIntegration = true;
     };
 
-    tmux = {
-      shell = "${pkgs.zsh}/bin/zsh";
-    };
+    tmux = { shell = "${pkgs.zsh}/bin/zsh"; };
 
     fzf = {
       enable = true;
