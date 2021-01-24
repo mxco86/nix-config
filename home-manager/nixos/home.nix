@@ -1,39 +1,38 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    ../base.nix
-  ];
+  imports = [ ../base.nix ];
 
-  home.packages = with pkgs; [
-    anki
-    discord
-    firefox
-    keepassxc
-    slack
-    mu
-    xorg.xdpyinfo
-    xorg.xmodmap
-    zoom-us
-    jetbrains.idea-community
-  ];
+  home = {
+    packages = with pkgs; [
+      anki
+      discord
+      firefox
+      keepassxc
+      slack
+      nix-linter
+      xclip
+      xorg.xdpyinfo
+      xorg.xmodmap
+      zoom-us
+      jetbrains.idea-community
+    ];
 
-  xresources.extraConfig = builtins.readFile ~/Config/system-config/thinkpad-x1/X/.Xresources;
-
-  home.keyboard = {
-    options = [ "ctrl:nocaps" ];
+    keyboard = { options = [ "ctrl:nocaps" ]; };
   };
+
+  programs.urxvt = { enable = true; };
+
+  xresources.extraConfig =
+    builtins.readFile ~/Config/system-config/thinkpad-x1/X/.Xresources;
 
   xsession.windowManager.i3 = {
     enable = true;
     config = {
       modifier = "Mod5";
-      bars = [];
+      bars = [ ];
     };
-    extraConfig = builtins.readFile ~/Config/system-config/thinkpad-x1/i3/config;
-  };
-
-  programs.urxvt = {
-    enable = true;
+    extraConfig =
+      builtins.readFile ~/Config/system-config/thinkpad-x1/i3/config;
   };
 }

@@ -20,7 +20,7 @@
       isync
       jq
       multimarkdown
-      # nix-linter
+      nixfmt
       proselint
       python37Packages.yamllint
       rnix-lsp
