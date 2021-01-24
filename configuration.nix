@@ -2,22 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "/dev/nvme0n1"; # or "nodev" for efi only
+  };
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/nvme0n1"; # or "nodev" for efi only
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -26,9 +26,11 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.wlp0s20f3.useDHCP = true;
+  networking = {
+    useDHCP = false;
+    interfaces.enp0s31f6.useDHCP = true;
+    interfaces.wlp0s20f3.useDHCP = true;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -42,7 +44,7 @@
   # };
 
   # Set your time zone.
-  time.timeZone = "Europe/London";
+  time = { timeZone = "Europe/London"; };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -68,34 +70,62 @@
     pathsToLink = [ "/share/zsh" ];
   };
 
-  fonts.fonts = with pkgs; [
-    dejavu_fonts
-    hack-font
-  ];
+  fonts.fonts = with pkgs; [ dejavu_fonts hack-font ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-     # pinentryFlavor = "gnome3";
-   };
-  programs.zsh.enable = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # pinentryFlavor = "gnome3";
+    };
 
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-       set-option -g default-shell $SHELL
-       setw -g mouse on
-       bind-key -n MouseDown2Pane run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
-       bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip"
-    '';
+    zsh.enable = true;
+
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set-option -g default-shell $SHELL
+        setw -g mouse on
+        bind-key -n MouseDown2Pane run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
+        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip"
+      '';
+    };
   };
 
   # List services that you want to enable:
-  services.openssh.enable = true;
-  services.syncthing.enable = true;
+  services = {
+    openssh.enable = true;
+    syncthing.enable = true;
+
+    # Enable the X11 windowing system.
+    xserver = {
+      enable = true;
+      layout = "us";
+      autorun = true;
+      dpi = 210;
+
+      # Enable touchpad support.
+      libinput = {
+        enable = true;
+        clickMethod = "clickfinger";
+        disableWhileTyping = true;
+        naturalScrolling = false;
+        scrollMethod = "twofinger";
+        tapping = false;
+        tappingDragLock = false;
+      };
+
+      synaptics.enable = false;
+
+      # i3 with lightdm
+      displayManager.lightdm.enable = true;
+      windowManager.i3 = { enable = true; };
+    };
+  };
+
   systemd.user.services.syncthing.wantedBy = [ "default.target" ];
 
   # Open ports in the firewall.
@@ -110,33 +140,6 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    autorun = true;
-    dpi = 210;
-
-    # Enable touchpad support.
-    libinput = {
-      enable = true;
-      clickMethod = "clickfinger";
-      disableWhileTyping = true;
-      naturalScrolling = false;
-      scrollMethod = "twofinger";
-      tapping = false;
-      tappingDragLock = false;
-    };
-
-    synaptics.enable = false;
-
-    # i3 with lightdm
-    displayManager.lightdm.enable = true;
-    windowManager.i3 = {
-      enable = true;
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mryall = {
@@ -154,6 +157,6 @@
   system.stateVersion = "20.03"; # Did you read the comment?
 
   # Direnv
-  keep-derivations = true;
-  keep-outputs = true;
+  # keep-derivations = true;
+  # keep-outputs = true;
 }
