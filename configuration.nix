@@ -46,14 +46,27 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    aspell
-    emacs
-    git
-    vim
-    wget
-  ];
+  nixpkgs = {
+    config = { allowUnfree = true; };
+
+    overlays = [
+      (import (builtins.fetchTarball {
+        url =
+          "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+      }))
+    ];
+  };
+
+  environment = {
+    systemPackages = with pkgs; [
+      vim
+      mu
+      (aspellWithDicts (d: [ d.en ]))
+      (import ./modules/emacs.nix { inherit pkgs; })
+    ];
+
+    pathsToLink = [ "/share/zsh" ];
+  };
 
   fonts.fonts = with pkgs; [
     dejavu_fonts
