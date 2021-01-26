@@ -15,6 +15,7 @@
   home = {
     packages = with pkgs; [
       awscli
+      chroma
       graphviz
       htop
       isync
@@ -78,7 +79,16 @@
       history = { ignoreDups = true; };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "gitfast" "sudo" "colorize" "docker" "aws" ];
+        plugins = [
+          "aws"
+          "colored-man-pages"
+          "colorize"
+          "docker"
+          "git"
+          "gitfast"
+          "sudo"
+          "tmux"
+        ];
       };
       plugins = [{
         name = "fast-syntax-highlighting";

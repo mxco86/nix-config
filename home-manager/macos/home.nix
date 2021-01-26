@@ -2,12 +2,9 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  imports = [
-    ../base.nix
-  ];
+  imports = [ ../base.nix ];
 
-  home.packages = with pkgs; [
-    silver-searcher
-  ];
+  home.packages = with pkgs; [ silver-searcher ];
 
+  programs = { zsh = { oh-my-zsh = { plugins = [ "osx" ]; }; }; };
 }

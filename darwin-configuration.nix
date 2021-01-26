@@ -20,6 +20,7 @@
     systemPackages = with pkgs; [
       vim
       mu
+      chroma
       (aspellWithDicts (d: [ d.en ]))
       (import ./modules/emacs.nix { inherit pkgs; })
     ];
