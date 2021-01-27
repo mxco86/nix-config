@@ -17,6 +17,8 @@
 
   # Emacs
   environment = {
+    shells = [pkgs.zsh];
+    loginShell = "${pkgs.zsh}";
     systemPackages = with pkgs; [
       vim
       mu
@@ -43,6 +45,9 @@
       enable = true;
       enableSensible = true;
       enableMouse = true;
+      extraConfig = ''
+        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+      '';
     };
   };
 
