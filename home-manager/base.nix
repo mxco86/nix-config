@@ -103,6 +103,7 @@
         };
         prompt = { theme = "pure"; };
       };
+      localVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10"; };
     };
 
     direnv = {
@@ -116,6 +117,10 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      defaultOptions = [
+        "--color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254"
+        "--color info:254,prompt:37,spinner:108,pointer:235,marker:235"
+      ];
     };
   };
 }
