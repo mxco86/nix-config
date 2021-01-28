@@ -15,12 +15,14 @@
     docker
     docker-compose-mode
     dockerfile-mode
+    editorconfig
     flx
     flycheck
     flycheck-kotlin
     flycheck-rust
     flycheck-yamllint
     forge
+    git-timemachine
     ivy
     js2-mode
     kotlin-mode
@@ -56,4 +58,3 @@
     yasnippet
     yasnippet-snippets
   ]) ++ (with epkgs.orgPackages; [ org-plus-contrib ]))
-
