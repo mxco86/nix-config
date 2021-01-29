@@ -32,6 +32,7 @@
     lsp-ui
     lsp-pyright
     magit
+    multi-term
     nix-mode
     org-download
     org-roam
