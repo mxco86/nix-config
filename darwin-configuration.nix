@@ -17,12 +17,11 @@
 
   # Emacs
   environment = {
-    shells = [pkgs.zsh];
+    shells = [ pkgs.zsh ];
     loginShell = "${pkgs.zsh}";
     systemPackages = with pkgs; [
       vim
       mu
-      chroma
       (aspellWithDicts (d: [ d.en ]))
       (import ./modules/emacs.nix { inherit pkgs; })
     ];

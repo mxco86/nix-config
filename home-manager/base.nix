@@ -101,6 +101,7 @@
           promptContext = true;
           dotExpansion = true;
         };
+        tmux = { autoStartLocal = true; };
         prompt = { theme = "pure"; };
       };
       localVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10"; };
