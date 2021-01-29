@@ -23,6 +23,7 @@
     flycheck-yamllint
     forge
     git-timemachine
+    github-review
     ivy
     js2-mode
     kotlin-mode
