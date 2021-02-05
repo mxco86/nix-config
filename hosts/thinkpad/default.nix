@@ -64,7 +64,7 @@
       vim
       mu
       (aspellWithDicts (d: [ d.en ]))
-      (import ./modules/emacs.nix { inherit pkgs; })
+      (import ../../modules/emacs.nix { inherit pkgs; })
     ];
 
     pathsToLink = [ "/share/zsh" ];
