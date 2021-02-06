@@ -8,7 +8,7 @@
     base16-theme
     cargo
     company
-    company-org-roam
+    # company-org-roam
     counsel
     dap-mode
     direnv

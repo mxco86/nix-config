@@ -5,9 +5,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ../base.nix ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub = {
@@ -19,7 +17,7 @@
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "sanchez";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
@@ -43,35 +41,6 @@
   #   keyMap = "us";
   # };
 
-  # Set your time zone.
-  time = { timeZone = "Europe/London"; };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  nixpkgs = {
-    config = { allowUnfree = true; };
-
-    overlays = [
-      (import (builtins.fetchTarball {
-        url =
-          "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-      }))
-    ];
-  };
-
-  environment = {
-    systemPackages = with pkgs; [
-      vim
-      mu
-      (aspellWithDicts (d: [ d.en ]))
-      (import ../../modules/emacs.nix { inherit pkgs; })
-    ];
-
-    pathsToLink = [ "/share/zsh" ];
-  };
-
-  fonts.fonts = with pkgs; [ dejavu_fonts hack-font ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -82,10 +51,7 @@
       # pinentryFlavor = "gnome3";
     };
 
-    zsh.enable = true;
-
     tmux = {
-      enable = true;
       extraConfig = ''
         set-option -g default-shell $SHELL
         setw -g mouse on
@@ -95,9 +61,7 @@
     };
   };
 
-  # List services that you want to enable:
   services = {
-    openssh.enable = true;
     syncthing.enable = true;
 
     # Enable the X11 windowing system.
