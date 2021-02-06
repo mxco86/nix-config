@@ -63,7 +63,6 @@
 
   services = {
     openssh.enable = true;
-    syncthing.enable = true;
 
     # Enable the X11 windowing system.
     xserver = {
@@ -90,8 +89,6 @@
       windowManager.i3 = { enable = true; };
     };
   };
-
-  systemd.user.services.syncthing.wantedBy = [ "default.target" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

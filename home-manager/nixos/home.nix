@@ -23,6 +23,8 @@
 
   programs.urxvt = { enable = true; };
 
+  services.syncthing = { enable = true; };
+
   xresources.extraConfig =
     builtins.readFile ~/Config/system-config/thinkpad-x1/X/.Xresources;
 
