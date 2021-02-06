@@ -2,6 +2,8 @@
 
 {
 
+  imports = [ ../modules/emacs ];
+
   # Set your time zone.
   time = { timeZone = "Europe/London"; };
 
@@ -17,13 +19,7 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      vim
-      mu
-      (aspellWithDicts (d: [ d.en ]))
-      (import ../modules/emacs/default.nix { inherit pkgs; })
-    ];
-
+    systemPackages = with pkgs; [ vim mu (aspellWithDicts (d: [ d.en ])) ];
     pathsToLink = [ "/share/zsh" ];
   };
 
@@ -32,5 +28,6 @@
   programs = {
     zsh = { enable = true; };
     tmux = { enable = true; };
+    emacsWithMJRPackages = { enable = true; };
   };
 }
