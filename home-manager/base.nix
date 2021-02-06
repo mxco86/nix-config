@@ -15,7 +15,6 @@
   home = {
     packages = with pkgs; [
       awscli
-      chroma
       graphviz
       htop
       isync
@@ -112,8 +111,6 @@
       enableNixDirenvIntegration = true;
       enableZshIntegration = true;
     };
-
-    tmux = { shell = "${pkgs.zsh}/bin/zsh"; };
 
     fzf = {
       enable = true;

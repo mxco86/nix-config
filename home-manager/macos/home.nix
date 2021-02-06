@@ -4,7 +4,10 @@
   nixpkgs.config.allowUnfree = true;
   imports = [ ../base.nix ];
 
-  home.packages = with pkgs; [ silver-searcher ];
+  home.packages = with pkgs; [ silver-searcher chroma ];
 
-  programs = { zsh = { oh-my-zsh = { plugins = [ "osx" ]; }; }; };
+  programs = {
+    zsh = { oh-my-zsh = { plugins = [ "osx" ]; }; };
+    tmux = { shell = "${pkgs.zsh}/bin/zsh"; };
+  };
 }
