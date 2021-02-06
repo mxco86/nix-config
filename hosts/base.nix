@@ -2,7 +2,7 @@
 
 {
 
-  imports = [ ../modules/emacs ];
+  imports = [ ../modules/emacs ../modules/aspell ];
 
   # Set your time zone.
   time = { timeZone = "Europe/London"; };
@@ -19,7 +19,7 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [ vim mu (aspellWithDicts (d: [ d.en ])) ];
+    systemPackages = with pkgs; [ vim mu ];
     pathsToLink = [ "/share/zsh" ];
   };
 
@@ -29,5 +29,6 @@
     zsh = { enable = true; };
     tmux = { enable = true; };
     emacsWithMJRPackages = { enable = true; };
+    aspellWithDictConfig = { enable = true; };
   };
 }
