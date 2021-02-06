@@ -88,6 +88,8 @@
       displayManager.lightdm.enable = true;
       windowManager.i3 = { enable = true; };
     };
+
+    tailscale = { enable = true; };
   };
 
   # Open ports in the firewall.
