@@ -62,6 +62,7 @@
   };
 
   services = {
+    openssh.enable = true;
     syncthing.enable = true;
 
     # Enable the X11 windowing system.

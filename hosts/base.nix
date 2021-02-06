@@ -33,7 +33,4 @@
     zsh = { enable = true; };
     tmux = { enable = true; };
   };
-
-  services = { openssh.enable = true; };
-
 }
