@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./darwin-base.nix ];
+  imports = [ ../nix-base.nix ./darwin-base.nix ];
 
   networking.hostName = "socrates";
 

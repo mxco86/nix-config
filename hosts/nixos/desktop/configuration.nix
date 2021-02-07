@@ -6,9 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix ../../base.nix
-    ];
+    [ ./hardware-configuration.nix ../../nix-base.nix ../nixos-base.nix ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -37,8 +35,6 @@
   #   keyMap = "us";
   # };
 
-  
-
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
@@ -61,10 +57,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     vim
-     git
-  ];
+  environment.systemPackages = with pkgs; [ vim git ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -5,7 +5,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ../base.nix ];
+  imports =
+    [ ./hardware-configuration.nix ../../nix-base.nix ../nixos-base.nix ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub = {
@@ -41,29 +42,7 @@
   #   keyMap = "us";
   # };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # pinentryFlavor = "gnome3";
-    };
-
-    tmux = {
-      extraConfig = ''
-        set-option -g default-shell $SHELL
-        setw -g mouse on
-        bind-key -n MouseDown2Pane run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
-        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip"
-      '';
-    };
-  };
-
   services = {
-    openssh.enable = true;
-
     # Enable the X11 windowing system.
     xserver = {
       enable = true;
@@ -83,13 +62,7 @@
       };
 
       synaptics.enable = false;
-
-      # i3 with lightdm
-      displayManager.lightdm.enable = true;
-      windowManager.i3 = { enable = true; };
     };
-
-    tailscale = { enable = true; };
   };
 
   # Open ports in the firewall.
@@ -104,13 +77,6 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mryall = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
