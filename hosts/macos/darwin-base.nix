@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../base.nix ];
+  imports = [ ../nix-base.nix ];
 
   environment = {
     shells = [ pkgs.zsh ];
