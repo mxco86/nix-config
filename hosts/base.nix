@@ -23,7 +23,12 @@
     pathsToLink = [ "/share/zsh" ];
   };
 
-  fonts.fonts = with pkgs; [ dejavu_fonts hack-font ];
+  fonts.fonts = with pkgs; [
+    dejavu_fonts
+    hack-font
+    noto-fonts-emoji
+    font-awesome
+  ];
 
   programs = {
     zsh = { enable = true; };
