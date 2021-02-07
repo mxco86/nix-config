@@ -21,8 +21,10 @@
   services = {
     openssh = { enable = true; };
     tailscale = { enable = true; };
-    displayManager.lightdm.enable = true;
-    windowManager.i3 = { enable = true; };
+    xserver = {
+      displayManager.lightdm.enable = true;
+      windowManager.i3 = { enable = true; };
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
