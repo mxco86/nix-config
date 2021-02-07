@@ -5,7 +5,7 @@
 
   home = {
     packages = with pkgs; [
-      anki
+      # anki
       discord
       firefox
       keepassxc
@@ -32,59 +32,59 @@
       };
     };
     extraConfig = {
-      "URxvt.depth" = 32;
-      "URxvt.transparent" = false;
-      "URxvt.fading" = 0;
-      "URxvt.loginShell" = true;
-      "URxvt.internalBorder" = 3;
-      "URxvt.lineSpace" = 0;
-      "URxvt.print-pipe" = "cat > /dev/null";
+      "depth" = 32;
+      "transparent" = false;
+      "fading" = 0;
+      "loginShell" = true;
+      "internalBorder" = 3;
+      "lineSpace" = 0;
+      "print-pipe" = "cat > /dev/null";
 
       # Fonts
-      "URxvt.boldfont" =
+      "boldfont" =
         [ "xft:Hack-Bold:size=10" "xft:Noto Color Emoji One:size=10" ];
-      "URxvt*letterSpace" = -1;
+      "*letterSpace" = -1;
 
       # Solarized colour scheme
-      "URxvt.intensityStyles" = false;
-      "URxvt.background" = "#002b36";
-      "URxvt.foreground" = "#657b83";
-      "URxvt.fadeColor" = "#002b36";
-      "URxvt.cursorColor" = "#93a1a1";
-      "URxvt.pointerColorBackground" = "#586e75";
-      "URxvt.pointerColorForeground" = "#93a1a1";
+      "intensityStyles" = false;
+      "background" = "#002b36";
+      "foreground" = "#657b83";
+      "fadeColor" = "#002b36";
+      "cursorColor" = "#93a1a1";
+      "pointerColorBackground" = "#586e75";
+      "pointerColorForeground" = "#93a1a1";
 
       # black dark/light
-      "URxvt.color0" = "#073642";
-      "URxvt.color8" = "#002b36";
+      "color0" = "#073642";
+      "color8" = "#002b36";
 
       # red dark/light
-      "URxvt.color1" = "#dc322f";
-      "URxvt.color9" = "#cb4b16";
+      "color1" = "#dc322f";
+      "color9" = "#cb4b16";
 
       # green dark/light
-      "URxvt.color2" = "#859900";
-      "URxvt.color10" = "#586e75";
+      "color2" = "#859900";
+      "color10" = "#586e75";
 
       # yellow dark/light
-      "URxvt.color3" = "#b58900";
-      "URxvt.color11" = "#657b83";
+      "color3" = "#b58900";
+      "color11" = "#657b83";
 
       # blue dark/light
-      "URxvt.color4" = "#268bd2";
-      "URxvt.color12" = "#839496";
+      "color4" = "#268bd2";
+      "color12" = "#839496";
 
       # magenta dark/light
-      "URxvt.color5" = "#d33682";
-      "URxvt.color13" = "#6c71c4";
+      "color5" = "#d33682";
+      "color13" = "#6c71c4";
 
       # cyan dark/light
-      "URxvt.color6" = "#2aa198";
-      "URxvt.color14" = "#93a1a1";
+      "color6" = "#2aa198";
+      "color14" = "#93a1a1";
 
       # white dark/light
-      "URxvt.color7" = "#eee8d5";
-      "URxvt.color15" = "#fdf6e3";
+      "color7" = "#eee8d5";
+      "color15" = "#fdf6e3";
     };
   };
 
