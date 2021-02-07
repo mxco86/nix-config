@@ -36,6 +36,20 @@
 
     home-manager = { enable = true; };
 
+    ssh = {
+      enable = true;
+      compression = true;
+      forwardAgent = true;
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "~/.ssh/id_rsa";
+          identitiesOnly = true;
+        };
+      };
+    };
+
     git = {
       enable = true;
       delta.enable = true;
