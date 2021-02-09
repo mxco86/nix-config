@@ -1,7 +1,8 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.programs.emacsWithMJRPackages;
-in {
+in
+{
 
   options = {
     programs.emacsWithMJRPackages = {
@@ -27,6 +28,7 @@ in {
             docker-compose-mode
             dockerfile-mode
             editorconfig
+            format-all
             flx
             flycheck
             flycheck-kotlin
