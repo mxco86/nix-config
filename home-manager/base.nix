@@ -8,12 +8,24 @@
 # 7. nix-shell '<home-manager>' -A install
 
 { pkgs, ... }:
-
 {
-  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = false;
+      allowUnsupportedSystem = false;
+    };
+    overlays = [
+      (self: super: {
+        adr-tools = import ../pkgs/adr-tools;
+      })
+    ];
+  };
 
   home = {
     packages = with pkgs; [
+      adr-tools
       awscli
       graphviz
       htop
@@ -21,6 +33,7 @@
       jq
       multimarkdown
       nixfmt
+      nixpkgs-fmt
       proselint
       python37Packages.yamllint
       rnix-lsp
