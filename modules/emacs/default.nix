@@ -38,6 +38,7 @@ in
             git-timemachine
             github-review
             ivy
+            ivy-rich
             js2-mode
             kotlin-mode
             lsp-ivy
