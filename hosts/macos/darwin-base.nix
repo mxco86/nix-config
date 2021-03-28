@@ -47,6 +47,18 @@
         autohide = false;
       };
     };
+
+  };
+
+  services = {
+    skhd = {
+      enable = true;
+      skhdConfig = ''
+        rcmd - e: open ~/Applications/Nix\ Apps/Emacs.app
+        rcmd - t : open ~/.nix-profile/Applications/kitty.app
+        rcmd - f : open /Applications/Firefox.app
+      '';
+    };
   };
 
   fonts = { enableFontDir = true; };
