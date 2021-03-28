@@ -147,5 +147,71 @@
         "--color info:254,prompt:37,spinner:108,pointer:235,marker:235"
       ];
     };
+
+    kitty = {
+      enable = true;
+      font = {
+        name = "Hack";
+      };
+      settings = {
+        # Fonts
+        font_size = 14;
+        macos_thicken_font = "0.75";
+
+        # Tabs
+        tab_bar_style = "powerline";
+        tab_bar_min_tabs = 1;
+
+        # Config
+        allow_remote_control = "yes";
+        active_border_color = "#93a1a1";
+        inactive_border_color = "#586e75";
+        window_padding_width = 3;
+        window_margin_width = 1;
+        placement_strategy = "top-left";
+        hide_window_decorations = "yes";
+
+        # Color theme
+        background = "#073642";
+        foreground = "#657b83";
+        cursor = "#93a1a1";
+        selection_background = "#586e75";
+
+        # Black
+        color0 = "#073642";
+        color8 = "#002b36";
+
+        # Red
+        color1 = "#dc322f";
+        color9 = "#cb4b16";
+
+        # Green
+        color2 = "#859900";
+        color10 = "#586e75";
+
+        # color2 = "#2aa198";
+        # color10 = "#2aa198";
+
+        # Yellow
+        color3 = "#b58900";
+        color11 = "#657b83";
+
+        # Blue
+        color4 = "#268bd2";
+        color12 = "#839496";
+
+        # Magenta
+        color5 = "#d33682";
+        color13 = "#6c71c4";
+
+        # Cyan
+        color6 = "#2aa198";
+        color14 = "#93a1a1";
+
+        # White
+        color7 = "#eee8d5";
+        color15 = "#fdf6e3";
+      };
+    };
   };
 }
