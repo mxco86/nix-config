@@ -118,7 +118,10 @@
     enable = true;
     config = {
       modifier = "Mod4";
-      bars = [{ position = "top"; }];
+      bars = [{
+        position = "top";
+        colors = { background = "#002b36"; };
+      }];
       fonts = [ "FontAwesome 10" "pango:DejaVu Sans Mono 8" ];
       terminal = "${pkgs.kitty}/bin/kitty";
       assigns = {
