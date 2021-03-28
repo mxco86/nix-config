@@ -48,14 +48,6 @@
       enable = true;
       compression = true;
       forwardAgent = true;
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/mnt/k/id_rsa";
-          identitiesOnly = true;
-        };
-      };
     };
 
     git = {
@@ -165,14 +157,14 @@
         hide_window_decorations = "yes";
 
         # Color theme
-        background = "#073642";
+        background = "#002b36";
         foreground = "#657b83";
         cursor = "#93a1a1";
         selection_background = "#586e75";
 
         # Black
-        color0 = "#073642";
-        color8 = "#002b36";
+        color0 = "#002b36";
+        color8 = "#073642";
 
         # Red
         color1 = "#dc322f";
