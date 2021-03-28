@@ -7,8 +7,7 @@
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
 
   nixpkgs = {
     config = {
@@ -16,16 +15,12 @@
       allowBroken = false;
       allowUnsupportedSystem = false;
     };
-    overlays = [
-      (self: super: {
-        adr-tools = import ../pkgs/adr-tools;
-      })
-    ];
+    overlays = [ (self: super: { adr-tools = import ../pkgs/adr-tools; }) ];
   };
 
   home = {
     packages = with pkgs; [
-      adr-tools
+      # adr-tools
       awscli
       graphviz
       htop
@@ -57,7 +52,7 @@
         "github.com" = {
           hostname = "github.com";
           user = "git";
-          identityFile = "~/.ssh/id_rsa";
+          identityFile = "~/mnt/k/id_rsa";
           identitiesOnly = true;
         };
       };
@@ -150,12 +145,10 @@
 
     kitty = {
       enable = true;
-      font = {
-        name = "Hack";
-      };
+      font = { name = "Hack"; };
       settings = {
         # Fonts
-        font_size = 14;
+        # font_size = 14;
         macos_thicken_font = "0.75";
 
         # Tabs

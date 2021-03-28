@@ -21,6 +21,13 @@
     keyboard = { options = [ "ctrl:nocaps" ]; };
   };
 
+  programs.kitty = {
+    settings = {
+      # Fonts
+      font_size = 10;
+    };
+  };
+
   programs.urxvt = {
     enable = true;
     fonts = [ "xft:Hack:size=10" "xft:Noto Color Emoji:size=10" ];
@@ -106,6 +113,7 @@
       modifier = "Mod4";
       bars = [{ position = "top"; }];
       fonts = [ "FontAwesome 10" "pango:DejaVu Sans Mono 8" ];
+      terminal = "${pkgs.kitty}/bin/kitty";
       assigns = {
         "1: term" = [{ class = "^URxvt$"; }];
         "2: emacs" = [{ class = "^Emacs$"; }];
