@@ -198,5 +198,10 @@
         color15 = "#fdf6e3";
       };
     };
+
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
