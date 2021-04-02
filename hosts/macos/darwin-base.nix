@@ -61,4 +61,10 @@
   };
 
   fonts = { enableFontDir = true; };
+
+  users = {
+    nix = {
+      configureBuildUsers = true;
+    };
+  };
 }
