@@ -15,12 +15,14 @@ in
       [
         ((pkgs.emacsPackagesGen pkgs.emacs).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
+            alert
             ace-window
             add-node-modules-path
             ag
             base16-theme
             cargo
             company
+            company-go
             counsel
             dap-mode
             direnv
@@ -37,10 +39,14 @@ in
             forge
             git-timemachine
             github-review
+            go-eldoc
+            go-mode
+            groovy-mode
             ivy
             ivy-rich
             js2-mode
             kotlin-mode
+            log4e
             lsp-ivy
             lsp-java
             lsp-mode
@@ -49,10 +55,12 @@ in
             magit
             multi-term
             nix-mode
+            npm-mode
             org-download
             org-roam
             org-roam-server
             org-trello
+            ox-hugo
             paredit
             prettier-js
             projectile
@@ -63,6 +71,7 @@ in
             smex
             spaceline
             terraform-mode
+            toc-org
             typescript-mode
             use-package
             use-package-ensure-system-package
