@@ -63,6 +63,14 @@
 
       synaptics.enable = false;
     };
+
+    actkbd = {
+      enable = true;
+      bindings = [
+        { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl s 10%-"; }
+        { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl s +10%"; }
+      ];
+    };
   };
 
   # Open ports in the firewall.
@@ -77,6 +85,9 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
+
+  # Enable brightness control
+  environment = { systemPackages = [ pkgs.brightnessctl ]; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
