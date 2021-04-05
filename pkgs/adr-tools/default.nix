@@ -19,6 +19,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp src/* $out/bin
+    cp src/*adr* $out/bin
   '';
 }
