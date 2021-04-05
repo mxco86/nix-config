@@ -33,6 +33,38 @@
         };
       };
     };
+    i3status = {
+      enable = true;
+      enableDefault = false;
+      general = {
+        colors = true;
+        color_good = "#6c71c4";
+        color_degraded = "#b58900";
+        color_bad = "#dc322f";
+        color_separator = "#657b83";
+        interval = 5;
+      };
+      modules = {
+        ipv6 = {
+          position = 1;
+        };
+        "wireless _first_" = {
+          position = 2;
+        };
+        "battery all" = {
+          position = 3;
+        };
+        load = {
+          position = 4;
+        };
+        memory = {
+          position = 5;
+        };
+        "tztime local" = {
+          position = 6;
+        };
+      };
+    };
   };
 
   services.syncthing = { enable = true; };
@@ -53,9 +85,36 @@
       modifier = "Mod4";
       bars = [{
         position = "top";
-        colors = { background = "#002b36"; };
+        colors = {
+          background = "#002b36";
+          separator = "#657b83";
+          statusline = "#fdf6e3";
+          focusedWorkspace = {
+            background = "#586e75";
+            border = "#93a1a1";
+            text = "#fdf6e3";
+          };
+          inactiveWorkspace = {
+            background = "#002b36";
+            border = "#073642";
+            text = "#657b83";
+          };
+        };
+        fonts = [ "FontAwesome 8" "Hack 8" ];
+        extraConfig = ''
+          separator_symbol 
+        '';
       }];
-      fonts = [ "FontAwesome 10" "pango:DejaVu Sans Mono 8" ];
+      colors = {
+        focused = {
+          background = "#002b36";
+          border = "#586e75";
+          childBorder = "#586e75";
+          indicator = "#268bd2";
+          text = "#fdf6e3";
+        };
+      };
+      fonts = [ "FontAwesome 8" "Hack 8" ];
       terminal = "${pkgs.kitty}/bin/kitty";
       assigns = {
         "1: term" = [{ class = "^URxvt$"; }];
