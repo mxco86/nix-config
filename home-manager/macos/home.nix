@@ -25,5 +25,6 @@
         };
       };
     };
+    git = { credential = { helper = "osxkeychain"; }; };
   };
 }

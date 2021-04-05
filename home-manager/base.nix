@@ -80,7 +80,7 @@
         };
 
         push = { default = "simple"; };
-        credential = { helper = "osxkeychain"; };
+        pull = { ff = "only"; };
       };
     };
 
