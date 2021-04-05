@@ -25,6 +25,10 @@
         };
       };
     };
-    git = { credential = { helper = "osxkeychain"; }; };
+    git = {
+      extraConfig = {
+        credential = { helper = "osxkeychain"; };
+      };
+    };
   };
 }
