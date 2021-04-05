@@ -8,32 +8,24 @@
   imports =
     [ ./hardware-configuration.nix ../../nix-base.nix ../nixos-base.nix ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "/dev/nvme0n1"; # or "nodev" for efi only
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        version = 2;
+        device = "/dev/nvme0n1"; # or "nodev" for efi only
+      };
+    };
   };
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "sanchez";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
   networking = {
     useDHCP = false;
     interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp0s20f3.useDHCP = true;
   };
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -43,14 +35,12 @@
   # };
 
   services = {
-    # Enable the X11 windowing system.
     xserver = {
       enable = true;
       layout = "us";
       autorun = true;
       dpi = 210;
 
-      # Enable touchpad support.
       libinput = {
         enable = true;
         clickMethod = "clickfinger";
@@ -61,7 +51,9 @@
         tappingDragLock = false;
       };
 
-      synaptics.enable = false;
+      synaptics = {
+        enable = false;
+      };
     };
 
     actkbd = {
@@ -73,21 +65,19 @@
     };
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  sound = {
+    enable = true;
+  };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  hardware = {
+    pulseaudio.enable = true;
+  };
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
-  # Enable brightness control
-  environment = { systemPackages = [ pkgs.brightnessctl ]; };
+  # Packages
+  environment = {
+    systemPackages = with pkgs;
+      [ brightnessctl ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
