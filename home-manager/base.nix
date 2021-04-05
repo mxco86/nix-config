@@ -26,11 +26,12 @@
       htop
       isync
       jq
+      keepassxc
       multimarkdown
       nixfmt
       nixpkgs-fmt
       proselint
-      python37Packages.yamllint
+      # yamllint
       rnix-lsp
       shellcheck
       sqlite
