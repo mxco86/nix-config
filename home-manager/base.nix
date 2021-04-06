@@ -20,7 +20,6 @@
 
   home = {
     packages = with pkgs; [
-      # adr-tools
       awscli
       graphviz
       htop
@@ -58,8 +57,6 @@
         features = "side-by-side";
         syntax-theme = "Solarized (dark)";
       };
-      userName = "Matthew Ryall";
-      userEmail = "matthew@mexico86.co.uk";
       aliases = {
         st = "status";
         ci = "commit";
