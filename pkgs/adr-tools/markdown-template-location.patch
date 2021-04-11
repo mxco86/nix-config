@@ -1,0 +1,20 @@
+diff --git a/src/init.md b/share/adr-tools/init.md
+similarity index 100%
+rename from src/init.md
+rename to share/adr-tools/init.md
+diff --git a/src/template.md b/share/adr-tools/template.md
+similarity index 100%
+rename from src/template.md
+rename to share/adr-tools/template.md
+diff --git a/src/adr-config b/src/adr-config
+index 0168223..1afe117 100755
+--- a/src/adr-config
++++ b/src/adr-config
+@@ -4,4 +4,4 @@
+ basedir=$(cd -L $(dirname $0) >/dev/null 2>&1 && pwd -L)
+
+ echo 'adr_bin_dir="'"${basedir}"'"'
+-echo 'adr_template_dir="'"${basedir}"'"'
++echo 'adr_template_dir="'"${basedir}/../share/adr-tools"'"'
+--
+2.30.1

@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ getopt bashInteractive ];
 
-  patches = [ ./fix-paths.patch ];
+  patches = [ ./fix-paths.patch ./markdown-template-location.patch ];
   postPatch = ''
     patchShebangs src/*
     patchShebangs approve
@@ -19,6 +19,8 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
+    mkdir -p $out/share/adr-tools
     cp src/*adr* $out/bin
+    cp share/adr-tools/*.md $out/share/adr-tools
   '';
 }
