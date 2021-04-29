@@ -20,7 +20,8 @@
 
   home = {
     packages = with pkgs; [
-      awscli
+      awscli2
+      aws-vault
       graphviz
       htop
       isync

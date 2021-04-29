@@ -19,7 +19,7 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [ vim mu (aspellWithDicts (d: [ d.en ])) ];
+    systemPackages = with pkgs; [ vim mu (aspellWithDicts (d: [ d.en ])) kitty ];
     pathsToLink = [ "/share/zsh" ];
   };
 

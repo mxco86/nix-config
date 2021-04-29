@@ -53,8 +53,8 @@
     skhd = {
       enable = true;
       skhdConfig = ''
-        ralt - 1: open ~/.nix-profile/Applications/kitty.app
-        ralt - 2: open ~/Applications/Nix\ Apps/Emacs.app
+        ralt - 1: open /run/current-system/Applications/kitty.app
+        ralt - 2: open /run/current-system/Applications/Emacs.app
         ralt - 3: open /Applications/Firefox.app
         ralt - 4: open ~/.nix-profile/Applications/Slack.app
       '';
