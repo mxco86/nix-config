@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;
       [
-        ((pkgs.emacsPackagesGen pkgs.emacs).emacsWithPackages (epkgs:
+        ((emacsPackagesGen (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
             alert
             ace-window
