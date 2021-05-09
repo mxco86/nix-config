@@ -56,12 +56,15 @@ in
             multi-term
             nix-mode
             npm-mode
+            ob-kotlin
             org-download
+            org-noter
             org-roam
             org-roam-server
             org-trello
             ox-hugo
             paredit
+            pdf-tools
             prettier-js
             projectile
             racer
