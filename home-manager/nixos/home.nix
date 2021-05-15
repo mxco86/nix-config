@@ -33,6 +33,10 @@
         };
       };
     };
+    git = {
+      userName = "Matthew Ryall";
+      userEmail = "matthew@mexico86.co.uk";
+    };
     i3status = {
       enable = true;
       enableDefault = false;
