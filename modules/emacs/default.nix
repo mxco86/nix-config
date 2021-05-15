@@ -57,6 +57,7 @@ in
             nix-mode
             npm-mode
             ob-kotlin
+            ob-typescript
             org-download
             org-noter
             org-roam
