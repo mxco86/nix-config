@@ -5,17 +5,12 @@
 
   home = {
     packages = with pkgs; [
-      # anki
-      discord
+      anki
       firefox
-      keepassxc
       slack
-      nix-linter
       xclip
       xorg.xdpyinfo
       xorg.xmodmap
-      zoom-us
-      jetbrains.idea-community
     ];
 
     keyboard = { options = [ "ctrl:nocaps" ]; };

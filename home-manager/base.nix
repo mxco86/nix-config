@@ -22,22 +22,15 @@
     packages = with pkgs; [
       awscli2
       aws-vault
-      graphviz
+      discord
       htop
       isync
       jq
       keepassxc
-      multimarkdown
-      nixfmt
-      nixpkgs-fmt
       proselint
-      # yamllint
-      rnix-lsp
-      shellcheck
       sqlite
       tree
       weechat
-      wrk
     ];
   };
 
