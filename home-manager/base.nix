@@ -110,6 +110,10 @@
         prompt = { theme = "pure"; };
       };
       localVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10"; };
+      initExtra = "
+        bindkey \"\e[1;3D\" backward-word
+        bindkey \"\e[1;3C\" forward-word
+      ";
     };
 
     direnv = {
@@ -147,6 +151,8 @@
         window_margin_width = 1;
         placement_strategy = "top-left";
         hide_window_decorations = "yes";
+        macos_option_as_alt = "yes";
+        copy_on_select = "yes";
 
         # Color theme
         background = "#002b36";
