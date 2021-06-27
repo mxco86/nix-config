@@ -6,8 +6,8 @@
   home = {
     packages = with pkgs; [
       anki
+      discord
       firefox
-      slack
       xclip
       xorg.xdpyinfo
       xorg.xmodmap

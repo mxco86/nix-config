@@ -22,7 +22,8 @@
     packages = with pkgs; [
       awscli2
       aws-vault
-      discord
+      bat
+      slack
       htop
       isync
       jq
