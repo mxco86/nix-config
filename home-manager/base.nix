@@ -23,6 +23,7 @@
       awscli2
       aws-vault
       bat
+      broot
       slack
       htop
       isync
