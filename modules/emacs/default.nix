@@ -61,7 +61,6 @@ in
             org-download
             org-noter
             org-roam
-            org-roam-server
             org-trello
             ox-hugo
             paredit
