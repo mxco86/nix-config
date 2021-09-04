@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+
+  imports = [ ../../cachix.nix ];
+
   programs = {
     gnupg.agent = {
       enable = true;
