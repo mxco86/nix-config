@@ -6,6 +6,8 @@
   home = {
     packages = with pkgs; [
       adr-tools
+      dbeaver
+      kubectl
     ];
   };
 
@@ -24,15 +26,25 @@
           identityFile = "/Volumes/Q/k/id_rsa_moj";
           identitiesOnly = true;
         };
-        "ssh.bastion-dev.probation.hmpps.dsd.io aws_proxy" = {
+        "ssh.bastion-dev.probation.hmpps.dsd.io aws_proxy_dev" = {
           hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
           user = "mryall";
           identityFile = "/Volumes/Q/k/id_rsa_delius";
         };
-        "*.probation.hmpps.dsd.io" = {
+        "ssh.bastion-prod.probation.hmpps.dsd.io aws_proxy_prod" = {
+          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
+          user = "mryall";
+          identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
+        };
+        "*.test.delius.probation.hmpps.dsd.io" = {
           user = "mryall";
           identityFile = "/Volumes/Q/k/id_rsa_delius";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_dev";
+        };
+        "*.pre-prod.delius.probation.hmpps.dsd.io" = {
+          user = "mryall";
+          identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_prod";
         };
       };
     };

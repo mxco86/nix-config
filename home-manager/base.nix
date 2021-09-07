@@ -33,6 +33,7 @@
       sqlite
       tree
       weechat
+      nixpkgs-fmt
     ];
   };
 
@@ -75,6 +76,7 @@
 
         push = { default = "simple"; };
         pull = { ff = "only"; };
+        github = { user = "mxco86"; };
       };
     };
 
