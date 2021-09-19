@@ -21,6 +21,11 @@
     git = {
       userName = "Matthew Ryall";
       userEmail = "matthew@mexico86.co.uk";
+      extraConfig = {
+        credential = {
+          helper = "git-credential-libsecret";
+        };
+      };
     };
     i3status = {
       enable = true;
