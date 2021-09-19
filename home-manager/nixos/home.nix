@@ -18,16 +18,6 @@
 
   programs = {
     kitty = { settings = { font_size = 10; }; };
-    ssh = {
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/mnt/k/id_rsa";
-          identitiesOnly = true;
-        };
-      };
-    };
     git = {
       userName = "Matthew Ryall";
       userEmail = "matthew@mexico86.co.uk";

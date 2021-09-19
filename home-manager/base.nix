@@ -45,6 +45,14 @@
       enable = true;
       compression = true;
       forwardAgent = true;
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "~/mnt/k/id_rsa";
+          identitiesOnly = true;
+        };
+      };
     };
 
     git = {
