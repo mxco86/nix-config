@@ -27,6 +27,14 @@
         };
       };
     };
+    ssh = {
+      matchBlocks = {
+        "github.com" = {
+          identityFile = "~/mnt/k/id_rsa";
+          identitiesOnly = true;
+        };
+      };
+    };
     i3status = {
       enable = true;
       enableDefault = false;

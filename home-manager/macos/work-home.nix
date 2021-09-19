@@ -21,8 +21,6 @@
 
       matchBlocks = {
         "github.com" = {
-          hostname = "github.com";
-          user = "git";
           identityFile = "/Volumes/Q/k/id_rsa_moj";
           identitiesOnly = true;
         };
