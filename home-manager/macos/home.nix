@@ -12,6 +12,8 @@
     ssh = {
       matchBlocks = {
         "github.com" = {
+          hostname = "github.com";
+          user = "git";
           identityFile = "~/.ssh/id_rsa";
           identitiesOnly = true;
         };

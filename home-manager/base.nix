@@ -45,12 +45,6 @@
       enable = true;
       compression = true;
       forwardAgent = true;
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-        };
-      };
     };
 
     git = {
@@ -128,7 +122,9 @@
 
     direnv = {
       enable = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv = {
+        enable = true;
+      };
       enableZshIntegration = true;
     };
 
