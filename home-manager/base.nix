@@ -24,6 +24,7 @@
       aws-vault
       bat
       broot
+      fd
       slack
       htop
       isync
