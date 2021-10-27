@@ -5,9 +5,15 @@
 
   home = {
     packages = with pkgs; [
+      adoptopenjdk-hotspot-bin-11
       adr-tools
       dbeaver
       kubectl
+      docker
+      docker-compose
+      minikube
+      jwt-cli
+      imagemagick
     ];
   };
 
