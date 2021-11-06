@@ -13,6 +13,8 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;
       [
+        ripgrep
+        (aspellWithDicts (d: [ d.en ]))
         ((emacsPackagesGen (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
             alert
@@ -61,7 +63,6 @@ in
             org-download
             org-noter
             org-roam
-            org-trello
             ox-hugo
             paredit
             pdf-tools

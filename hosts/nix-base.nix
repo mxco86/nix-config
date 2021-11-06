@@ -20,7 +20,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      (aspellWithDicts (d: [ d.en ]))
       kitty
       mu
       vim
