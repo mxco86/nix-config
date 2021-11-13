@@ -35,7 +35,6 @@
       isync
       jq
       keepassxc
-      proselint
       sqlite
       tree
       weechat

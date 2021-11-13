@@ -14,6 +14,7 @@ in
     environment.systemPackages = with pkgs;
       [
         ripgrep
+        proselint
         (aspellWithDicts (d: [ d.en ]))
         ((emacsPackagesGen (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
@@ -54,6 +55,7 @@ in
             lsp-mode
             lsp-ui
             lsp-pyright
+            lsp-sonarlint
             magit
             multi-term
             nix-mode
