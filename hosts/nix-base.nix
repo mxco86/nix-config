@@ -23,6 +23,7 @@
       kitty
       mu
       vim
+      tailscale
     ];
     pathsToLink = [ "/share/zsh" ];
   };
