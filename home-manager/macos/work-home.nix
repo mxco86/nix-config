@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  adr-tools = import ../../pkgs/adr-tools;
+in
 {
   imports = [ ./base.nix ];
 
