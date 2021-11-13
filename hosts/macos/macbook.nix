@@ -12,4 +12,36 @@
     buildCores = 0;
   };
 
+  homebrew = {
+    enable = true;
+    autoUpdate = true;
+    cleanup = "zap";
+    global = {
+      brewfile = true;
+      noLock = true;
+    };
+    extraConfig = ''
+      cask "firefox", args: { language: "en-GB" }
+    '';
+
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+    ];
+
+    brews = [
+      "syncthing"
+    ];
+
+    casks = [
+      "firefox"
+      "mediaelch"
+      "jaikoz"
+      "steam"
+    ];
+
+    # masApps = {
+    #   Tailscale = 1475387142;
+    # };
+  };
 }

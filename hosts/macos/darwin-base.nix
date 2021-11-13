@@ -64,7 +64,7 @@
       skhdConfig = ''
         ralt - 1: open /run/current-system/Applications/kitty.app
         ralt - 2: open /run/current-system/Applications/Emacs.app
-        ralt - 3: open /Applications/Firefox.app
+        ralt - 3: open -a /Applications/Firefox.app
         ralt - 4: open ~/.nix-profile/Applications/Slack.app
         ralt - 6: open ~/.nix-profile/Applications/KeePassXC.app
       '';

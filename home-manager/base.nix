@@ -7,15 +7,20 @@
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
-{ pkgs, ... }: {
+{ pkgs, ... }:
 
+{
   nixpkgs = {
     config = {
       allowUnfree = true;
       allowBroken = false;
       allowUnsupportedSystem = false;
+      packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+      };
     };
-    overlays = [ (self: super: { adr-tools = import ../pkgs/adr-tools; }) ];
   };
 
   home = {
@@ -79,6 +84,34 @@
         pull = { ff = "only"; };
         github = { user = "mxco86"; };
       };
+    };
+
+    firefox = {
+      enable = true;
+      profiles = {
+        mryall = {
+          id = 0;
+          settings = {
+            "browser.urlbar.placeholderName" = "DuckDuckGo";
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          };
+          userChrome = ''
+            #TabsToolbar { visibility: collapse !important; }
+
+            #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+                display:none;
+            }
+          '';
+        };
+      };
+
+      extensions =
+        with pkgs.nur.repos.rycee.firefox-addons; [
+          keepassxc-browser
+          privacy-badger
+          tab-session-manager
+          tree-style-tab
+        ];
     };
 
     zsh = {
