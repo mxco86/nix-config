@@ -66,7 +66,6 @@
         ralt - 2: open /run/current-system/Applications/Emacs.app
         ralt - 3: open -a /Applications/Firefox.app
         ralt - 4: open ~/.nix-profile/Applications/Slack.app
-        ralt - 6: open ~/.nix-profile/Applications/KeePassXC.app
       '';
     };
   };
@@ -78,6 +77,16 @@
   users = {
     nix = {
       configureBuildUsers = true;
+    };
+  };
+
+  homebrew = {
+    enable = true;
+    autoUpdate = true;
+    cleanup = "zap";
+    global = {
+      brewfile = true;
+      noLock = true;
     };
   };
 }

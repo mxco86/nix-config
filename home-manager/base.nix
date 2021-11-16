@@ -34,9 +34,7 @@
       htop
       isync
       jq
-      keepassxc
       sqlite
-      tree
       weechat
       nixpkgs-fmt
     ];

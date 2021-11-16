@@ -12,4 +12,34 @@
     buildCores = 0;
   };
 
+  homebrew = {
+    extraConfig = ''
+      cask "firefox", args: { language: "en-GB" }
+    '';
+
+    taps = [
+      "homebrew/core"
+      "homebrew/cask"
+    ];
+
+    brews = [
+      "hyperkit"
+    ];
+
+    casks = [
+      "firefox"
+      "docker"
+      "spectacle"
+      "vorta"
+      "keepassxc"
+    ];
+  };
+
+  services = {
+    skhd = {
+      skhdConfig = ''
+        ralt - 6: open /Applications/KeePassXC.app
+      '';
+    };
+  };
 }

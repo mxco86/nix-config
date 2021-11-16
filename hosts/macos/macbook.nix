@@ -13,13 +13,6 @@
   };
 
   homebrew = {
-    enable = true;
-    autoUpdate = true;
-    cleanup = "zap";
-    global = {
-      brewfile = true;
-      noLock = true;
-    };
     extraConfig = ''
       cask "firefox", args: { language: "en-GB" }
     '';
