@@ -88,7 +88,9 @@ in
             yaml-mode
             yasnippet
             yasnippet-snippets
-          ]) ++ (with epkgs.orgPackages; [ org-plus-contrib ])))
+          ])
+          ++ [ epkgs.elpaPackages.org ]
+          ++ [ epkgs.nongnuPackages.org-contrib ]))
       ];
   };
 }
