@@ -1,5 +1,6 @@
-with (import <nixpkgs> { });
+{ pkgs }:
 
+with pkgs;
 stdenv.mkDerivation rec {
   pname = "adr-tools";
   version = "3.0.0";

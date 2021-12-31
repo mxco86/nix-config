@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  adr-tools = import ../../pkgs/adr-tools;
+  adr-tools = import ../../pkgs/adr-tools { inherit pkgs; };
 in
 {
   imports = [ ./base.nix ];

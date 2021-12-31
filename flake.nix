@@ -37,17 +37,32 @@
         };
       };
 
-    darwinConfigurations.socrates =
-      let
-        system = "x86_64-darwin";
-      in
-      darwin.lib.darwinSystem
-        {
-          inherit system inputs;
-          modules = [
-            ./hosts/macos/macbook.nix
-          ];
-        };
+    darwinConfigurations = {
+      socrates =
+        let
+          system = "x86_64-darwin";
+        in
+        darwin.lib.darwinSystem
+          {
+            inherit system inputs;
+            modules = [
+              ./hosts/macos/macbook.nix
+            ];
+          };
+      careca =
+        let
+          system = "x86_64-darwin";
+          overlays = [ inputs.emacs-overlay.overlay ];
+        in
+        darwin.lib.darwinSystem
+          {
+            inherit system inputs;
+            modules = [
+              ./hosts/macos/macbook-work.nix
+              { nixpkgs.overlays = overlays; }
+            ];
+          };
+    };
 
     homeConfigurations =
       let
@@ -77,6 +92,22 @@
           username = "mryall";
           configuration.imports = [
             ./home-manager/macos/home.nix
+            {
+              nixpkgs.config.packageOverrides = pkgs: {
+                nur = import inputs.nur {
+                  inherit pkgs;
+                  nurpkgs = import nixpkgs { system = systemMacOS; };
+                };
+              };
+            }
+          ];
+        };
+        mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
+          system = systemMacOS;
+          homeDirectory = "/Users/matthewryall";
+          username = "matthewryall";
+          configuration.imports = [
+            ./home-manager/macos/work-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
                 nur = import inputs.nur {
