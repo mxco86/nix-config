@@ -64,8 +64,9 @@
       skhdConfig = ''
         ralt - 1: open /run/current-system/Applications/kitty.app
         ralt - 2: open /run/current-system/Applications/Emacs.app
-        ralt - 3: open -a /Applications/Firefox.app
+        ralt - 3: open -a ~/Applications/Homebrew\ Apps/Firefox.app
         ralt - 4: open ~/.nix-profile/Applications/Slack.app
+        ralt - 6: open -a ~/Applications/Homebrew\ Apps/KeePassXC.app
       '';
     };
   };
@@ -88,5 +89,8 @@
       brewfile = true;
       noLock = true;
     };
+    extraConfig = ''
+      cask_args appdir: "~/Applications/Homebrew Apps", require_sha: true
+    '';
   };
 }
