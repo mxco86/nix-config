@@ -4,13 +4,6 @@
 
   imports = [ ../../cachix.nix ];
 
-  nix = {
-    package = pkgs.nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   programs = {
     gnupg.agent = {
       enable = true;
