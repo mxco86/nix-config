@@ -28,9 +28,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/nixos/thinkpad/default.nix
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = overlays;
-          })
+          { nixpkgs.overlays = overlays; }
         ];
         specialArgs = {
           inherit inputs;
@@ -41,12 +39,14 @@
       socrates =
         let
           system = "x86_64-darwin";
+          overlays = [ inputs.emacs-overlay.overlay ];
         in
         darwin.lib.darwinSystem
           {
             inherit system inputs;
             modules = [
               ./hosts/macos/macbook.nix
+              { nixpkgs.overlays = overlays; }
             ];
           };
       careca =
