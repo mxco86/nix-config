@@ -13,10 +13,6 @@
   };
 
   homebrew = {
-    extraConfig = ''
-      cask "firefox", args: { language: "en-GB" }
-    '';
-
     taps = [
       "homebrew/core"
       "homebrew/cask"
@@ -31,6 +27,8 @@
       "mediaelch"
       "jaikoz"
       "steam"
+      "vorta"
+      "keepassxc"
     ];
 
     # masApps = {
