@@ -24,12 +24,14 @@
       aws-vault
       bat
       broot
+      dogdns
       fd
       slack
       htop
       isync
       jq
       sqlite
+      tig
       weechat
       nixpkgs-fmt
     ];
