@@ -20,6 +20,19 @@
 
   outputs = { self, nixpkgs, darwin, nur, ... }@inputs: {
 
+    devShell = {
+      x86_64-darwin =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        in
+        pkgs.mkShell { };
+      x86_64-linux =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in
+        pkgs.mkShell { };
+    };
+
     nixosConfigurations.sanchez =
       let
         overlays = [ inputs.emacs-overlay.overlay ];
