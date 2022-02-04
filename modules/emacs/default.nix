@@ -26,7 +26,7 @@ in
             cargo
             company
             company-go
-            counsel
+            consult
             dap-mode
             direnv
             docker
@@ -34,7 +34,6 @@ in
             dockerfile-mode
             editorconfig
             format-all
-            flx
             flycheck
             flycheck-kotlin
             flycheck-rust
@@ -45,18 +44,16 @@ in
             go-eldoc
             go-mode
             groovy-mode
-            ivy
-            ivy-rich
             js2-mode
             kotlin-mode
             log4e
-            lsp-ivy
             lsp-java
             lsp-mode
             lsp-ui
             lsp-pyright
             lsp-sonarlint
             magit
+            marginalia
             multi-term
             nix-mode
             npm-mode
@@ -65,6 +62,7 @@ in
             org-download
             org-noter
             org-roam
+            org-roam-ui
             ox-hugo
             paredit
             pdf-tools
@@ -73,8 +71,10 @@ in
             racer
             racket-mode
             rust-mode
+            selectrum
+            selectrum-prescient
             shackle
-            smex
+            simple-httpd
             spaceline
             terraform-mode
             toc-org
@@ -83,6 +83,7 @@ in
             use-package-ensure-system-package
             vimish-fold
             web-mode
+            websocket
             which-key
             writegood-mode
             yaml-mode
