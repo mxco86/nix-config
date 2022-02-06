@@ -32,7 +32,10 @@ in
             docker
             docker-compose-mode
             dockerfile-mode
+            dumb-jump
             editorconfig
+            embark
+            embark-consult
             format-all
             flycheck
             flycheck-kotlin
@@ -70,6 +73,7 @@ in
             projectile
             racer
             racket-mode
+            rg
             rust-mode
             selectrum
             selectrum-prescient
