@@ -16,7 +16,7 @@ in
         ripgrep
         proselint
         (aspellWithDicts (d: [ d.en ]))
-        ((emacsPackagesGen (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
+        ((emacsPackagesFor (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
             alert
             ace-window
