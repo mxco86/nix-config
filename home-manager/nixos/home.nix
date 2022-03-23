@@ -69,6 +69,16 @@
         };
       };
     };
+
+    firefox = {
+      profiles = {
+        mryall = {
+          settings = {
+            "layout.css.devPixelsPerPx" = "1.6";
+          };
+        };
+      };
+    };
   };
 
   services.syncthing = { enable = true; };
