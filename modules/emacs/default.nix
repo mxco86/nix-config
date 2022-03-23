@@ -47,6 +47,7 @@ in
             go-eldoc
             go-mode
             groovy-mode
+            haskell-mode
             js2-mode
             kotlin-mode
             log4e
