@@ -48,12 +48,14 @@
 
       libinput = {
         enable = true;
-        clickMethod = "clickfinger";
-        disableWhileTyping = true;
-        naturalScrolling = false;
-        scrollMethod = "twofinger";
-        tapping = false;
-        tappingDragLock = false;
+        touchpad = {
+          clickMethod = "clickfinger";
+          disableWhileTyping = true;
+          naturalScrolling = false;
+          scrollMethod = "twofinger";
+          tapping = false;
+          tappingDragLock = false;
+        };
       };
 
       synaptics = {
