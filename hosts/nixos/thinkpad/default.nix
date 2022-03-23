@@ -19,7 +19,11 @@
   };
 
   networking.hostName = "sanchez";
-  networking.networkmanager.enable = true;
+  networking.domain = "mexico86.co.uk";
+  networking.networkmanager = {
+    enable = true;
+    enableStrongSwan = true;
+  };
 
   networking = {
     useDHCP = false;
@@ -35,6 +39,7 @@
   # };
 
   services = {
+    dbus.packages = with pkgs; [ gnome3.dconf ];
     xserver = {
       enable = true;
       layout = "us";
@@ -77,6 +82,10 @@
   environment = {
     systemPackages = with pkgs;
       [ brightnessctl ];
+
+    etc."ipsec.secrets".text = ''
+      include ipsec.d/ipsec.nm-l2tp.secrets
+    '';
   };
 
   # This value determines the NixOS release from which the default

@@ -13,6 +13,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "rossi";
+  networking.domain = "mexico86.co.uk";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -28,4 +29,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
 }
-
