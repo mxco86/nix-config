@@ -8,6 +8,7 @@
       anki
       discord
       firefox
+      keepassxc
       xclip
       xorg.xdpyinfo
       xorg.xmodmap

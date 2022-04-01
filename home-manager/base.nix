@@ -26,6 +26,7 @@
       broot
       dogdns
       fd
+      pass
       slack
       htop
       isync
