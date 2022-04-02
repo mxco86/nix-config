@@ -55,7 +55,7 @@
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/nixos/desktop/default.nix
+          ./hosts/nixos/workstation/default.nix
           { nixpkgs.overlays = overlays; }
         ];
         specialArgs = {
@@ -98,12 +98,28 @@
         systemMacOS = "x86_64-darwin";
       in
       {
-        mryallNixOS = inputs.home-manager.lib.homeManagerConfiguration {
+        mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
           system = systemNixOS;
           homeDirectory = "/home/mryall";
           username = "mryall";
           configuration.imports = [
-            ./home-manager/nixos/home.nix
+            ./home-manager/nixos/thinkpad-home.nix
+            {
+              nixpkgs.config.packageOverrides = pkgs: {
+                nur = import inputs.nur {
+                  inherit pkgs;
+                  nurpkgs = import nixpkgs { system = systemNixOS; };
+                };
+              };
+            }
+          ];
+        };
+        mryallNixOSWorkstation = inputs.home-manager.lib.homeManagerConfiguration {
+          system = systemNixOS;
+          homeDirectory = "/home/mryall";
+          username = "mryall";
+          configuration.imports = [
+            ./home-manager/nixos/workstation-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
                 nur = import inputs.nur {
