@@ -48,6 +48,21 @@
         };
       };
 
+    nixosConfigurations.rossi =
+      let
+        overlays = [ inputs.emacs-overlay.overlay ];
+      in
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nixos/desktop/default.nix
+          { nixpkgs.overlays = overlays; }
+        ];
+        specialArgs = {
+          inherit inputs;
+        };
+      };
+
     darwinConfigurations = {
       socrates =
         let
