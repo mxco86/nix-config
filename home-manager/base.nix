@@ -81,6 +81,8 @@
       };
     };
 
+    gpg = { enable = true; };
+
     firefox = {
       enable = true;
       profiles = {

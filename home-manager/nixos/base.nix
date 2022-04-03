@@ -72,7 +72,16 @@
     };
   };
 
-  services.syncthing = { enable = true; };
+  services = {
+    syncthing = { enable = true; };
+    gpg-agent = {
+      enable = true;
+      extraConfig = ''
+        allow-emacs-pinentry
+        allow-loopback-pinentry
+      '';
+    };
+  };
 
   xsession.windowManager.i3 = {
     enable = true;
