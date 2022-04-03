@@ -18,7 +18,8 @@
       profiles = {
         mryall = {
           settings = {
-            "layout.css.devPixelsPerPx" = "1.6";
+            "layout.css.devPixelsPerPx" = "1";
+            "font.size.systemFontScale" = "125";
           };
         };
       };
