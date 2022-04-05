@@ -22,15 +22,11 @@
     packages = with pkgs; [
       awscli2
       aws-vault
-      bat
-      broot
       dogdns
       fd
-      pass
+      passff-host
       slack
-      htop
       isync
-      jq
       sqlite
       tig
       weechat
@@ -82,6 +78,14 @@
     };
 
     gpg = { enable = true; };
+    bat = { enable = true; };
+    broot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    htop = { enable = true; };
+    jq = { enable = true; };
+    password-store = { enable = true; };
 
     firefox = {
       enable = true;
