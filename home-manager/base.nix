@@ -32,6 +32,7 @@
       weechat
       nixpkgs-fmt
     ];
+    sessionVariables = { EDITOR = "emacsclient"; };
   };
 
   programs = {
