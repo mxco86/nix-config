@@ -94,8 +94,14 @@
     };
     htop = { enable = true; };
     jq = { enable = true; };
-    password-store = { enable = true; };
-
+    password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [
+        exts.pass-import
+        exts.pass-audit
+        exts.pass-otp
+      ]);
+    };
     firefox = {
       enable = true;
       profiles = {
