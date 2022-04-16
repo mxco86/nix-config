@@ -112,7 +112,7 @@
             text = "#657b83";
           };
         };
-        fonts = [ "FontAwesome 8" "Hack 8" ];
+        fonts = { names = [ "FontAwesome 8" "Hack 8" ]; };
         extraConfig = ''
           separator_symbol 
         '';
@@ -126,7 +126,7 @@
           text = "#fdf6e3";
         };
       };
-      fonts = [ "FontAwesome 8" "Hack 8" ];
+      fonts = { names = [ "FontAwesome 8" "Hack 8" ]; };
       terminal = "${pkgs.kitty}/bin/kitty";
       assigns = {
         "1: term" = [{ class = "^kitty$"; }];
