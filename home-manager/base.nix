@@ -22,6 +22,7 @@
     packages = with pkgs; [
       awscli2
       aws-vault
+      difftastic
       dogdns
       fd
       slack
@@ -74,6 +75,14 @@
         push = { default = "simple"; };
         pull = { ff = "only"; };
         github = { user = "mxco86"; };
+        diff = { tool = "difftastic"; };
+        difftool = { prompt = false; };
+        difftool = {
+          difftastic = {
+            cmd = ''difft "$LOCAL" "$REMOTE"'';
+          };
+        };
+        pager = { difftool = true; };
       };
     };
 
