@@ -24,7 +24,6 @@
       aws-vault
       dogdns
       fd
-      passff-host
       slack
       isync
       sqlite

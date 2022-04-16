@@ -7,7 +7,6 @@
     packages = with pkgs; [
       anki
       discord
-      firefox
       keepassxc
       xclip
       xorg.xdpyinfo
@@ -19,6 +18,7 @@
 
   programs = {
     kitty = { settings = { font_size = 10; }; };
+
     git = {
       userName = "Matthew Ryall";
       userEmail = "matthew@mexico86.co.uk";
@@ -28,6 +28,7 @@
         };
       };
     };
+
     ssh = {
       matchBlocks = {
         "github.com" = {
@@ -38,6 +39,13 @@
         };
       };
     };
+
+    firefox = {
+      package = (pkgs.firefox.override {
+        extraNativeMessagingHosts = [ pkgs.passff-host ];
+      });
+    };
+
     i3status = {
       enable = true;
       enableDefault = false;
