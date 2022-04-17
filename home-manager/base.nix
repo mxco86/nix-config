@@ -20,17 +20,16 @@
 
   home = {
     packages = with pkgs; [
-      awscli2
-      aws-vault
+      bottom
       difftastic
       dogdns
+      duf
       fd
       slack
       isync
       sqlite
       tig
       weechat
-      nixpkgs-fmt
     ];
     sessionVariables = { EDITOR = "emacsclient"; };
   };
@@ -89,6 +88,10 @@
     gpg = { enable = true; };
     bat = { enable = true; };
     broot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    zoxide = {
       enable = true;
       enableZshIntegration = true;
     };
