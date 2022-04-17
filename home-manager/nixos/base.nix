@@ -97,6 +97,7 @@
       modifier = "Mod4";
       bars = [{
         position = "top";
+        statusCommand = "${pkgs.i3status}/bin/i3status";
         colors = {
           background = "#002b36";
           separator = "#657b83";
