@@ -19,6 +19,11 @@
   programs = {
     kitty = { settings = { font_size = 10; }; };
 
+    rofi = {
+      enable = true;
+      pass = { enable = true; };
+    };
+
     git = {
       userName = "Matthew Ryall";
       userEmail = "matthew@mexico86.co.uk";
@@ -121,6 +126,12 @@
     enable = true;
     config = {
       modifier = "Mod4";
+      menu = "rofi -modi drun -show drun -theme solarized -font 'Hack 22'";
+      keybindings =
+        let modifier = "Mod4"; in
+        pkgs.lib.mkOptionDefault {
+          "${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";
+        };
       bars = [{
         position = "top";
         statusCommand = "${pkgs.i3status}/bin/i3status";
