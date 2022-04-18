@@ -25,6 +25,7 @@
   services = {
     openssh = { enable = true; };
     tailscale = { enable = true; };
+    dbus.packages = [ pkgs.dconf ];
     xserver = {
       enable = true;
       displayManager.lightdm.enable = true;

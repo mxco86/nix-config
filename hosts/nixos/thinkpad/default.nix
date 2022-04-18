@@ -39,7 +39,6 @@
   # };
 
   services = {
-    dbus.packages = with pkgs; [ gnome3.dconf ];
     xserver = {
       enable = true;
       layout = "us";
