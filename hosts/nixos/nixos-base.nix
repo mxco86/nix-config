@@ -5,13 +5,6 @@
   imports = [ ../../cachix.nix ];
 
   programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-      enableExtraSocket = true;
-      pinentryFlavor = "gnome3";
-    };
-
     tmux = {
       extraConfig = ''
         set-option -g default-shell $SHELL

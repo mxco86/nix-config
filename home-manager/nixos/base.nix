@@ -39,7 +39,7 @@
         "github.com" = {
           hostname = "github.com";
           user = "git";
-          identityFile = "~/mnt/k/id_rsa";
+          identityFile = "~/mnt/k/id_rsa.pub";
           identitiesOnly = true;
         };
       };
@@ -115,6 +115,9 @@
     syncthing = { enable = true; };
     gpg-agent = {
       enable = true;
+      enableSshSupport = true;
+      enableExtraSocket = true;
+      pinentryFlavor = "gtk2";
       extraConfig = ''
         allow-emacs-pinentry
         allow-loopback-pinentry
