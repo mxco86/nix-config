@@ -36,6 +36,7 @@ in
             editorconfig
             embark
             embark-consult
+            exec-path-from-shell
             format-all
             flycheck
             flycheck-kotlin
