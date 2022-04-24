@@ -21,7 +21,6 @@ in
             alert
             ace-window
             add-node-modules-path
-            ag
             base16-theme
             cargo
             company
@@ -82,7 +81,9 @@ in
             shackle
             simple-httpd
             spaceline
+            sqlformat
             terraform-mode
+            terraform-lsp
             toc-org
             typescript-mode
             use-package
@@ -96,7 +97,10 @@ in
             yasnippet
             yasnippet-snippets
           ])
-          ++ [ epkgs.elpaPackages.org ]
+          ++ [
+            epkgs.elpaPackages.org
+            epkgs.elpaPackages.sql-indent
+          ]
           ++ [ epkgs.nongnuPackages.org-contrib ]))
       ];
   };
