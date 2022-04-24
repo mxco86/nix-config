@@ -3,7 +3,10 @@
 {
   imports = [ ../base.nix ];
 
-  home.packages = with pkgs; [ silver-searcher chroma ];
+  home.packages = with pkgs; [
+    chroma
+    passff-host
+  ];
 
   programs = {
     zsh = { oh-my-zsh = { plugins = [ "macos" ]; }; };
