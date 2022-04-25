@@ -33,6 +33,39 @@
   };
 
   programs = {
+    i3status = {
+      enable = true;
+      enableDefault = false;
+      general = {
+        colors = true;
+        color_good = "#6c71c4";
+        color_degraded = "#b58900";
+        color_bad = "#dc322f";
+        color_separator = "#657b83";
+        interval = 5;
+      };
+      modules = {
+        ipv6 = {
+          position = 1;
+        };
+        "wireless _first_" = {
+          position = 2;
+        };
+        "battery all" = {
+          position = 3;
+        };
+        load = {
+          position = 4;
+        };
+        memory = {
+          position = 5;
+        };
+        "tztime local" = {
+          position = 6;
+        };
+      };
+    };
+
     firefox = {
       profiles = {
         mryall = {
