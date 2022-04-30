@@ -13,6 +13,19 @@
     };
   };
 
+  xsession.windowManager.i3 = {
+    config = {
+      assigns = {
+        "1: emacs" = [{ class = "^Emacs$"; }];
+        "2: slack" = [{ class = "^Slack$"; }];
+        "4: web" = [{ class = "^Firefox$"; }];
+        "3: term" = [{ class = "^kitty$"; }];
+      };
+    };
+    extraConfig = ''
+      '';
+  };
+
   programs = {
     i3status = {
       enable = true;

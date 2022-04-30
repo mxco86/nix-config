@@ -135,16 +135,6 @@
       };
       fonts = { names = [ "FontAwesome 8" "Hack 8" ]; };
       terminal = "${pkgs.kitty}/bin/kitty";
-      assigns = {
-        "1: term" = [{ class = "^kitty$"; }];
-        "2: emacs" = [{ class = "^Emacs$"; }];
-        "3: web" = [{ class = "^Firefox$"; }];
-        "6: key" = [{ class = "^KeePassXC$"; }];
-        "0: extra" = [{
-          class = "^Firefox$";
-          window_role = "About";
-        }];
-      };
     };
   };
 }

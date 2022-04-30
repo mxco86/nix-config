@@ -14,6 +14,14 @@
   };
 
   xsession.windowManager.i3 = {
+    config = {
+      assigns = {
+        "1: term" = [{ class = "^kitty$"; }];
+        "2: emacs" = [{ class = "^Emacs$"; }];
+        "3: web" = [{ class = "^Firefox$"; }];
+        "4: slack" = [{ class = "^Slack$"; }];
+      };
+    };
     extraConfig = ''
       # Remap keys
       exec --no-startup-id ~/Config/system-config/thinkpad-x1/keyboard/setup.sh
