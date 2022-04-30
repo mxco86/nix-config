@@ -79,6 +79,7 @@
 
   services = {
     syncthing = { enable = true; };
+    twmn = { enable = true; };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
