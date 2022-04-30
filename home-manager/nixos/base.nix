@@ -53,7 +53,21 @@
 
   services = {
     syncthing = { enable = true; };
-    twmn = { enable = true; };
+    twmn = {
+      enable = true;
+      window = {
+        height = 40;
+        color = "#002b36";
+      };
+      text = {
+        color = "#6c71c4";
+        font = {
+          family = "Hack";
+          variant = "medium";
+          size = 22;
+        };
+      };
+    };
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
