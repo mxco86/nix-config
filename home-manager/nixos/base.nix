@@ -8,6 +8,7 @@
       anki
       discord
       keepassxc
+      unzip
       xclip
       xorg.xdpyinfo
       xorg.xmodmap
