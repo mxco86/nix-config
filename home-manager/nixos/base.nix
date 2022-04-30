@@ -17,6 +17,15 @@
     keyboard = { options = [ "ctrl:nocaps" ]; };
   };
 
+  gtk = {
+    enable = true;
+    gtk3 = {
+      extraConfig = {
+        gtk-key-theme-name = "Emacs";
+      };
+    };
+  };
+
   programs = {
     kitty = { settings = { font_size = 10; }; };
 
