@@ -26,10 +26,13 @@
     };
   };
 
+  # Enable the docker daemon
+  virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mryall = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" ];
+    extraGroups = [ "wheel" "audio" "docker" ];
     shell = pkgs.zsh;
     openssh = {
       authorizedKeys = {
