@@ -34,9 +34,6 @@
 
       # bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+
       # bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%-
-
-      # Firefox-specific windows
-      for_window [urgent="latest" class="Firefox"] focus
     '';
   };
 
@@ -96,10 +93,35 @@
         mryall = {
           settings = {
             "layout.css.devPixelsPerPx" = "1.6";
+            "font.size.systemFontScale" = 100;
+            "browser.uidensity" = 1;
           };
+          userChrome = ''
+            #TabsToolbar { visibility: collapse !important; }
+
+            #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+                display:none;
+            }
+
+            #urlbar { font-size: 14pt !important }
+            #statuspanel { font-size: 14pt !important }
+            #main-menubar { font-size: 14pt !important }
+
+            menubar, menubutton, menulist, menu, menuitem,
+            textbox, findbar, toolbar, tab, tree, tooltip {
+              font-size: 14pt !important;
+            }
+
+            .tabbrowser-tab {
+               min-height: var(--tab-min-height) !important;
+               overflow: visible !important;
+               font-size: 14pt !important;
+               background: 0 !important;
+               border: 0 !important;
+            }
+          '';
         };
       };
     };
   };
-
 }
