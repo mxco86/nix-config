@@ -33,6 +33,23 @@
   };
 
   programs = {
+    ssh = {
+      controlPersist = "yes";
+      controlMaster = "auto";
+      controlPath = "/tmp/%r@%h:%p";
+      serverAliveInterval = 20;
+      serverAliveCountMax = 2;
+
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "~/mnt/k/id_rsa.pub";
+          identitiesOnly = true;
+        };
+      };
+    };
+
     i3status = {
       enable = true;
       enableDefault = false;

@@ -44,17 +44,6 @@
       };
     };
 
-    ssh = {
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/mnt/k/id_rsa.pub";
-          identitiesOnly = true;
-        };
-      };
-    };
-
     firefox = {
       package = (pkgs.firefox.override {
         extraNativeMessagingHosts = [ pkgs.passff-host ];

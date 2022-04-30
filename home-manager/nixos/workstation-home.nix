@@ -41,12 +41,52 @@
       };
     };
 
+    ssh = {
+      controlPersist = "yes";
+      controlMaster = "auto";
+      controlPath = "/tmp/%r@%h:%p";
+      serverAliveInterval = 20;
+      serverAliveCountMax = 2;
+
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          user = "git";
+          identityFile = "~/mnt/k/id_rsa_moj";
+          identitiesOnly = true;
+        };
+        "ssh.bastion-dev.probation.hmpps.dsd.io aws_proxy_dev" = {
+          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius";
+          identitiesOnly = true;
+        };
+        "ssh.bastion-prod.probation.hmpps.dsd.io aws_proxy_prod" = {
+          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius_prod";
+          identitiesOnly = true;
+        };
+        "*.test.delius.probation.hmpps.dsd.io" = {
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_dev";
+          identitiesOnly = true;
+        };
+        "*.pre-prod.delius.probation.hmpps.dsd.io" = {
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius_prod";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_prod";
+          identitiesOnly = true;'
+        };
+      };
+    };
+
     firefox = {
       profiles = {
         mryall = {
           settings = {
-            "layout.css.devPixelsPerPx" = "1";
-            "font.size.systemFontScale" = "125";
+            "browser.uidensity" = 1;
           };
         };
       };
