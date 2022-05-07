@@ -69,6 +69,7 @@
         ralt - 6: open -a ~/Applications/Homebrew\ Apps/KeePassXC.app
       '';
     };
+    nix-daemon.enable = true;
   };
 
   fonts = {
