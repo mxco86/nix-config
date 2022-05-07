@@ -8,6 +8,8 @@
       anki
       discord
       keepassxc
+      nixpkgs-fmt
+      rnix-lsp
       unzip
       xclip
       xorg.xdpyinfo
