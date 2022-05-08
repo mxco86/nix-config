@@ -33,6 +33,7 @@
     hack-font
     noto-fonts-emoji
     font-awesome
+    emacs-all-the-icons-fonts
   ];
 
   programs = {

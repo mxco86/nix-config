@@ -18,6 +18,8 @@ in
         (aspellWithDicts (d: [ d.en ]))
         ((emacsPackagesFor (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
+            all-the-icons
+            all-the-icons-dired
             alert
             ace-window
             add-node-modules-path
@@ -26,6 +28,7 @@ in
             company
             company-go
             consult
+            consult-dir
             dap-mode
             direnv
             docker
@@ -33,6 +36,7 @@ in
             dockerfile-mode
             dumb-jump
             editorconfig
+            eglot
             embark
             embark-consult
             exec-path-from-shell
@@ -63,6 +67,7 @@ in
             npm-mode
             ob-kotlin
             ob-typescript
+            orderless
             org-download
             org-noter
             org-roam
@@ -71,13 +76,10 @@ in
             paredit
             pdf-tools
             prettier-js
-            projectile
             racer
             racket-mode
             rg
             rust-mode
-            selectrum
-            selectrum-prescient
             shackle
             simple-httpd
             spaceline
@@ -87,12 +89,10 @@ in
             toc-org
             typescript-mode
             use-package
-            use-package-ensure-system-package
             vimish-fold
             web-mode
             websocket
             which-key
-            writegood-mode
             yaml-mode
             yasnippet
             yasnippet-snippets
@@ -100,6 +100,7 @@ in
           ++ [
             epkgs.elpaPackages.org
             epkgs.elpaPackages.sql-indent
+            epkgs.elpaPackages.vertico
           ]
           ++ [ epkgs.nongnuPackages.org-contrib ]))
       ];
