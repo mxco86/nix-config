@@ -15,6 +15,7 @@ in
       [
         ripgrep
         proselint
+        cmake
         (aspellWithDicts (d: [ d.en ]))
         ((emacsPackagesFor (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
@@ -24,12 +25,15 @@ in
             ace-window
             add-node-modules-path
             base16-theme
+            code-review
             cargo
             company
             company-go
             consult
             consult-dir
+            consult-eglot
             dap-mode
+            diminish
             direnv
             docker
             docker-compose-mode
@@ -39,6 +43,7 @@ in
             eglot
             embark
             embark-consult
+            emojify
             exec-path-from-shell
             format-all
             flycheck
@@ -47,13 +52,13 @@ in
             flycheck-yamllint
             forge
             git-timemachine
-            github-review
             go-eldoc
             go-mode
             groovy-mode
             haskell-mode
             js2-mode
             kotlin-mode
+            libgit
             log4e
             lsp-java
             lsp-mode
@@ -78,6 +83,7 @@ in
             prettier-js
             racer
             racket-mode
+            rainbow-delimiters
             rg
             rust-mode
             shackle
@@ -89,7 +95,9 @@ in
             toc-org
             typescript-mode
             use-package
+            uuidgen
             vimish-fold
+            vterm
             web-mode
             websocket
             which-key
