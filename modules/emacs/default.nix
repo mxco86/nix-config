@@ -66,8 +66,8 @@ in
             lsp-pyright
             lsp-sonarlint
             magit
+            magit-libgit
             marginalia
-            multi-term
             nix-mode
             npm-mode
             ob-kotlin
