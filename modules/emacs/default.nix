@@ -20,15 +20,15 @@ in
         ((emacsPackagesFor (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
             all-the-icons
+            all-the-icons-completion
             all-the-icons-dired
             alert
             ace-window
             add-node-modules-path
             base16-theme
+            cape
             code-review
             cargo
-            company
-            company-go
             consult
             consult-dir
             consult-eglot
@@ -81,6 +81,7 @@ in
             paredit
             pdf-tools
             prettier-js
+            python-mode
             racer
             racket-mode
             rainbow-delimiters
@@ -109,6 +110,9 @@ in
             epkgs.elpaPackages.org
             epkgs.elpaPackages.sql-indent
             epkgs.elpaPackages.vertico
+            epkgs.elpaPackages.corfu
+            epkgs.elpaPackages.kind-icon
+            epkgs.elpaPackages.undo-tree
           ]
           ++ [ epkgs.nongnuPackages.org-contrib ]))
       ];
