@@ -27,6 +27,8 @@
       fd
       slack
       isync
+      nixpkgs-fmt
+      rnix-lsp
       sqlite
       tig
       weechat

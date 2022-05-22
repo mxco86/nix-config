@@ -59,6 +59,7 @@ in
             js2-mode
             kotlin-mode
             libgit
+            link-hint
             log4e
             lsp-java
             lsp-mode
@@ -68,6 +69,7 @@ in
             magit
             magit-libgit
             marginalia
+            minions
             nix-mode
             npm-mode
             ob-kotlin
@@ -93,8 +95,11 @@ in
             sqlformat
             terraform-mode
             terraform-lsp
+            tree-sitter
             toc-org
+            tsc
             typescript-mode
+            unfill
             use-package
             uuidgen
             vimish-fold
