@@ -53,18 +53,13 @@
     skhd = {
       enable = true;
       skhdConfig = ''
-        ralt - 1: open /run/current-system/Applications/kitty.app
-        ralt - 2: open /run/current-system/Applications/Emacs.app
-        ralt - 3: open -a ~/Applications/Homebrew\ Apps/Firefox.app
-        ralt - 4: open ~/.nix-profile/Applications/Slack.app
-        ralt - 6: open -a ~/Applications/Homebrew\ Apps/KeePassXC.app
       '';
     };
     nix-daemon.enable = true;
   };
 
   fonts = {
-    enableFontDir = true;
+    fontDir = { enable = true; };
   };
 
   users = {
