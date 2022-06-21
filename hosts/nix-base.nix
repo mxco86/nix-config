@@ -21,7 +21,6 @@
   environment = {
     systemPackages = with pkgs; [
       kitty
-      mu
       vim
       tailscale
     ];
@@ -31,14 +30,11 @@
   fonts.fonts = with pkgs; [
     dejavu_fonts
     hack-font
-    noto-fonts-emoji
     font-awesome
-    emacs-all-the-icons-fonts
   ];
 
   programs = {
     zsh = { enable = true; };
-    tmux = { enable = true; };
     emacsWithMJRPackages = { enable = true; };
   };
 }

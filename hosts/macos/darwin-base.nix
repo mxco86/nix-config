@@ -24,16 +24,7 @@
   # services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  programs = {
-    tmux = {
-      enableSensible = true;
-      enableMouse = true;
-      extraConfig = ''
-        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
-      '';
-    };
-
-  };
+  programs = { };
 
   system = {
     # Used for backwards compatibility, please read the changelog before changing.

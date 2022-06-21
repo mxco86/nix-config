@@ -1,19 +1,9 @@
 { pkgs, ... }:
 
 {
-
   imports = [ ../../cachix.nix ];
 
-  programs = {
-    tmux = {
-      extraConfig = ''
-        set-option -g default-shell $SHELL
-        setw -g mouse on
-        bind-key -n MouseDown2Pane run "xclip -o | tmux load-buffer - ; tmux paste-buffer"
-        bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip"
-      '';
-    };
-  };
+  programs = { };
 
   services = {
     openssh = { enable = true; };

@@ -13,7 +13,9 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs;
       [
+        emacs-all-the-icons-fonts
         ripgrep
+        mu
         proselint
         cmake
         (aspellWithDicts (d: [ d.en ]))
