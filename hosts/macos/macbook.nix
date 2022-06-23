@@ -28,7 +28,7 @@
       "jaikoz"
       "steam"
       "vorta"
-      "keepassxc"
+      # "keepassxc"
     ];
 
     # masApps = {

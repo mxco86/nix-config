@@ -21,11 +21,11 @@
   home = {
     packages = with pkgs; [
       bottom
-      difftastic
+      # difftastic
       dogdns
       duf
       fd
-      slack
+      # slack
       isync
       nixpkgs-fmt
       rnix-lsp
@@ -102,7 +102,7 @@
     password-store = {
       enable = true;
       package = pkgs.pass.withExtensions (exts: [
-        exts.pass-import
+        # exts.pass-import
         exts.pass-audit
         exts.pass-otp
       ]);
@@ -124,7 +124,7 @@
           keepassxc-browser
           privacy-badger
           tab-session-manager
-          tree-style-tab
+          # tree-style-tab
         ];
     };
 
@@ -185,6 +185,7 @@
 
     kitty = {
       enable = true;
+      package = pkgs.kitty-patched;
       font = { name = "Hack"; };
       settings = {
         # Fonts
