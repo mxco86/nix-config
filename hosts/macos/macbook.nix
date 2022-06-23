@@ -35,4 +35,14 @@
     #   Tailscale = 1475387142;
     # };
   };
+
+  services = {
+    skhd = {
+      skhdConfig = ''
+        ralt - 1: open /run/current-system/Applications/kitty.app
+        ralt - 2: open /run/current-system/Applications/Emacs.app
+        ralt - 3: open -a ~/Applications/Homebrew\ Apps/Firefox.app
+      '';
+    };
+  };
 }
