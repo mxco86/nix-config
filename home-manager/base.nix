@@ -7,7 +7,7 @@
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
-{ pkgs, ... }:
+{ pkgs, x86pkgs, ... }:
 
 {
   nixpkgs = {
@@ -22,16 +22,16 @@
     packages = with pkgs; [
       bottom
       # difftastic
-      dogdns
+      # dogdns
       duf
       fd
       # slack
-      isync
+      # isync
       nixpkgs-fmt
       rnix-lsp
       sqlite
       tig
-      weechat
+      # weechat
     ];
     sessionVariables = { EDITOR = "emacsclient"; };
   };
@@ -103,8 +103,8 @@
       enable = true;
       package = pkgs.pass.withExtensions (exts: [
         # exts.pass-import
-        exts.pass-audit
-        exts.pass-otp
+        # exts.pass-audit
+        # exts.pass-otp
       ]);
     };
     firefox = {
@@ -185,7 +185,6 @@
 
     kitty = {
       enable = true;
-      package = pkgs.kitty-patched;
       font = { name = "Hack"; };
       settings = {
         # Fonts

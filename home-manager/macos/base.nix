@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, x86pkgs, ... }:
 
 {
   imports = [ ../base.nix ];
@@ -11,6 +11,7 @@
   programs = {
     zsh = { oh-my-zsh = { plugins = [ "macos" ]; }; };
     kitty = {
+      package = x86pkgs.kitty;
       settings = {
         font_size = 14;
       };

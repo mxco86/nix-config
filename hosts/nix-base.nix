@@ -22,7 +22,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      kitty-patched
+      # kitty-patched
       vim
       tailscale
     ];

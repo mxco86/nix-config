@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, x86pkgs, ... }:
 
 {
   imports = [ ../nix-base.nix ./darwin-base.nix ];
@@ -12,7 +12,14 @@
     buildCores = 0;
   };
 
+  environment = {
+    systemPackages = with x86pkgs; [
+      kitty
+    ];
+  };
+
   homebrew = {
+    brewPrefix = "/opt/homebrew/bin";
     extraConfig = ''
       cask "firefox", args: { language: "en-GB" }
     '';
@@ -42,7 +49,7 @@
         ralt - 5: open /run/current-system/Applications/kitty.app
         ralt - 6: open /run/current-system/Applications/Emacs.app
         ralt - 7: open -a ~/Applications/Homebrew\ Apps/Firefox.app
-        ralt - 8: open -a /System/Applications/Utilities/Terminal.app
+        ralt - 8: open ~/Applications/kitty.app
         ralt - 9: open /Applications/Miro.app
       '';
     };

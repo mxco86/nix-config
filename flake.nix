@@ -50,6 +50,16 @@
             ];
           in
           pkgs.mkShell { nativeBuildInputs = pkglist; };
+        aarch64-darwin =
+          let
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            pkglist = [
+              pkgs.nixfmt
+              pkgs.nixpkgs-fmt
+            ];
+          in
+          pkgs.mkShell { nativeBuildInputs = pkglist; };
+
       };
 
       nixosConfigurations.sanchez =
@@ -98,8 +108,8 @@
             };
         careca =
           let
-            system = "x86_64-darwin";
-            overlays = [ inputs.emacs-overlay.overlay ];
+            system = "aarch64-darwin";
+            overlays = [ inputs.emacs-overlay.overlay kittyOverlay ];
           in
           darwin.lib.darwinSystem
             {
@@ -108,6 +118,9 @@
                 ./hosts/macos/macbook-work.nix
                 { nixpkgs.overlays = overlays; }
               ];
+              specialArgs = {
+                x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+              };
             };
       };
 
@@ -115,6 +128,7 @@
         let
           systemNixOS = "x86_64-linux";
           systemMacOS = "x86_64-darwin";
+          systemMacOSM1 = "aarch64-darwin";
         in
         {
           mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
@@ -170,16 +184,22 @@
             ];
           };
           mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
-            system = systemMacOS;
-            homeDirectory = "/Users/matthewryall";
-            username = "matthewryall";
-            configuration.imports = [
+            system = systemMacOSM1;
+            homeDirectory = "/Users/matthew.ryall";
+            username = "matthew.ryall";
+            pkgs = import inputs.nixpkgs {
+              system = systemMacOSM1;
+            };
+            extraSpecialArgs = {
+              x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+            };
+            configuration. imports = [
               ./home-manager/macos/work-home.nix
               {
-                nixpkgs.config.packageOverrides = pkgs: {
+                nixpkgs. config. packageOverrides = pkgs: {
                   nur = import inputs.nur {
                     inherit pkgs;
-                    nurpkgs = import nixpkgs { system = systemMacOS; };
+                    nurpkgs = import nixpkgs { system = systemMacOSM1; };
                   };
                 };
               }
