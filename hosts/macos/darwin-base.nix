@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, x86pkgs, ... }:
 
 {
   imports = [ ../nix-base.nix ];
@@ -15,6 +15,10 @@
   environment = {
     shells = [ pkgs.zsh ];
     loginShell = "${pkgs.zsh}";
+
+    systemPackages = [
+      x86pkgs.kitty-patched
+    ];
   };
 
   # Application environment
