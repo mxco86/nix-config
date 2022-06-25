@@ -86,7 +86,7 @@
           system = "aarch64-darwin";
           modules = [ ./hosts/macos/macbook-work.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay kittyOverlay ]; } ];
           specialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay kittyOverlay ]; };
           };
         };
       };

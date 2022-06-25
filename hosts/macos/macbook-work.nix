@@ -12,12 +12,6 @@
     buildCores = 0;
   };
 
-  environment = {
-    systemPackages = with x86pkgs; [
-      kitty
-    ];
-  };
-
   homebrew = {
     brewPrefix = "/opt/homebrew/bin";
     extraConfig = ''
