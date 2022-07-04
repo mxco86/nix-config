@@ -92,10 +92,15 @@
       };
       homeConfigurations = {
         mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          homeDirectory = "/home/mryall";
-          username = "mryall";
-          configuration.imports = [
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            {
+              home = {
+                username = "mryall";
+                homeDirectory = "/home/mryall";
+                stateVersion = "22.05";
+              };
+            }
             ./home-manager/nixos/thinkpad-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
@@ -108,10 +113,15 @@
           ];
         };
         mryallNixOSWorkstation = inputs.home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          homeDirectory = "/home/mryall";
-          username = "mryall";
-          configuration.imports = [
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            {
+              home = {
+                username = "mryall";
+                homeDirectory = "/home/mryall";
+                stateVersion = "22.05";
+              };
+            }
             ./home-manager/nixos/workstation-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
