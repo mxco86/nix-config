@@ -159,26 +159,32 @@
           ];
         };
         mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
-          system = "aarch64-darwin";
-          homeDirectory = "/Users/matthew.ryall";
-          username = "matthew.ryall";
-          pkgs = import inputs.nixpkgs {
-            system = "aarch64-darwin";
-          };
-          extraSpecialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
-          };
-          configuration. imports = [
+          pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; };
+          modules = [
+            {
+              home = {
+                username = "matthew.ryall";
+                homeDirectory = "/Users/matthew.ryall";
+                stateVersion = "22.05";
+              };
+            }
             ./home-manager/macos/work-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
-                nur = import inputs.nur {
-                  inherit pkgs;
-                  nurpkgs = import nixpkgs { system = "aarch64-darwin"; };
-                };
+                nur = import inputs.nur
+                  {
+                    inherit pkgs;
+                    nurpkgs = import nixpkgs { system = "aarch64-darwin"; };
+                  };
               };
             }
           ];
+          extraSpecialArgs = {
+            x86pkgs = import nixpkgs {
+              system = "x86_64-darwin";
+              overlays = [ kittyOverlay ];
+            };
+          };
         };
       };
     };
