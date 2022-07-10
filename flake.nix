@@ -3,6 +3,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/master";
     darwin.url = "github:mxco86/nix-darwin/master";
 
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, nur, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, nur, deploy-rs, ... }@inputs:
     let
       kittyOverlay =
         final: prev: {
@@ -69,6 +74,11 @@
         rossi = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./hosts/nixos/workstation/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
+          specialArgs = { inherit inputs; };
+        };
+        host = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./ops/host/configuration.nix ./ops/host/hardware-configuration.nix ];
           specialArgs = { inherit inputs; };
         };
       };
@@ -134,19 +144,23 @@
           ];
         };
         mryallMacOS = inputs.home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-darwin";
-          homeDirectory = "/Users/mryall";
-          username = "mryall";
           pkgs = import inputs.nixpkgs {
             system = "x86_64-darwin";
-          };
-          extraSpecialArgs = {
-            x86pkgs = import nixpkgs {
-              system = "x86_64-darwin";
-              overlays = [ kittyOverlay ];
+            config = {
+              permittedInsecurePackages = [
+                "python2.7-urllib3-1.26.2"
+                "python2.7-pyjwt-1.7.1"
+              ];
             };
           };
-          configuration.imports = [
+          modules = [
+            {
+              home = {
+                username = "mryall";
+                homeDirectory = "/Users/mryall";
+                stateVersion = "22.05";
+              };
+            }
             ./home-manager/macos/home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
@@ -157,6 +171,12 @@
               };
             }
           ];
+          extraSpecialArgs = {
+            x86pkgs = import nixpkgs {
+              system = "x86_64-darwin";
+              overlays = [ kittyOverlay ];
+            };
+          };
         };
         mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; };
@@ -187,5 +207,14 @@
           };
         };
       };
+
+      deploy.nodes.host.profiles.system = {
+        user = "root";
+        hostname = "129.151.93.130";
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.host;
+      };
+
+      # This is highly advised, and will prevent many possible mistakes
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
