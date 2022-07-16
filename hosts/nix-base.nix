@@ -2,7 +2,7 @@
 
 {
 
-  imports = [ ../modules/emacs ];
+  imports = [ ../modules/emacs ../cachix.nix ];
 
   # Set your time zone.
   time = { timeZone = "Europe/London"; };
@@ -24,6 +24,7 @@
     systemPackages = with pkgs; [
       vim
       tailscale
+      cachix
     ];
     pathsToLink = [ "/share/zsh" ];
   };
