@@ -18,6 +18,7 @@ in
         mu
         proselint
         cmake
+        cargo
         (aspellWithDicts (d: [ d.en ]))
         ((emacsPackagesFor (emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
@@ -46,6 +47,7 @@ in
             embark
             embark-consult
             emojify
+            envrc
             exec-path-from-shell
             format-all
             flycheck
@@ -58,6 +60,7 @@ in
             go-mode
             groovy-mode
             haskell-mode
+            helpful
             js2-mode
             kotlin-mode
             libgit
@@ -72,6 +75,7 @@ in
             magit-libgit
             marginalia
             minions
+            mood-line
             nix-mode
             npm-mode
             ob-kotlin
@@ -97,9 +101,7 @@ in
             sqlformat
             terraform-mode
             terraform-lsp
-            tree-sitter
             toc-org
-            tsc
             typescript-mode
             unfill
             use-package
