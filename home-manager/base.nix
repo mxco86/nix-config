@@ -93,6 +93,10 @@
       enable = true;
       enableZshIntegration = true;
     };
+    just = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zoxide = {
       enable = true;
       enableZshIntegration = true;
