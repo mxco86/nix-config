@@ -6,7 +6,9 @@
   home = {
     packages = with pkgs; [
       anki
-      discord
+      dbeaver
+      # discord
+      jetbrains.idea-community
       keepassxc
       nixpkgs-fmt
       rnix-lsp
@@ -58,7 +60,7 @@
     twmn = {
       enable = true;
       window = {
-        height = 40;
+        height = 28;
         color = "#002b36";
       };
       text = {
@@ -66,7 +68,7 @@
         font = {
           family = "Hack";
           variant = "medium";
-          size = 22;
+          size = 18;
         };
       };
     };
@@ -96,6 +98,7 @@
         pkgs.lib.mkOptionDefault {
           "${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";
         };
+      workspaceAutoBackAndForth = true;
       bars = [{
         position = "top";
         statusCommand = "${pkgs.i3status}/bin/i3status";

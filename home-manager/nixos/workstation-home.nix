@@ -16,14 +16,27 @@
   xsession.windowManager.i3 = {
     config = {
       assigns = {
-        "1: emacs" = [{ class = "^Emacs$"; }];
+        "1: code" = [
+          { class = "^kitty$"; }
+          { class = "^Emacs$"; }
+        ];
         "2: slack" = [{ class = "^Slack$"; }];
-        "4: web" = [{ class = "^Firefox$"; }];
-        "3: term" = [{ class = "^kitty$"; }];
+        "3: web" = [{ class = "^Firefox$"; }];
+        "4: db" = [{ class = "^DBeaver$"; }];
       };
+      workspaceOutputAssign = [
+        {
+          workspace = "1: code";
+          output = "primary";
+        }
+        {
+          workspace = "3: web";
+          output = "right";
+        }
+      ];
     };
     extraConfig = ''
-      '';
+    '';
   };
 
   programs = {
@@ -90,7 +103,7 @@
           user = "mryall";
           identityFile = "~/mnt/k/id_rsa_delius_prod";
           proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_prod";
-          identitiesOnly = true;'
+          identitiesOnly = true;
         };
       };
     };
@@ -101,6 +114,31 @@
           settings = {
             "browser.uidensity" = 1;
           };
+          userChrome = ''
+            #TabsToolbar { visibility: collapse !important; }
+
+            #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+                display:none;
+            }
+
+            #urlbar { font-size: 12pt !important }
+            #statuspanel { font-size: 12pt !important }
+            #main-menubar { font-size: 12pt !important }
+
+            menubar, menubutton, menulist, menu, menuitem,
+            textbox, findbar, toolbar, tab, tree, tooltip {
+              font-size: 12pt !important;
+            }
+
+            .tabbrowser-tab {
+               min-height: var(--tab-min-height) !important;
+               overflow: visible !important;
+               font-size: 12pt !important;
+               background: 0 !important;
+               border: 0 !important;
+            }
+          '';
+
         };
       };
     };

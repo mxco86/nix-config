@@ -25,6 +25,7 @@
       vim
       tailscale
       cachix
+      python3
     ];
     pathsToLink = [ "/share/zsh" ];
   };
