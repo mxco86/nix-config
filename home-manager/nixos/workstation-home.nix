@@ -5,7 +5,7 @@
 
   xresources = {
     properties = {
-      "Xft.dpi" = 144;
+      "Xft.dpi" = 96;
       "Xft.antialias" = true;
       "Xft.rgba" = "rgb";
       "Xft.hinting" = true;
@@ -22,7 +22,7 @@
         ];
         "2: slack" = [{ class = "^Slack$"; }];
         "3: web" = [{ class = "^Firefox$"; }];
-        "4: db" = [{ class = "^DBeaver$"; }];
+        "6: db" = [{ class = "^DBeaver$"; }];
       };
       workspaceOutputAssign = [
         {
@@ -33,6 +33,11 @@
           workspace = "3: web";
           output = "right";
         }
+        {
+          workspace = "6: db";
+          output = "right";
+        }
+
       ];
     };
     extraConfig = ''
