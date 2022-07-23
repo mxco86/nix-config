@@ -21,6 +21,7 @@
       enable = true;
       enableStrongSwan = true;
     };
+    firewall = { checkReversePath = "loose"; };
   };
 
   environment = {
