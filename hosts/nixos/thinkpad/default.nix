@@ -18,17 +18,17 @@
     };
   };
 
-  networking.hostName = "sanchez";
-  networking.domain = "mexico86.co.uk";
-  networking.networkmanager = {
-    enable = true;
-    enableStrongSwan = true;
-  };
-
   networking = {
+    hostName = "sanchez";
+    domain = "mexico86.co.uk";
+    networkmanager = {
+      enable = true;
+      enableStrongSwan = true;
+    };
     useDHCP = false;
     interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp0s20f3.useDHCP = true;
+    firewall = { checkReversePath = "loose"; };
   };
 
   # Select internationalisation properties.
@@ -88,6 +88,8 @@
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
   };
+
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
