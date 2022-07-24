@@ -92,12 +92,13 @@
     enable = true;
     config = {
       modifier = "Mod4";
-      menu = "rofi -modi drun -show drun -theme solarized -font 'Hack 22'";
+      menu = "rofi -modi drun -show drun -theme solarized -font 'Hack 12'";
       keybindings =
         let modifier = "Mod4"; in
         pkgs.lib.mkOptionDefault {
           "${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";
         };
+      focus = { newWindow = "focus"; };
       workspaceAutoBackAndForth = true;
       bars = [{
         position = "top";
@@ -117,7 +118,10 @@
             text = "#657b83";
           };
         };
-        fonts = { names = [ "FontAwesome 8" "Hack 8" ]; };
+        fonts = {
+          names = [ "FontAwesome" "Hack" ];
+          size = 10.0;
+        };
         extraConfig = ''
           separator_symbol 
         '';
@@ -131,7 +135,10 @@
           text = "#fdf6e3";
         };
       };
-      fonts = { names = [ "FontAwesome 8" "Hack 8" ]; };
+      fonts = {
+        names = [ "FontAwesome" "Hack" ];
+        size = 10.0;
+      };
       terminal = "${pkgs.kitty}/bin/kitty";
     };
   };

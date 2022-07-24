@@ -21,23 +21,26 @@
           { class = "^Emacs$"; }
         ];
         "2: slack" = [{ class = "^Slack$"; }];
-        "3: web" = [{ class = "^Firefox$"; }];
+        "3: web" = [{ class = "^firefox$"; }];
         "6: db" = [{ class = "^DBeaver$"; }];
       };
       workspaceOutputAssign = [
         {
           workspace = "1: code";
-          output = "primary";
+          output = "DisplayPort-1";
+        }
+        {
+          workspace = "2: slack";
+          output = "DisplayPort-1";
         }
         {
           workspace = "3: web";
-          output = "right";
+          output = "DVI-D-0";
         }
         {
           workspace = "6: db";
-          output = "right";
+          output = "DVI-D-0";
         }
-
       ];
     };
     extraConfig = ''
