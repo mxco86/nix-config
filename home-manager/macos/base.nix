@@ -11,7 +11,6 @@
   programs = {
     zsh = { oh-my-zsh = { plugins = [ "macos" ]; }; };
     kitty = {
-      package = x86pkgs.kitty-patched;
       settings = {
         font_size = 14;
       };

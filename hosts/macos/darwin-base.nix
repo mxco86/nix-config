@@ -8,7 +8,7 @@
     loginShell = "${pkgs.zsh}";
 
     systemPackages = [
-      x86pkgs.kitty-patched
+      x86pkgs.kitty
     ];
   };
 
