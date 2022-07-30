@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  i3bar = import ./i3bar.nix { inherit pkgs; size = 12.0; };
+  i3bar = import ./i3bar.nix { inherit pkgs; size = 10.0; };
 in
 {
   imports = [ ./base.nix ];
