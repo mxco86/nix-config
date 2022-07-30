@@ -43,7 +43,6 @@
               pkgs.nixfmt
               pkgs.nixpkgs-fmt
               pkgs.rnix-lsp
-              pkgs.just
             ];
           in
           pkgs.mkShell { nativeBuildInputs = pkglist; };
@@ -53,6 +52,7 @@
             pkglist = [
               pkgs.nixfmt
               pkgs.nixpkgs-fmt
+              pkgs.rnix-lsp
             ];
           in
           pkgs.mkShell { nativeBuildInputs = pkglist; };

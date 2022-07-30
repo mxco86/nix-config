@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  i3bar = import ./i3bar.nix { inherit pkgs; size = 8.0; };
+in
 {
   imports = [ ./base.nix ];
 
@@ -21,6 +24,7 @@
         "3: web" = [{ class = "^Firefox$"; }];
         "4: slack" = [{ class = "^Slack$"; }];
       };
+      bars = [ i3bar ];
     };
     extraConfig = ''
       # Remap keys

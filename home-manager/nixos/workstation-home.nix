@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  i3bar = import ./i3bar.nix { inherit pkgs; size = 12.0; };
+in
 {
   imports = [ ./base.nix ];
 
@@ -24,6 +27,7 @@
         "3: web" = [{ class = "^firefox$"; }];
         "6: db" = [{ class = "^DBeaver$"; }];
       };
+      bars = [ i3bar ];
       workspaceOutputAssign = [
         {
           workspace = "1: code";
