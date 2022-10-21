@@ -88,6 +88,7 @@
         socrates = machost { sysarch = "x86_64-darwin"; hostname = "socrates"; };
         careca = machost { sysarch = "aarch64-darwin"; hostname = "careca"; };
         platini = machost { sysarch = "x86_64-darwin"; hostname = "platini"; };
+        robson = machost { sysarch = "x86_64-darwin"; hostname = "robson"; };
       };
       homeConfigurations = {
         mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
