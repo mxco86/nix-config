@@ -24,6 +24,17 @@
   };
 
   outputs = { self, nixpkgs, darwin, nur, deploy-rs, ... }@inputs:
+    let
+      machost = { sysarch, hostname }:
+        darwin.lib.darwinSystem {
+          inherit inputs;
+          system = sysarch;
+          modules = [ ./hosts/macos/${hostname}.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
+          specialArgs = {
+            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay ]; };
+          };
+        };
+    in
     {
       devShell = {
         x86_64-darwin =
@@ -74,22 +85,8 @@
         };
       };
       darwinConfigurations = {
-        socrates = darwin.lib.darwinSystem {
-          inherit inputs;
-          system = "x86_64-darwin";
-          modules = [ ./hosts/macos/macbook.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
-          specialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay ]; };
-          };
-        };
-        careca = darwin.lib.darwinSystem {
-          inherit inputs;
-          system = "aarch64-darwin";
-          modules = [ ./hosts/macos/macbook-work.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
-          specialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay ]; };
-          };
-        };
+        socrates = machost { sysarch = "x86_64-darwin"; hostname = "socrates"; };
+        careca = machost { sysarch = "aarch64-darwin"; hostname = "careca"; };
       };
       homeConfigurations = {
         mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
