@@ -34,45 +34,38 @@
             x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay ]; };
           };
         };
+      nixoshost = { sysarch, hostname }:
+        nixpkgs.lib.nixosSystem {
+          system = sysarch;
+          modules = [ ./hosts/nixos/${hostname}/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
+          specialArgs = { inherit inputs; };
+        };
+      pkglist = pkgs: [
+        pkgs.nixfmt
+        pkgs.nixpkgs-fmt
+        pkgs.rnix-lsp
+      ];
     in
     {
       devShell = {
         x86_64-darwin =
           let
             pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-            pkglist = [
-              pkgs.nixfmt
-              pkgs.nixpkgs-fmt
-              pkgs.rnix-lsp
-            ];
           in
-          pkgs.mkShell { nativeBuildInputs = pkglist; };
+          pkgs.mkShell { nativeBuildInputs = pkglist pkgs; };
         x86_64-linux =
           let
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            pkglist = [
-              pkgs.nixfmt
-              pkgs.nixpkgs-fmt
-              pkgs.rnix-lsp
-            ];
           in
-          pkgs.mkShell { nativeBuildInputs = pkglist; };
+          pkgs.mkShell { nativeBuildInputs = pkglist pkgs; };
         aarch64-darwin =
           let
             pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            pkglist = [
-              pkgs.nixfmt
-              pkgs.nixpkgs-fmt
-            ];
           in
-          pkgs.mkShell { nativeBuildInputs = pkglist; };
+          pkgs.mkShell { nativeBuildInputs = pkglist pkgs; };
       };
       nixosConfigurations = {
-        sanchez = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./hosts/nixos/thinkpad/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
-          specialArgs = { inherit inputs; };
-        };
+        sanchez = nixoshost { sysarch = "x86_64-linux"; hostname = "sanchez"; };
         rossi = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./hosts/nixos/workstation/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
