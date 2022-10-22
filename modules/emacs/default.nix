@@ -61,6 +61,8 @@ in
             groovy-mode
             haskell-mode
             helpful
+            json-mode
+            json-snatcher
             js2-mode
             kotlin-mode
             link-hint
@@ -84,6 +86,7 @@ in
             org-roam
             org-roam-ui
             ox-hugo
+            paradox
             paredit
             pdf-tools
             prettier-js
@@ -98,7 +101,6 @@ in
             spaceline
             sqlformat
             terraform-mode
-            terraform-lsp
             toc-org
             typescript-mode
             unfill
