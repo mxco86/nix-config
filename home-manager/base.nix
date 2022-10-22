@@ -27,6 +27,7 @@
       fd
       # slack
       # isync
+      ncdu
       nixpkgs-fmt
       rnix-lsp
       sqlite
