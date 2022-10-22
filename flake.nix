@@ -1,7 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/master";
-    darwin.url = "github:mxco86/nix-darwin/master";
+
+    darwin = {
+      url = "github:mxco86/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
@@ -19,7 +23,6 @@
     };
     nur = {
       url = "github:nix-community/NUR/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
