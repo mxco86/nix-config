@@ -128,13 +128,6 @@
             };
           };
           modules = [
-            {
-              home = {
-                username = "mryall";
-                homeDirectory = "/Users/mryall";
-                stateVersion = "22.05";
-              };
-            }
             ./home-manager/macos/home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {

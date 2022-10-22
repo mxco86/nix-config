@@ -3,10 +3,17 @@
 {
   imports = [ ../base.nix ];
 
-  home.packages = with pkgs; [
-    chroma
-    passff-host
-  ];
+  home = {
+    username = "mryall";
+    homeDirectory = "/Users/mryall";
+    stateVersion = "22.05";
+
+    packages = with pkgs; [
+      chroma
+      passff-host
+    ];
+  };
+
 
   programs = {
     zsh = { oh-my-zsh = { plugins = [ "macos" ]; }; };
