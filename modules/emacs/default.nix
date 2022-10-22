@@ -63,7 +63,6 @@ in
             helpful
             js2-mode
             kotlin-mode
-            libgit
             link-hint
             log4e
             lsp-java
@@ -72,7 +71,6 @@ in
             lsp-pyright
             lsp-sonarlint
             magit
-            magit-libgit
             marginalia
             minions
             mood-line
