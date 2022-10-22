@@ -78,13 +78,6 @@
         mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            {
-              home = {
-                username = "mryall";
-                homeDirectory = "/home/mryall";
-                stateVersion = "22.05";
-              };
-            }
             ./home-manager/nixos/thinkpad-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
@@ -99,13 +92,6 @@
         mryallNixOSWorkstation = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            {
-              home = {
-                username = "mryall";
-                homeDirectory = "/home/mryall";
-                stateVersion = "22.05";
-              };
-            }
             ./home-manager/nixos/workstation-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {
@@ -145,13 +131,6 @@
         mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; };
           modules = [
-            {
-              home = {
-                username = "matthew.ryall";
-                homeDirectory = "/Users/matthew.ryall";
-                stateVersion = "22.05";
-              };
-            }
             ./home-manager/macos/work-home.nix
             {
               nixpkgs.config.packageOverrides = pkgs: {

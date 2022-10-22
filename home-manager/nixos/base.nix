@@ -4,6 +4,10 @@
   imports = [ ../base.nix ];
 
   home = {
+    username = "mryall";
+    homeDirectory = "/home/mryall";
+    stateVersion = "22.05";
+
     packages = with pkgs; [
       anki
       dbeaver
