@@ -104,15 +104,7 @@
           ];
         };
         mryallMacOS = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs {
-            system = "x86_64-darwin";
-            config = {
-              permittedInsecurePackages = [
-                "python2.7-urllib3-1.26.2"
-                "python2.7-pyjwt-1.7.1"
-              ];
-            };
-          };
+          pkgs = import inputs.nixpkgs { system = "x86_64-darwin"; };
           modules = [
             ./home-manager/macos/home.nix
             {

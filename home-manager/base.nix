@@ -21,8 +21,8 @@
   home = {
     packages = with pkgs; [
       bottom
-      # difftastic
-      # dogdns
+      difftastic
+      dogdns
       duf
       fd
       # slack
@@ -30,7 +30,6 @@
       nixpkgs-fmt
       rnix-lsp
       sqlite
-      tig
       # weechat
     ];
     sessionVariables = { EDITOR = "emacsclient"; };
@@ -128,7 +127,7 @@
           keepassxc-browser
           privacy-badger
           tab-session-manager
-          # tree-style-tab
+          tree-style-tab
         ];
     };
 
