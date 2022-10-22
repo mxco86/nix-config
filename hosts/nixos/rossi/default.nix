@@ -21,7 +21,7 @@
       enable = true;
       enableStrongSwan = true;
     };
-    firewall = { checkReversePath = "loose"; };
+    firewall = { checkReversePath = "loose"; allowedTCPPorts = [ 8083 ]; };
   };
 
   environment = {

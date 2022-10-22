@@ -66,16 +66,7 @@
       };
       nixosConfigurations = {
         sanchez = nixoshost { sysarch = "x86_64-linux"; hostname = "sanchez"; };
-        rossi = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./hosts/nixos/workstation/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
-          specialArgs = { inherit inputs; };
-        };
-        host = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./ops/host/configuration.nix ./ops/host/hardware-configuration.nix ];
-          specialArgs = { inherit inputs; };
-        };
+        rossi = nixoshost { sysarch = "x86_64-linux"; hostname = "rossi"; };
       };
       darwinConfigurations = {
         socrates = machost { sysarch = "x86_64-darwin"; hostname = "socrates"; };
