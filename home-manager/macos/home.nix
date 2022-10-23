@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
   imports = [ ./base.nix ];
 
   programs = {

@@ -3,6 +3,10 @@
 {
   imports = [ ../nix-base.nix ];
 
+  nix = {
+    configureBuildUsers = true;
+  };
+
   environment = {
     shells = [ pkgs.zsh ];
     loginShell = "${pkgs.zsh}";
@@ -57,19 +61,16 @@
     fontDir = { enable = true; };
   };
 
-  users = {
-    nix = {
-      configureBuildUsers = true;
-    };
-  };
-
   homebrew = {
     enable = true;
-    autoUpdate = true;
-    cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
     global = {
       brewfile = true;
-      noLock = true;
+      lockfiles = true;
     };
     extraConfig = ''
       cask_args appdir: "~/Applications/Homebrew Apps", require_sha: true
