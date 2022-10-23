@@ -7,7 +7,7 @@
 # 6. nix-channel --update
 # 7. nix-shell '<home-manager>' -A install
 
-{ pkgs, x86pkgs, ... }:
+{ pkgs, x86pkgs, nur, ... }:
 
 {
   nixpkgs = {
@@ -15,6 +15,7 @@
       allowUnfree = true;
       allowBroken = false;
       allowUnsupportedSystem = false;
+      packageOverrides = pkgs: { inherit nur; };
     };
   };
 

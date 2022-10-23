@@ -26,21 +26,21 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, nur, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs, ... }@inputs:
     let
       machost = { sysarch, hostname }:
         darwin.lib.darwinSystem {
           inherit inputs;
           system = sysarch;
-          modules = [ ./hosts/macos/${hostname}.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
+          modules = [ ./hosts/macos/${hostname}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ inputs.emacs-overlay.overlay ]; };
+            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ emacs-overlay.overlay ]; };
           };
         };
       nixoshost = { sysarch, hostname }:
         nixpkgs.lib.nixosSystem {
           system = sysarch;
-          modules = [ ./hosts/nixos/${hostname}/default.nix { nixpkgs.overlays = [ inputs.emacs-overlay.overlay ]; } ];
+          modules = [ ./hosts/nixos/${hostname}/default.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
         };
       pkglist = pkgs: [
@@ -78,69 +78,64 @@
         robson = machost { sysarch = "x86_64-darwin"; hostname = "robson"; };
       };
       homeConfigurations = {
-        mryallNixOSThinkpad = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          modules = [
-            ./home-manager/nixos/thinkpad-home.nix
-            {
-              nixpkgs.config.packageOverrides = pkgs: {
-                nur = import inputs.nur {
-                  inherit pkgs;
-                  nurpkgs = import nixpkgs { system = "x86_64-linux"; };
-                };
+        mryallNixOSThinkpad =
+          let
+            system = "x86_64-linux";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            modules = [ ./home-manager/nixos/thinkpad-home.nix ];
+            extraSpecialArgs = {
+              nur = import nur {
+                pkgs = import nixpkgs { inherit system; };
+                nurpkgs = import nixpkgs { inherit system; };
               };
-            }
-          ];
-        };
-        mryallNixOSWorkstation = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          modules = [
-            ./home-manager/nixos/workstation-home.nix
-            {
-              nixpkgs.config.packageOverrides = pkgs: {
-                nur = import inputs.nur {
-                  inherit pkgs;
-                  nurpkgs = import nixpkgs { system = "x86_64-linux"; };
-                };
-              };
-            }
-          ];
-        };
-        mryallMacOS = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs { system = "x86_64-darwin"; };
-          modules = [
-            ./home-manager/macos/home.nix
-            {
-              nixpkgs.config.packageOverrides = pkgs: {
-                nur = import inputs.nur {
-                  inherit pkgs;
-                  nurpkgs = import nixpkgs { system = "x86_64-darwin"; };
-                };
-              };
-            }
-          ];
-          extraSpecialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+            };
           };
-        };
-        mryallMacOSWork = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; };
-          modules = [
-            ./home-manager/macos/work-home.nix
-            {
-              nixpkgs.config.packageOverrides = pkgs: {
-                nur = import inputs.nur
-                  {
-                    inherit pkgs;
-                    nurpkgs = import nixpkgs { system = "aarch64-darwin"; };
-                  };
+        mryallNixOSWorkstation =
+          let
+            system = "x86_64-linux";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            modules = [ ./home-manager/nixos/workstation-home.nix ];
+            extraSpecialArgs = {
+              nur = import nur {
+                pkgs = import nixpkgs { inherit system; };
+                nurpkgs = import nixpkgs { inherit system; };
               };
-            }
-          ];
-          extraSpecialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+            };
           };
-        };
+        mryallMacOS =
+          let
+            system = "x86_64-darwin";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs { inherit system; };
+            modules = [ ./home-manager/macos/home.nix ];
+            extraSpecialArgs = {
+              x86pkgs = import nixpkgs { inherit system; };
+              nur = import nur {
+                pkgs = import nixpkgs { inherit system; };
+                nurpkgs = import nixpkgs { inherit system; };
+              };
+            };
+          };
+        mryallMacOSWork =
+          let
+            system = "aarch64-darwin";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs { inherit system; };
+            modules = [ ./home-manager/macos/work-home.nix ];
+            extraSpecialArgs = {
+              x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
+              nur = import nur {
+                pkgs = import nixpkgs { inherit system; };
+                nurpkgs = import nixpkgs { inherit system; };
+              };
+            };
+          };
       };
 
       deploy.nodes.host.profiles.system = {
