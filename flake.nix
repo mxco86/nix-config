@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/master";
 
     darwin = {
-      url = "github:mxco86/nix-darwin/master";
+      url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
