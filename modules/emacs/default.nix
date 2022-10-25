@@ -64,6 +64,7 @@ in
             json-mode
             json-snatcher
             js2-mode
+            just-mode
             kotlin-mode
             link-hint
             log4e
