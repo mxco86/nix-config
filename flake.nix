@@ -68,13 +68,13 @@
         robson = machost { sysarch = "x86_64-darwin"; hostname = "robson"; };
       };
       homeConfigurations = {
-        mryallNixOSThinkpad =
+        sanchez =
           let
             system = "x86_64-linux";
           in
           home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [ ./home-manager/nixos/thinkpad-home.nix ];
+            modules = [ ./home-manager/nixos/sanchez.nix ];
             extraSpecialArgs = {
               nur = import nur {
                 pkgs = import nixpkgs { inherit system; };
@@ -82,14 +82,29 @@
               };
             };
           };
-        mryallNixOSWorkstation =
+        rossi =
           let
             system = "x86_64-linux";
           in
           home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [ ./home-manager/nixos/workstation-home.nix ];
+            modules = [ ./home-manager/nixos/rossi.nix ];
             extraSpecialArgs = {
+              nur = import nur {
+                pkgs = import nixpkgs { inherit system; };
+                nurpkgs = import nixpkgs { inherit system; };
+              };
+            };
+          };
+        socrates =
+          let
+            system = "x86_64-darwin";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            pkgs = import nixpkgs { inherit system; };
+            modules = [ ./home-manager/macos/socrates.nix ];
+            extraSpecialArgs = {
+              x86pkgs = import nixpkgs { inherit system; };
               nur = import nur {
                 pkgs = import nixpkgs { inherit system; };
                 nurpkgs = import nixpkgs { inherit system; };
