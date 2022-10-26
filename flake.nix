@@ -28,18 +28,18 @@
 
   outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs, ... }@inputs:
     let
-      machost = { sysarch, hostname }:
+      machost = { system, hostname }:
         darwin.lib.darwinSystem {
           inherit inputs;
-          system = sysarch;
+          inherit system;
           modules = [ ./hosts/macos/${hostname}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = {
             x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ emacs-overlay.overlay ]; };
           };
         };
-      nixoshost = { sysarch, hostname }:
+      nixoshost = { system, hostname }:
         nixpkgs.lib.nixosSystem {
-          system = sysarch;
+          inherit system;
           modules = [ ./hosts/nixos/${hostname}/default.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
         };
@@ -48,6 +48,16 @@
         pkgs.nixpkgs-fmt
         pkgs.rnix-lsp
       ];
+      homeConfig = { system, hostname }: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { inherit system; };
+        modules = [ ./home-manager/macos/${hostname}.nix ];
+        extraSpecialArgs = {
+          nur = import nur {
+            pkgs = import nixpkgs { inherit system; };
+            nurpkgs = import nixpkgs { inherit system; };
+          };
+        } // (if system == "aarch64-darwin" then { x86pkgs = import nixpkgs { inherit system; }; } else { });
+      };
     in
     {
       devShell = inputs.nixpkgs.lib.listToAttrs (map
@@ -58,89 +68,21 @@
           };
         }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
       nixosConfigurations = {
-        sanchez = nixoshost { sysarch = "x86_64-linux"; hostname = "sanchez"; };
-        rossi = nixoshost { sysarch = "x86_64-linux"; hostname = "rossi"; };
+        sanchez = nixoshost { system = "x86_64-linux"; hostname = "sanchez"; };
+        rossi = nixoshost { system = "x86_64-linux"; hostname = "rossi"; };
       };
       darwinConfigurations = {
-        socrates = machost { sysarch = "x86_64-darwin"; hostname = "socrates"; };
-        careca = machost { sysarch = "aarch64-darwin"; hostname = "careca"; };
-        platini = machost { sysarch = "x86_64-darwin"; hostname = "platini"; };
-        robson = machost { sysarch = "x86_64-darwin"; hostname = "robson"; };
+        socrates = machost { system = "x86_64-darwin"; hostname = "socrates"; };
+        careca = machost { system = "aarch64-darwin"; hostname = "careca"; };
+        platini = machost { system = "x86_64-darwin"; hostname = "platini"; };
+        robson = machost { system = "x86_64-darwin"; hostname = "robson"; };
       };
       homeConfigurations = {
-        sanchez =
-          let
-            system = "x86_64-linux";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [ ./home-manager/nixos/sanchez.nix ];
-            extraSpecialArgs = {
-              nur = import nur {
-                pkgs = import nixpkgs { inherit system; };
-                nurpkgs = import nixpkgs { inherit system; };
-              };
-            };
-          };
-        rossi =
-          let
-            system = "x86_64-linux";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [ ./home-manager/nixos/rossi.nix ];
-            extraSpecialArgs = {
-              nur = import nur {
-                pkgs = import nixpkgs { inherit system; };
-                nurpkgs = import nixpkgs { inherit system; };
-              };
-            };
-          };
-        socrates =
-          let
-            system = "x86_64-darwin";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs { inherit system; };
-            modules = [ ./home-manager/macos/socrates.nix ];
-            extraSpecialArgs = {
-              x86pkgs = import nixpkgs { inherit system; };
-              nur = import nur {
-                pkgs = import nixpkgs { inherit system; };
-                nurpkgs = import nixpkgs { inherit system; };
-              };
-            };
-          };
-        mryallMacOS =
-          let
-            system = "x86_64-darwin";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs { inherit system; };
-            modules = [ ./home-manager/macos/home.nix ];
-            extraSpecialArgs = {
-              x86pkgs = import nixpkgs { inherit system; };
-              nur = import nur {
-                pkgs = import nixpkgs { inherit system; };
-                nurpkgs = import nixpkgs { inherit system; };
-              };
-            };
-          };
-        mryallMacOSWork =
-          let
-            system = "aarch64-darwin";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs { inherit system; };
-            modules = [ ./home-manager/macos/work-home.nix ];
-            extraSpecialArgs = {
-              x86pkgs = import nixpkgs { system = "x86_64-darwin"; };
-              nur = import nur {
-                pkgs = import nixpkgs { inherit system; };
-                nurpkgs = import nixpkgs { inherit system; };
-              };
-            };
-          };
+        socrates = homeConfig { system = "x86_64-darwin"; hostname = "socrates"; };
+        rossi = homeConfig { system = "x86_64-linux"; hostname = "rossi"; };
+        sanchez = homeConfig { system = "x86_64-linux"; hostname = "sanchez"; };
+        robson = homeConfig { system = "x86_64-darwin"; hostname = "robson"; };
+        platini = homeConfig { system = "x86_64-darwin"; hostname = "platini"; };
       };
 
       deploy.nodes.host.profiles.system = {
