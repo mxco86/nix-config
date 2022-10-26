@@ -9,6 +9,9 @@ install-nix-macos:
     # install nix-darwin
     # install home-manager
 
+update-home-manager hostname:
+    home-manager switch --flake ${HOME}/Config/nix-config\#{{hostname}}
+
 install-homebrew:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
