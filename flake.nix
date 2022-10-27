@@ -21,6 +21,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nur = {
       url = "github:nix-community/NUR/master";
     };
@@ -28,19 +29,19 @@
 
   outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs, ... }@inputs:
     let
-      machost = { system, hostname }:
+      machost = { system, host }:
         darwin.lib.darwinSystem {
           inherit inputs;
           inherit system;
-          modules = [ ./hosts/macos/${hostname}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
+          modules = [ ./hosts/macos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = {
             x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ emacs-overlay.overlay ]; };
           };
         };
-      nixoshost = { system, hostname }:
+      nixoshost = { system, host }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/nixos/${hostname}/default.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
+          modules = [ ./hosts/nixos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
         };
       pkglist = pkgs: [
@@ -48,9 +49,9 @@
         pkgs.nixpkgs-fmt
         pkgs.rnix-lsp
       ];
-      homeConfig = { system, hostname }: home-manager.lib.homeManagerConfiguration {
+      homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit system; };
-        modules = [ ./home-manager/macos/${hostname}.nix ];
+        modules = [ ./home-manager/${host}.nix ];
         extraSpecialArgs = {
           nur = import nur {
             pkgs = import nixpkgs { inherit system; };
@@ -68,21 +69,21 @@
           };
         }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
       nixosConfigurations = {
-        sanchez = nixoshost { system = "x86_64-linux"; hostname = "sanchez"; };
-        rossi = nixoshost { system = "x86_64-linux"; hostname = "rossi"; };
+        sanchez = nixoshost { system = "x86_64-linux"; host = "sanchez"; };
+        rossi = nixoshost { system = "x86_64-linux"; host = "rossi"; };
       };
       darwinConfigurations = {
-        socrates = machost { system = "x86_64-darwin"; hostname = "socrates"; };
-        careca = machost { system = "aarch64-darwin"; hostname = "careca"; };
-        platini = machost { system = "x86_64-darwin"; hostname = "platini"; };
-        robson = machost { system = "x86_64-darwin"; hostname = "robson"; };
+        socrates = machost { system = "x86_64-darwin"; host = "socrates"; };
+        careca = machost { system = "aarch64-darwin"; host = "careca"; };
+        platini = machost { system = "x86_64-darwin"; host = "platini"; };
+        robson = machost { system = "x86_64-darwin"; host = "robson"; };
       };
       homeConfigurations = {
-        socrates = homeConfig { system = "x86_64-darwin"; hostname = "socrates"; };
-        rossi = homeConfig { system = "x86_64-linux"; hostname = "rossi"; };
-        sanchez = homeConfig { system = "x86_64-linux"; hostname = "sanchez"; };
-        robson = homeConfig { system = "x86_64-darwin"; hostname = "robson"; };
-        platini = homeConfig { system = "x86_64-darwin"; hostname = "platini"; };
+        socrates = homeConfig { system = "x86_64-darwin"; host = "macos/socrates"; };
+        rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
+        sanchez = homeConfig { system = "x86_64-linux"; host = "nixos/sanchez"; };
+        robson = homeConfig { system = "x86_64-darwin"; host = "macos/robson"; };
+        platini = homeConfig { system = "x86_64-darwin"; host = "macos/platini"; };
       };
 
       deploy.nodes.host.profiles.system = {
