@@ -41,7 +41,7 @@
       nixoshost = { system, host }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/nixos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
+          modules = [ ./hosts/nixos/${host} { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
         };
       pkglist = pkgs: [
