@@ -44,11 +44,6 @@
           modules = [ ./hosts/nixos/${host} { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
         };
-      pkglist = pkgs: [
-        pkgs.nixfmt
-        pkgs.nixpkgs-fmt
-        pkgs.rnix-lsp
-      ];
       homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit system; };
         modules = [ ./home-manager/${host}.nix ];
@@ -61,13 +56,21 @@
       };
     in
     {
-      devShell = inputs.nixpkgs.lib.listToAttrs (map
-        (system: {
-          name = system;
-          value = nixpkgs.legacyPackages.${system}.mkShell {
-            nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
-          };
-        }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
+      devShell =
+        let
+          pkglist = pkgs: [
+            pkgs.nixfmt
+            pkgs.nixpkgs-fmt
+            pkgs.rnix-lsp
+          ];
+        in
+        inputs.nixpkgs.lib.listToAttrs (map
+          (system: {
+            name = system;
+            value = nixpkgs.legacyPackages.${system}.mkShell {
+              nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
+            };
+          }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
       nixosConfigurations = {
         sanchez = nixoshost { system = "x86_64-linux"; host = "sanchez"; };
         rossi = nixoshost { system = "x86_64-linux"; host = "rossi"; };
