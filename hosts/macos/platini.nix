@@ -8,8 +8,10 @@
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
   nix = {
-    maxJobs = 8;
-    buildCores = 0;
+    settings = {
+      max-jobs = 8;
+      cores = 0;
+    };
   };
 
   homebrew = {
@@ -37,7 +39,7 @@
       skhdConfig = ''
         ralt - 1: open /run/current-system/Applications/kitty.app
         ralt - 2: open /run/current-system/Applications/Emacs.app
-        ralt - 3: open -a /Applications/Firefox.app
+        ralt - 3: open -a /run/current-system/Applications/Homebrew\ Apps/Firefox.app
       '';
     };
   };

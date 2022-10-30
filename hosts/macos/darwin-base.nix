@@ -72,8 +72,9 @@
       brewfile = true;
       lockfiles = true;
     };
-    extraConfig = ''
-      cask_args appdir: "~/Applications/Homebrew Apps", require_sha: true
-    '';
+    caskArgs = {
+      appdir = "~/Applications/Homebrew Apps";
+      require_sha = true;
+    };
   };
 }
