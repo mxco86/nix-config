@@ -30,6 +30,7 @@
       "firefox"
       "spectacle"
       "vorta"
+      "slack"
     ];
   };
 

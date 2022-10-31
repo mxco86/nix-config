@@ -10,7 +10,8 @@ in
     packages = with pkgs; [
       # adoptopenjdk-hotspot-bin-11
       # adr-tools
-      dbeaver
+      # dbeaver
+      # jetbrains.idea-community
       # kubectl
       # docker
       # docker-compose
@@ -18,6 +19,7 @@ in
       # jwt-cli
       # imagemagick
       python3
+      pgformatter
     ];
   };
 
@@ -61,6 +63,7 @@ in
     git = {
       userName = "Matthew Ryall";
       userEmail = "matthew.ryall@digital.justice.gov.uk";
+      signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
     };
   };
 }
