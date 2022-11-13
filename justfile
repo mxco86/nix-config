@@ -1,13 +1,16 @@
 macosNix := "${HOME}/Config/nix-config"
 nixosNix := "/etc/nixos"
 
-build-darwin:
+[macos]
+nix-rebuild:
     darwin-rebuild switch --flake {{macosNix}}
 
-build-nixos:
+[linux]
+nix-rebuild:
     nixos-rebuild switch --use-remote-sudo --flake {{nixosNix}}
 
-install-nix-macos:
+[macos]
+install-nix:
     # install nix
     # install nix-darwin
     # install home-manager
@@ -20,6 +23,7 @@ update-home-manager hostname:
 update-home-manager hostname:
     home-manager switch --flake {{nixosNix}}\#{{hostname}}
 
+[macos]
 install-homebrew:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -29,5 +33,6 @@ link-pass:
 create-public-key:
     ssh-keygen -f ${HOME}/.ssh/id_rsa -y > ${HOME}/.ssh/id_rsa.pub
 
-install-passff-macos:
+[macos]
+install-passff:
     ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ${HOME}/Library/Application\ Support/Mozilla
