@@ -1,16 +1,24 @@
+macosNix := "${HOME}/Config/nix-config"
+nixosNix := "/etc/nixos"
+
 build-darwin:
-    darwin-rebuild switch --flake ${HOME}/Config/nix-config
+    darwin-rebuild switch --flake {{macosNix}}
 
 build-nixos:
-    nixos-rebuild switch --use-remote-sudo --flake /etc/nixos
+    nixos-rebuild switch --use-remote-sudo --flake {{nixosNix}}
 
 install-nix-macos:
     # install nix
     # install nix-darwin
     # install home-manager
 
+[macos]
 update-home-manager hostname:
-    home-manager switch --flake ${HOME}/Config/nix-config\#{{hostname}}
+    home-manager switch --flake {{macosNix}}\#{{hostname}}
+
+[linux]
+update-home-manager hostname:
+    home-manager switch --flake {{nixosNix}}\#{{hostname}}
 
 install-homebrew:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
