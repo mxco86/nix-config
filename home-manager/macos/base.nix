@@ -15,7 +15,6 @@
   };
 
   programs = {
-    zsh = { oh-my-zsh = { plugins = [ "macos" ]; }; };
     kitty = {
       settings = {
         font_size = 14;

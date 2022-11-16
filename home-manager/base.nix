@@ -139,18 +139,6 @@
       enableAutosuggestions = true;
       defaultKeymap = "emacs";
       history = { ignoreDups = true; };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "aws"
-          "colored-man-pages"
-          "colorize"
-          "docker"
-          "git"
-          "gitfast"
-          "sudo"
-        ];
-      };
       plugins = [{
         name = "fast-syntax-highlighting";
         src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
