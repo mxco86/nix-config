@@ -45,7 +45,7 @@
           specialArgs = { inherit inputs; };
         };
       homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
         modules = [ ./home-manager/${host}.nix ];
         extraSpecialArgs = {
           nur = import nur {

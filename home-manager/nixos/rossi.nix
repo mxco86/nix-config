@@ -93,22 +93,24 @@ in
           identityFile = "~/mnt/k/id_rsa_moj";
           identitiesOnly = true;
         };
-        "ssh.bastion-dev.probation.hmpps.dsd.io aws_proxy_dev" = {
-          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius";
-          identitiesOnly = true;
-        };
         "ssh.bastion-prod.probation.hmpps.dsd.io aws_proxy_prod" = {
           hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
           user = "mryall";
           identityFile = "~/mnt/k/id_rsa_delius_prod";
           identitiesOnly = true;
         };
-        "*.test.delius.probation.hmpps.dsd.io" = {
+        "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
           user = "mryall";
           identityFile = "~/mnt/k/id_rsa_delius";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_dev";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_dev_bastion";
+          identitiesOnly = true;
+        };
+        "ssh.bastion-dev.probation.hmpps.dsd.io moj_dev_bastion awsdevgw" = {
+          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+          forwardAgent = true;
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius";
+          proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
           identitiesOnly = true;
         };
         "*.pre-prod.delius.probation.hmpps.dsd.io" = {

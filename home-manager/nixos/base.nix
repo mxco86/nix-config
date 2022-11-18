@@ -13,13 +13,12 @@
       dbeaver
       # discord
       jetbrains.idea-community
-      keepassxc
       nixpkgs-fmt
-      rnix-lsp
       unzip
       xclip
       xorg.xdpyinfo
       xorg.xmodmap
+      ssm-session-manager-plugin
     ];
 
     keyboard = { options = [ "ctrl:nocaps" ]; };
