@@ -2,11 +2,11 @@ macosNix := "${HOME}/Config/nix-config"
 nixosNix := "/etc/nixos"
 
 [macos]
-nix-rebuild:
+rebuild-nix:
     darwin-rebuild switch --flake {{macosNix}}
 
 [linux]
-nix-rebuild:
+rebuild-nix:
     nixos-rebuild switch --use-remote-sudo --flake {{nixosNix}}
 
 [macos]
