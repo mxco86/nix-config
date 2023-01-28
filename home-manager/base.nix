@@ -26,6 +26,7 @@
       dogdns
       duf
       fd
+      just
       # slack
       # isync
       ncdu
@@ -91,10 +92,6 @@
     gpg = { enable = true; };
     bat = { enable = true; };
     broot = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    just = {
       enable = true;
       enableZshIntegration = true;
     };
