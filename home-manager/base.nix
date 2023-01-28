@@ -126,7 +126,7 @@
 
       extensions =
         with pkgs.nur.repos.rycee.firefox-addons; [
-          keepassxc-browser
+          ghosttext
           privacy-badger
           tab-session-manager
           tree-style-tab
