@@ -28,7 +28,9 @@ in
             alert
             ace-window
             add-node-modules-path
+            atomic-chrome
             base16-theme
+            bufler
             cape
             code-review
             cargo
@@ -36,8 +38,6 @@ in
             consult-dir
             consult-eglot
             dap-mode
-            diminish
-            direnv
             docker
             docker-compose-mode
             dockerfile-mode
@@ -84,10 +84,10 @@ in
             orderless
             org-download
             org-noter
+            org-present
             org-roam
             org-roam-ui
             ox-hugo
-            paradox
             paredit
             pdf-tools
             prettier-js
@@ -108,7 +108,7 @@ in
             use-package
             uuidgen
             vimish-fold
-            vterm
+            visual-fill-column
             web-mode
             websocket
             which-key
@@ -124,7 +124,10 @@ in
             epkgs.elpaPackages.kind-icon
             epkgs.elpaPackages.undo-tree
           ]
-          ++ [ epkgs.nongnuPackages.org-contrib ]))
+          ++ [
+            epkgs.nongnuPackages.org-contrib
+            epkgs.nongnuPackages.eat
+          ]))
       ];
   };
 }
