@@ -66,6 +66,7 @@ in
             js2-mode
             just-mode
             kotlin-mode
+            ligature
             link-hint
             log4e
             lsp-java
