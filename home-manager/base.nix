@@ -184,6 +184,10 @@
     kitty = {
       enable = true;
       font = { name = "Fira Code"; };
+      keybindings = {
+        "ctrl+shift+]" = "next_tab";
+        "ctrl+shift+[" = "previous_tab";
+      };
       settings = {
         # Fonts
         # font_size = 14;
