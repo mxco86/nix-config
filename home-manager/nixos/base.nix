@@ -34,7 +34,7 @@
   };
 
   programs = {
-    kitty = { settings = { font_size = 10; }; };
+    kitty = { settings = { font_size = 12; }; };
 
     rofi = {
       enable = true;
