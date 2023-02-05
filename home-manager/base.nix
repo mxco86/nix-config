@@ -183,7 +183,7 @@
 
     kitty = {
       enable = true;
-      font = { name = "Hack"; };
+      font = { name = "Fira Code"; };
       settings = {
         # Fonts
         # font_size = 14;
