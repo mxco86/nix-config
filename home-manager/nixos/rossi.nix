@@ -19,30 +19,38 @@ in
   xsession.windowManager.i3 = {
     config = {
       assigns = {
-        "1: code" = [
+        "1" = [
           { class = "^kitty$"; }
-          { class = "^Emacs$"; }
         ];
-        "2: slack" = [{ class = "^Slack$"; }];
-        "3: web" = [{ class = "^firefox$"; }];
-        "6: db" = [{ class = "^DBeaver$"; }];
+        "4" = [{ class = "^Slack$"; }];
+        "5" = [{ class = "^DBeaver$"; }];
+        "6" = [{ class = "^firefox$"; }];
       };
       bars = [ i3bar ];
       workspaceOutputAssign = [
         {
-          workspace = "1: code";
+          workspace = "1";
           output = "DisplayPort-1";
         }
         {
-          workspace = "2: slack";
+          workspace = "2";
           output = "DisplayPort-1";
         }
         {
-          workspace = "3: web";
-          output = "DVI-D-0";
+          workspace = "3";
+          output = "DisplayPort-1";
         }
         {
-          workspace = "6: db";
+          workspace = "4";
+          output = "DisplayPort-1";
+        }
+        {
+          workspace = "5";
+          output = "DisplayPort-1";
+        }
+        {
+          workspace = "6
+            ";
           output = "DVI-D-0";
         }
       ];
