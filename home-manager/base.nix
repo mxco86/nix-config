@@ -36,6 +36,13 @@
       # weechat
     ];
     sessionVariables = { EDITOR = "emacsclient"; };
+
+    file = {
+      surfingkeys = {
+        source = ./files/surfingkeys.conf;
+        target = ".config/firefox/surfingkeys.conf";
+      };
+    };
   };
 
   programs = {
@@ -125,6 +132,7 @@
         with pkgs.nur.repos.rycee.firefox-addons; [
           ghosttext
           privacy-badger
+          surfingkeys
           tab-session-manager
           tree-style-tab
         ];
