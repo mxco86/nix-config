@@ -125,17 +125,16 @@
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           };
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            ghosttext
+            privacy-badger
+            surfingkeys
+            tab-session-manager
+            tree-style-tab
+          ];
         };
       };
 
-      extensions =
-        with pkgs.nur.repos.rycee.firefox-addons; [
-          ghosttext
-          privacy-badger
-          surfingkeys
-          tab-session-manager
-          tree-style-tab
-        ];
     };
 
     zsh = {
