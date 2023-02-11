@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  i3bar = import ./i3bar.nix { inherit pkgs; size = 8.0; };
+  i3bar = import ./i3bar.nix { inherit pkgs; size = 9.0; };
 in
 {
   imports = [ ./base.nix ];
@@ -18,13 +18,17 @@ in
 
   xsession.windowManager.i3 = {
     config = {
+      menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 22'";
       assigns = {
-        "1: term" = [{ class = "^kitty$"; }];
-        "2: emacs" = [{ class = "^Emacs$"; }];
-        "3: web" = [{ class = "^Firefox$"; }];
-        "4: slack" = [{ class = "^Slack$"; }];
+        "1" = [{ class = "^kitty$"; }];
+        "2" = [{ class = "^Emacs$"; }];
+        "3" = [{ class = "^Firefox$"; }];
+        "4" = [{ class = "^Slack$"; }];
       };
       bars = [ i3bar ];
+      fonts = {
+        size = 8.0;
+      };
     };
     extraConfig = ''
       # Remap keys
@@ -42,6 +46,9 @@ in
   };
 
   programs = {
+    kitty = {
+      settings = { font_size = 10; };
+    };
     ssh = {
       controlPersist = "yes";
       controlMaster = "auto";
@@ -96,8 +103,8 @@ in
       profiles = {
         mryall = {
           settings = {
-            "layout.css.devPixelsPerPx" = "1";
-            "font.size.systemFontScale" = 100;
+            "layout.css.devPixelsPerPx" = "0.8";
+            "font.size.systemFontScale" = 105;
             "browser.uidensity" = 1;
           };
           userChrome = ''

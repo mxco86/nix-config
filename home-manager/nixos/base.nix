@@ -10,10 +10,7 @@
 
     packages = with pkgs; [
       anki
-      dbeaver
       # discord
-      jetbrains.idea-community
-      nixpkgs-fmt
       unzip
       xclip
       xorg.xdpyinfo
@@ -34,8 +31,6 @@
   };
 
   programs = {
-    kitty = { settings = { font_size = 12; }; };
-
     rofi = {
       enable = true;
       pass = { enable = true; };
@@ -95,7 +90,6 @@
     enable = true;
     config = {
       modifier = "Mod4";
-      menu = "rofi -modi drun -show drun -theme solarized -font 'Hack 12'";
       keybindings =
         let modifier = "Mod4"; in
         pkgs.lib.mkOptionDefault {
@@ -113,8 +107,8 @@
         };
       };
       fonts = {
-        names = [ "FontAwesome" "Hack" ];
-        size = 10.0;
+        names = [ "FontAwesome" "Fira Code" ];
+        size = 8.0;
       };
       terminal = "${pkgs.kitty}/bin/kitty";
     };
