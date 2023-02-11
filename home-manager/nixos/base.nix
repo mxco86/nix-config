@@ -108,7 +108,6 @@
       };
       fonts = {
         names = [ "FontAwesome" "Fira Code" ];
-        size = 8.0;
       };
       terminal = "${pkgs.kitty}/bin/kitty";
     };

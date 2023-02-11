@@ -18,6 +18,7 @@ in
 
   xsession.windowManager.i3 = {
     config = {
+      menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 12'";
       assigns = {
         "1" = [
           { class = "^kitty$"; }
@@ -27,6 +28,9 @@ in
         "6" = [{ class = "^firefox$"; }];
       };
       bars = [ i3bar ];
+      fonts = {
+        size = 10.0;
+      };
       workspaceOutputAssign = [
         {
           workspace = "1";
@@ -60,6 +64,9 @@ in
   };
 
   programs = {
+    kitty = {
+      settings = { font_size = 10; };
+    };
     i3status = {
       enable = true;
       enableDefault = false;
