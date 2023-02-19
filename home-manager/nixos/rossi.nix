@@ -6,6 +6,12 @@ in
 {
   imports = [ ./base.nix ];
 
+  home = {
+    packages = with pkgs; [
+      dbeaver
+    ];
+  };
+
   xresources = {
     properties = {
       "Xft.dpi" = 96;
@@ -65,7 +71,7 @@ in
 
   programs = {
     kitty = {
-      settings = { font_size = 10; };
+      settings = { font_size = 12; };
     };
     i3status = {
       enable = true;
@@ -108,12 +114,6 @@ in
           identityFile = "~/mnt/k/id_rsa_moj";
           identitiesOnly = true;
         };
-        "ssh.bastion-prod.probation.hmpps.dsd.io aws_proxy_prod" = {
-          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius_prod";
-          identitiesOnly = true;
-        };
         "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
           user = "mryall";
           identityFile = "~/mnt/k/id_rsa_delius";
@@ -128,10 +128,18 @@ in
           proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
           identitiesOnly = true;
         };
-        "*.pre-prod.delius.probation.hmpps.dsd.io" = {
+        "*.probation.service.justice.gov.uk *.pre-prod.delius.probation.hmpps.dsd.io *.stage.delius.probation.hmpps.dsd.io 10.160.*" = {
           user = "mryall";
           identityFile = "~/mnt/k/id_rsa_delius_prod";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_prod";
+          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_prod_bastion";
+          identitiesOnly = true;
+        };
+        "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
+          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+          forwardAgent = true;
+          user = "mryall";
+          identityFile = "~/mnt/k/id_rsa_delius";
+          proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
           identitiesOnly = true;
         };
       };
@@ -167,9 +175,13 @@ in
                border: 0 !important;
             }
           '';
-
         };
       };
+    };
+    git = {
+      userName = "Matthew Ryall";
+      userEmail = "matthew.ryall@digital.justice.gov.uk";
+      signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
     };
   };
 }
