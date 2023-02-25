@@ -135,10 +135,10 @@ in
           identitiesOnly = true;
         };
         "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
-          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
           forwardAgent = true;
           user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius";
+          identityFile = "~/mnt/k/id_rsa_delius_prod";
           proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
           identitiesOnly = true;
         };
