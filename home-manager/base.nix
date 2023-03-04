@@ -179,21 +179,45 @@
       ];
     };
 
+    tmux = {
+      enable = true;
+      terminal = "xterm-kitty";
+      shell = "${pkgs.zsh}/bin/zsh";
+      mouse = true;
+      keyMode = "emacs";
+      extraConfig = ''
+        set -g status-justify left
+        set -s escape-time 0
+        bind -n C-] next-window
+        bind -n C-[ previous-window
+      '';
+      plugins = [
+        {
+          plugin = pkgs.tmuxPlugins.power-theme;
+          extraConfig = ''
+            set -g @tmux_power_theme '#93a1a1'
+          '';
+        }
+        pkgs.tmuxPlugins.tmux-fzf
+        pkgs.tmuxPlugins.tmux-thumbs
+      ];
+    };
+
     kitty = {
       enable = true;
       font = { name = "Fira Code"; };
       keybindings = {
         "ctrl+shift+]" = "next_tab";
         "ctrl+shift+[" = "previous_tab";
+        "ctrl+shift+t" = "no_op";
       };
       settings = {
         # Fonts
-        # font_size = 14;
         macos_thicken_font = "0.75";
 
         # Tabs
-        tab_bar_style = "powerline";
-        tab_bar_min_tabs = 1;
+        tab_bar_style = "hidden";
+        tab_bar_min_tabs = 2;
 
         # Config
         allow_remote_control = "yes";
