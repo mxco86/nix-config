@@ -181,7 +181,6 @@
 
     tmux = {
       enable = true;
-      terminal = "xterm-kitty";
       shell = "${pkgs.zsh}/bin/zsh";
       mouse = true;
       keyMode = "emacs";
@@ -204,7 +203,6 @@
     };
 
     kitty = {
-      enable = true;
       font = { name = "Fira Code"; };
       keybindings = {
         "ctrl+shift+]" = "next_tab";
@@ -270,6 +268,63 @@
         # White
         color7 = "#eee8d5";
         color15 = "#fdf6e3";
+      };
+    };
+
+    alacritty = {
+      enable = true;
+      settings = {
+        env = { TERM = "xterm-256color"; };
+        font = {
+          size = 18.0;
+          normal = {
+            family = "Fira Code";
+          };
+          bold = {
+            family = "Fira Code";
+          };
+          italic = {
+            family = "Fira Code";
+          };
+        };
+        colors = {
+          primary = {
+            background = "#002b36";
+            foreground = "#ffffff";
+            dim_foreground = "#1e1e1e";
+            bright_foreground = "#ffffff";
+            normal = {
+              black = "#002b36";
+              red = "#ff5f59";
+              green = "#44bc44";
+              yellow = "#d0bc00";
+              blue = "#2fafff";
+              magenta = "#feacd0";
+              cyan = "#00d3d0";
+              white = "#ffffff";
+            };
+            bright = {
+              black = "#002b36";
+              red = "#ff5f5f";
+              green = "#44df44";
+              yellow = "#efef00";
+              blue = "#338fff";
+              magenta = "#ff66ff";
+              cyan = "#9ac8e0";
+              white = "#ffffff";
+            };
+            dim = {
+              black = "#002b36";
+              red = "#ff9580";
+              green = "#88ca9f";
+              yellow = "#d2b580";
+              blue = "#82b0ec";
+              magenta = "#caa6df";
+              cyan = "#9ac8e0";
+              white = "#989898";
+            };
+          };
+        };
       };
     };
 
