@@ -22,7 +22,7 @@ in
       assigns = {
         "1" = [{ class = "^kitty$"; }];
         "2" = [{ class = "^Emacs$"; }];
-        "3" = [{ class = "^Firefox$"; }];
+        "3" = [{ class = "^firefox$"; }];
         "4" = [{ class = "^Slack$"; }];
       };
       bars = [ i3bar ];
