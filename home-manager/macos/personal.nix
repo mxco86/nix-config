@@ -3,6 +3,11 @@
 {
   imports = [ ./base.nix ];
 
+  home = {
+    username = "mryall";
+    homeDirectory = "/Users/mryall";
+  };
+
   programs = {
     git = {
       userName = "Matthew Ryall";

@@ -4,8 +4,6 @@
   imports = [ ../base.nix ];
 
   home = {
-    username = "mryall";
-    homeDirectory = "/Users/mryall";
     stateVersion = "22.05";
 
     packages = with pkgs; [

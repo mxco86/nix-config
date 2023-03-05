@@ -7,6 +7,9 @@ in
   imports = [ ./base.nix ];
 
   home = {
+    username = "matthew.ryall";
+    homeDirectory = "/Users/matthew.ryall";
+
     packages = with pkgs; [
       # adoptopenjdk-hotspot-bin-11
       # adr-tools
