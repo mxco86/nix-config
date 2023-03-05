@@ -15,11 +15,6 @@
   };
 
   programs = {
-    kitty = {
-      settings = {
-        font_size = 14;
-      };
-    };
     git = {
       extraConfig = {
         credential = { helper = "osxkeychain"; };
