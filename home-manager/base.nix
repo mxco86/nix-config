@@ -187,8 +187,8 @@
       extraConfig = ''
         set -g status-justify left
         set -s escape-time 0
-        bind -n C-] next-window
-        bind -n C-[ previous-window
+        bind -n C-l next-window
+        bind -n C-h previous-window
       '';
       plugins = [
         {
