@@ -77,6 +77,7 @@ in
             magit
             marginalia
             minions
+            modus-themes
             mood-line
             nix-mode
             npm-mode
@@ -98,24 +99,22 @@ in
             rainbow-delimiters
             rg
             rust-mode
-            shackle
             simple-httpd
             spaceline
             sqlformat
             terraform-mode
+            tempel
+            tempel-collection
             toc-org
             typescript-mode
             unfill
             use-package
             uuidgen
-            vimish-fold
             visual-fill-column
             web-mode
             websocket
             which-key
             yaml-mode
-            yasnippet
-            yasnippet-snippets
           ])
           ++ [
             epkgs.elpaPackages.org
