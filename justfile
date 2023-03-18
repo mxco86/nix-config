@@ -35,4 +35,5 @@ create-public-key:
 
 [macos]
 install-passff:
-    ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ${HOME}/Library/Application\ Support/Mozilla
+    rm -f ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/passff.json
+    ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/
