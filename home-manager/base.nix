@@ -276,16 +276,13 @@
       settings = {
         env = { TERM = "xterm-256color"; };
         font = {
-          size = 18.0;
+          size = 20.0;
           normal = {
-            family = "Fira Code";
+            family = "HackGen Console NF";
           };
-          bold = {
-            family = "Fira Code";
-          };
-          italic = {
-            family = "Fira Code";
-          };
+        };
+        window = {
+          decorations = "none";
         };
         colors = {
           primary = {
