@@ -99,7 +99,6 @@
         robson = machost { system = "x86_64-darwin"; host = "robson"; };
       };
       homeConfigurations = {
-        socrates = homeConfig { system = "x86_64-darwin"; host = "macos/socrates"; };
         rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
         sanchez = homeConfig { system = "x86_64-linux"; host = "nixos/sanchez"; };
         robson = homeConfig { system = "x86_64-darwin"; host = "macos/robson"; };
