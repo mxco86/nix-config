@@ -37,13 +37,14 @@ in
             consult
             consult-dir
             consult-eglot
+            consult-org-roam
             dap-mode
+            diff-hl
             docker
             docker-compose-mode
             dockerfile-mode
             dumb-jump
             editorconfig
-            eglot
             embark
             embark-consult
             emojify
@@ -58,6 +59,7 @@ in
             git-timemachine
             go-eldoc
             go-mode
+            gptel
             groovy-mode
             haskell-mode
             helpful
@@ -97,6 +99,7 @@ in
             racer
             racket-mode
             rainbow-delimiters
+            rfc-mode
             rg
             rust-mode
             simple-httpd
