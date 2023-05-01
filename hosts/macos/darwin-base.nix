@@ -60,7 +60,16 @@
       skhdConfig = ''
       '';
     };
-    nix-daemon.enable = true;
+    nix-daemon = { enable = true; };
+    tailscale = {
+      enable = true;
+      magicDNS = { enable = true; };
+    };
+  };
+
+  networking = {
+    knownNetworkServices = [ "Wi-Fi" ];
+    dns = [ "192.168.1.66" ];
   };
 
   fonts = {

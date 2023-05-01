@@ -27,12 +27,7 @@
     casks = [
       "firefox"
       "vorta"
-      "virtualbox"
     ];
-
-    masApps = {
-      Tailscale = 1475387142;
-    };
   };
 
   services = {
