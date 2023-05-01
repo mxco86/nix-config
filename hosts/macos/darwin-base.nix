@@ -7,6 +7,11 @@
     configureBuildUsers = true;
   };
 
+  users.users.mryall = {
+    name = "mryall";
+    home = "/Users/mryall";
+  };
+
   environment = {
     shells = [ pkgs.zsh ];
     loginShell = "${pkgs.zsh}";

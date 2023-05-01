@@ -33,9 +33,17 @@
         darwin.lib.darwinSystem {
           inherit inputs;
           inherit system;
-          modules = [ ./hosts/macos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
+          modules = [
+            ./hosts/macos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; }
+            home-manager.darwinModules.home-manager
+            ./home-manager/macos/${host}.nix
+          ];
           specialArgs = {
             x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ emacs-overlay.overlay ]; };
+            nur = import nur {
+              pkgs = import nixpkgs { inherit system; };
+              nurpkgs = import nixpkgs { inherit system; };
+            };
           };
         };
       nixoshost = { system, host }:
@@ -43,6 +51,14 @@
           inherit system;
           modules = [ ./hosts/nixos/${host} { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
           specialArgs = { inherit inputs; };
+        };
+      rpihost = { host }:
+        nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            { config.system.stateVersion = "22.05"; }
+          ];
         };
       homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
@@ -74,6 +90,7 @@
       nixosConfigurations = {
         sanchez = nixoshost { system = "x86_64-linux"; host = "sanchez"; };
         rossi = nixoshost { system = "x86_64-linux"; host = "rossi"; };
+        rpi = rpihost { host = "test"; };
       };
       darwinConfigurations = {
         socrates = machost { system = "x86_64-darwin"; host = "socrates"; };
@@ -86,7 +103,6 @@
         rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
         sanchez = homeConfig { system = "x86_64-linux"; host = "nixos/sanchez"; };
         robson = homeConfig { system = "x86_64-darwin"; host = "macos/robson"; };
-        platini = homeConfig { system = "x86_64-darwin"; host = "macos/platini"; };
       };
 
       deploy.nodes.host.profiles.system = {

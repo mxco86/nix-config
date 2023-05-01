@@ -3,12 +3,14 @@
 {
   imports = [ ./personal.nix ];
 
-  programs = {
-    kitty = {
-      enable = false;
-    };
-    tmux = {
-      terminal = "xterm-256color";
+  home-manager.users.mryall = { pkgs, ... }: {
+    programs = {
+      kitty = {
+        enable = false;
+      };
+      tmux = {
+        terminal = "xterm-256color";
+      };
     };
   };
 }
