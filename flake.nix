@@ -49,8 +49,19 @@
       nixoshost = { system, host }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/nixos/${host} { nixpkgs.overlays = [ emacs-overlay.overlay ]; } ];
-          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixos/${host}
+            home-manager.nixosModules.home-manager
+            ./home-manager/nixos/${host}.nix
+          ];
+          specialArgs = {
+            inherit inputs;
+            pkgs = import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ emacs-overlay.overlay ]; };
+            nur = import nur {
+              pkgs = import nixpkgs { inherit system; };
+              nurpkgs = import nixpkgs { inherit system; };
+            };
+          };
         };
       rpihost = { host }:
         nixpkgs.lib.nixosSystem {
@@ -100,7 +111,6 @@
       };
       homeConfigurations = {
         rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
-        sanchez = homeConfig { system = "x86_64-linux"; host = "nixos/sanchez"; };
         robson = homeConfig { system = "x86_64-darwin"; host = "macos/robson"; };
       };
 
