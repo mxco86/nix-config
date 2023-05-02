@@ -27,11 +27,8 @@
     casks = [
       "firefox"
       "vorta"
+      "spectacle"
     ];
-
-    masApps = {
-      Tailscale = 1475387142;
-    };
   };
 
   services = {

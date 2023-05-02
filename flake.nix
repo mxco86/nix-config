@@ -137,7 +137,6 @@
       };
       homeConfigurations = {
         rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
-        robson = homeConfig { system = "x86_64-darwin"; host = "macos/robson"; };
       };
 
       deploy.nodes.host.profiles.system = {
