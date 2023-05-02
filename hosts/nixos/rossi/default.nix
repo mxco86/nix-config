@@ -11,6 +11,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking = {
     hostName = "rossi";
@@ -28,6 +29,7 @@
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
+    systemPackages = [ pkgs.chrysalis ];
   };
 
   services = {
@@ -48,6 +50,7 @@
         enable = false;
       };
     };
+    udev.packages = [ pkgs.chrysalis ];
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;

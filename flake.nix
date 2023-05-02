@@ -68,7 +68,33 @@
           system = "aarch64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            { config.system.stateVersion = "22.05"; }
+            (
+              let
+                pkgs = nixpkgs.legacyPackages.aarch64-linux;
+              in
+              {
+                system.stateVersion = "22.05";
+                nixpkgs = {
+                  buildPlatform.system = "x86_64-linux";
+                  hostPlatform.system = "aarch64-linux";
+                };
+                networking = {
+                  wireless.enable = true;
+                };
+                console = {
+                  earlySetup = true;
+                  packages = with pkgs; [ terminus_font ];
+                  font = nixpkgs.lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+                };
+                users.users.mryall = {
+                  isNormalUser = true;
+                  home = "/home/mryall";
+                  description = "Matthew";
+                  extraGroups = [ "wheel" "networkmanager" ];
+                  hashedPassword = "";
+                };
+              }
+            )
           ];
         };
       homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
