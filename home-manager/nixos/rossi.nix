@@ -6,183 +6,185 @@ in
 {
   imports = [ ./base.nix ];
 
-  home = {
-    packages = with pkgs; [
-      dbeaver
-    ];
-  };
-
-  xresources = {
-    properties = {
-      "Xft.dpi" = 96;
-      "Xft.antialias" = true;
-      "Xft.rgba" = "rgb";
-      "Xft.hinting" = true;
-      "Xft.hintstyle" = "hintslight";
-    };
-  };
-
-  xsession.windowManager.i3 = {
-    config = {
-      menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 12'";
-      assigns = {
-        "1" = [
-          { class = "^kitty$"; }
-        ];
-        "4" = [{ class = "^Slack$"; }];
-        "5" = [{ class = "^DBeaver$"; }];
-        "6" = [{ class = "^firefox$"; }];
-      };
-      bars = [ i3bar ];
-      fonts = {
-        size = 10.0;
-      };
-      workspaceOutputAssign = [
-        {
-          workspace = "1";
-          output = "DisplayPort-1";
-        }
-        {
-          workspace = "2";
-          output = "DisplayPort-1";
-        }
-        {
-          workspace = "3";
-          output = "DisplayPort-1";
-        }
-        {
-          workspace = "4";
-          output = "DisplayPort-1";
-        }
-        {
-          workspace = "5";
-          output = "DisplayPort-1";
-        }
-        {
-          workspace = "6
-            ";
-          output = "DVI-D-0";
-        }
+  home-manager.users.mryall = { pkgs, ... }: {
+    home = {
+      packages = with pkgs; [
+        dbeaver
       ];
     };
-    extraConfig = ''
+
+    xresources = {
+      properties = {
+        "Xft.dpi" = 96;
+        "Xft.antialias" = true;
+        "Xft.rgba" = "rgb";
+        "Xft.hinting" = true;
+        "Xft.hintstyle" = "hintslight";
+      };
+    };
+
+    xsession.windowManager.i3 = {
+      config = {
+        menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 12'";
+        assigns = {
+          "1" = [
+            { class = "^kitty$"; }
+          ];
+          "4" = [{ class = "^Slack$"; }];
+          "5" = [{ class = "^DBeaver$"; }];
+          "6" = [{ class = "^firefox$"; }];
+        };
+        bars = [ i3bar ];
+        fonts = {
+          size = 10.0;
+        };
+        workspaceOutputAssign = [
+          {
+            workspace = "1";
+            output = "DisplayPort-1";
+          }
+          {
+            workspace = "2";
+            output = "DisplayPort-1";
+          }
+          {
+            workspace = "3";
+            output = "DisplayPort-1";
+          }
+          {
+            workspace = "4";
+            output = "DisplayPort-1";
+          }
+          {
+            workspace = "5";
+            output = "DisplayPort-1";
+          }
+          {
+            workspace = "6
+              ";
+            output = "DVI-D-0";
+          }
+        ];
+      };
+      extraConfig = ''
     '';
-  };
-
-  programs = {
-    kitty = {
-      enable = true;
-      settings = { font_size = 12; };
-    };
-    i3status = {
-      enable = true;
-      enableDefault = false;
-      general = {
-        colors = true;
-        color_good = "#6c71c4";
-        color_degraded = "#b58900";
-        color_bad = "#dc322f";
-        color_separator = "#657b83";
-        interval = 5;
-      };
-      modules = {
-        ipv6 = {
-          position = 1;
-        };
-        load = {
-          position = 2;
-        };
-        memory = {
-          position = 3;
-        };
-        "tztime local" = {
-          position = 4;
-        };
-      };
     };
 
-    ssh = {
-      controlPersist = "yes";
-      controlMaster = "auto";
-      controlPath = "/tmp/%r@%h:%p";
-      serverAliveInterval = 20;
-      serverAliveCountMax = 2;
-
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/mnt/k/id_rsa_moj";
-          identitiesOnly = true;
-        };
-        "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_dev_bastion";
-          identitiesOnly = true;
-        };
-        "ssh.bastion-dev.probation.hmpps.dsd.io moj_dev_bastion awsdevgw" = {
-          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
-          forwardAgent = true;
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius";
-          proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
-          identitiesOnly = true;
-        };
-        "*.probation.service.justice.gov.uk *.pre-prod.delius.probation.hmpps.dsd.io *.stage.delius.probation.hmpps.dsd.io 10.160.*" = {
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius_prod";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_prod_bastion";
-          identitiesOnly = true;
-        };
-        "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
-          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
-          forwardAgent = true;
-          user = "mryall";
-          identityFile = "~/mnt/k/id_rsa_delius_prod";
-          proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
-          identitiesOnly = true;
-        };
+    programs = {
+      kitty = {
+        enable = true;
+        settings = { font_size = 12; };
       };
-    };
-
-    firefox = {
-      profiles = {
-        mryall = {
-          settings = {
-            "browser.uidensity" = 1;
+      i3status = {
+        enable = true;
+        enableDefault = false;
+        general = {
+          colors = true;
+          color_good = "#6c71c4";
+          color_degraded = "#b58900";
+          color_bad = "#dc322f";
+          color_separator = "#657b83";
+          interval = 5;
+        };
+        modules = {
+          ipv6 = {
+            position = 1;
           };
-          userChrome = ''
-            #TabsToolbar { visibility: collapse !important; }
-
-            #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-                display:none;
-            }
-
-            #urlbar { font-size: 12pt !important }
-            #statuspanel { font-size: 12pt !important }
-            #main-menubar { font-size: 12pt !important }
-
-            menubar, menubutton, menulist, menu, menuitem,
-            textbox, findbar, toolbar, tab, tree, tooltip {
-              font-size: 12pt !important;
-            }
-
-            .tabbrowser-tab {
-               min-height: var(--tab-min-height) !important;
-               overflow: visible !important;
-               font-size: 12pt !important;
-               background: 0 !important;
-               border: 0 !important;
-            }
-          '';
+          load = {
+            position = 2;
+          };
+          memory = {
+            position = 3;
+          };
+          "tztime local" = {
+            position = 4;
+          };
         };
       };
-    };
-    git = {
-      userName = "Matthew Ryall";
-      userEmail = "matthew.ryall@digital.justice.gov.uk";
-      signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
+
+      ssh = {
+        controlPersist = "yes";
+        controlMaster = "auto";
+        controlPath = "/tmp/%r@%h:%p";
+        serverAliveInterval = 20;
+        serverAliveCountMax = 2;
+
+        matchBlocks = {
+          "github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = "~/mnt/k/id_rsa_moj";
+            identitiesOnly = true;
+          };
+          "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
+            user = "mryall";
+            identityFile = "~/mnt/k/id_rsa_delius";
+            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_dev_bastion";
+            identitiesOnly = true;
+          };
+          "ssh.bastion-dev.probation.hmpps.dsd.io moj_dev_bastion awsdevgw" = {
+            hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+            forwardAgent = true;
+            user = "mryall";
+            identityFile = "~/mnt/k/id_rsa_delius";
+            proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
+            identitiesOnly = true;
+          };
+          "*.probation.service.justice.gov.uk *.pre-prod.delius.probation.hmpps.dsd.io *.stage.delius.probation.hmpps.dsd.io 10.160.*" = {
+            user = "mryall";
+            identityFile = "~/mnt/k/id_rsa_delius_prod";
+            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_prod_bastion";
+            identitiesOnly = true;
+          };
+          "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
+            hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
+            forwardAgent = true;
+            user = "mryall";
+            identityFile = "~/mnt/k/id_rsa_delius_prod";
+            proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
+            identitiesOnly = true;
+          };
+        };
+      };
+
+      firefox = {
+        profiles = {
+          mryall = {
+            settings = {
+              "browser.uidensity" = 1;
+            };
+            userChrome = ''
+              #TabsToolbar { visibility: collapse !important; }
+
+              #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+                  display:none;
+              }
+
+              #urlbar { font-size: 12pt !important }
+              #statuspanel { font-size: 12pt !important }
+              #main-menubar { font-size: 12pt !important }
+
+              menubar, menubutton, menulist, menu, menuitem,
+              textbox, findbar, toolbar, tab, tree, tooltip {
+                font-size: 12pt !important;
+              }
+
+              .tabbrowser-tab {
+                 min-height: var(--tab-min-height) !important;
+                 overflow: visible !important;
+                 font-size: 12pt !important;
+                 background: 0 !important;
+                 border: 0 !important;
+              }
+            '';
+          };
+        };
+      };
+      git = {
+        userName = "Matthew Ryall";
+        userEmail = "matthew.ryall@digital.justice.gov.uk";
+        signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
+      };
     };
   };
 }

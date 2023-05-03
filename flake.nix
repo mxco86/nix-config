@@ -135,9 +135,6 @@
         platini = machost { system = "x86_64-darwin"; host = "platini"; };
         robson = machost { system = "x86_64-darwin"; host = "robson"; };
       };
-      homeConfigurations = {
-        rossi = homeConfig { system = "x86_64-linux"; host = "nixos/rossi"; };
-      };
 
       deploy.nodes.host.profiles.system = {
         user = "root";
