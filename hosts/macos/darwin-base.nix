@@ -12,6 +12,11 @@
     home = "/Users/mryall";
   };
 
+  users.users."matthew.ryall" = {
+    name = "matthew.ryall";
+    home = "/Users/matthew.ryall";
+  };
+
   environment = {
     shells = [ pkgs.zsh ];
     loginShell = "${pkgs.zsh}";

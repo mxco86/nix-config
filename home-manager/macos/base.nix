@@ -1,9 +1,9 @@
-{ config, lib, pkgs, x86pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   imports = [ ../base.nix ];
 
-  home-manager.users.mryall = { pkgs, ... }: {
+  home-manager.users.${username} = { pkgs, ... }: {
     home = {
       packages = with pkgs; [
         chroma

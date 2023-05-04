@@ -29,7 +29,7 @@
 
   outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs, ... }@inputs:
     let
-      machost = { system, host }:
+      machost = { system, host, username ? "mryall" }:
         darwin.lib.darwinSystem {
           inherit inputs;
           inherit system;
@@ -39,14 +39,18 @@
             ./home-manager/macos/${host}.nix
           ];
           specialArgs = {
-            x86pkgs = import nixpkgs { system = "x86_64-darwin"; overlays = [ emacs-overlay.overlay ]; };
+            inherit username;
+            x86pkgs = import nixpkgs {
+              system = "x86_64-darwin";
+              overlays = [ emacs-overlay.overlay ];
+            };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
               nurpkgs = import nixpkgs { inherit system; };
             };
           };
         };
-      nixoshost = { system, host }:
+      nixoshost = { system, host, username ? "mryall" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -56,6 +60,7 @@
           ];
           specialArgs = {
             inherit inputs;
+            inherit username;
             pkgs = import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ emacs-overlay.overlay ]; };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
@@ -97,16 +102,6 @@
             )
           ];
         };
-      homeConfig = { system, host }: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-        modules = [ ./home-manager/${host}.nix ];
-        extraSpecialArgs = {
-          nur = import nur {
-            pkgs = import nixpkgs { inherit system; };
-            nurpkgs = import nixpkgs { inherit system; };
-          };
-        } // (if system == "aarch64-darwin" then { x86pkgs = import nixpkgs { inherit system; }; } else { });
-      };
     in
     {
       devShell =
@@ -131,7 +126,7 @@
       };
       darwinConfigurations = {
         socrates = machost { system = "x86_64-darwin"; host = "socrates"; };
-        careca = machost { system = "aarch64-darwin"; host = "careca"; };
+        careca = machost { system = "aarch64-darwin"; host = "careca"; username = "matthew.ryall"; };
         platini = machost { system = "x86_64-darwin"; host = "platini"; };
         robson = machost { system = "x86_64-darwin"; host = "robson"; };
       };

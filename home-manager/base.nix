@@ -1,7 +1,7 @@
-{ pkgs, x86pkgs, nur, ... }:
+{ pkgs, nur, username, ... }:
 
 {
-  home-manager.users.mryall = { pkgs, ... }: {
+  home-manager.users.${username} = { pkgs, ... }: {
     home = {
       stateVersion = "22.05";
 
@@ -28,8 +28,8 @@
           target = ".config/firefox/surfingkeys.conf";
         };
       };
-
     };
+
     programs = {
       home-manager = { enable = true; };
 

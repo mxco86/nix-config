@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, username, ... }:
 
 let
   adr-tools = import ../../pkgs/adr-tools { inherit pkgs; };
@@ -6,69 +6,84 @@ in
 {
   imports = [ ./base.nix ];
 
-  home = {
-    username = "matthew.ryall";
-    homeDirectory = "/Users/matthew.ryall";
+  home-manager.users.${username} = { pkgs, ... }: {
+    home = {
+      username = "matthew.ryall";
+      homeDirectory = "/Users/matthew.ryall";
 
-    packages = with pkgs; [
-      # adoptopenjdk-hotspot-bin-11
-      # adr-tools
-      # dbeaver
-      # jetbrains.idea-community
-      # kubectl
-      # docker
-      # docker-compose
-      # minikube
-      # jwt-cli
-      # imagemagick
-      python3
-      pgformatter
-    ];
-  };
+      packages = with pkgs; [
+        # adoptopenjdk-hotspot-bin-11
+        # adr-tools
+        dbeaver
+        # jetbrains.idea-community
+        # docker
+        # docker-compose
+        # minikube
+        jwt-cli
+        # imagemagick
+        # python3
+        # pgformatter
+        azure-cli
+        kubectl
+        kubelogin
+        k9s
+        ssm-session-manager-plugin
+        tidyp
+      ];
+    };
 
-  programs = {
-    ssh = {
-      controlPersist = "yes";
-      controlMaster = "auto";
-      controlPath = "/tmp/%r@%h:%p";
-      serverAliveInterval = 20;
-      serverAliveCountMax = 2;
+    programs = {
+      ssh = {
+        controlPersist = "yes";
+        controlMaster = "auto";
+        controlPath = "/tmp/%r@%h:%p";
+        serverAliveInterval = 20;
+        serverAliveCountMax = 2;
 
-      matchBlocks = {
-        "github.com" = {
-          hostname = "github.com";
-          user = "git";
-          identityFile = "/Volumes/Q/k/id_rsa_moj";
-          identitiesOnly = true;
-        };
-        "ssh.bastion-dev.probation.hmpps.dsd.io aws_proxy_dev" = {
-          hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
-          user = "mryall";
-          identityFile = "/Volumes/Q/k/id_rsa_delius";
-        };
-        "ssh.bastion-prod.probation.hmpps.dsd.io aws_proxy_prod" = {
-          hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
-          user = "mryall";
-          identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
-        };
-        "*.test.delius.probation.hmpps.dsd.io" = {
-          user = "mryall";
-          identityFile = "/Volumes/Q/k/id_rsa_delius";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_dev";
-        };
-        "*.pre-prod.delius.probation.hmpps.dsd.io" = {
-          user = "mryall";
-          identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
-          proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p aws_proxy_prod";
+        matchBlocks = {
+          "github.com" = {
+            hostname = "github.com";
+            user = "git";
+            identityFile = "/Volumes/Q/k/id_rsa_moj";
+            identitiesOnly = true;
+          };
+          "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
+            user = "mryall";
+            identityFile = "/Volumes/Q/k/id_rsa_delius";
+            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_dev_bastion";
+            identitiesOnly = true;
+          };
+          "ssh.bastion-dev.probation.hmpps.dsd.io moj_dev_bastion awsdevgw" = {
+            hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
+            forwardAgent = true;
+            user = "mryall";
+            identityFile = "/Volumes/Q/k/id_rsa_delius";
+            proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
+            identitiesOnly = true;
+          };
+          "*.probation.service.justice.gov.uk *.pre-prod.delius.probation.hmpps.dsd.io *.stage.delius.probation.hmpps.dsd.io 10.160.*" = {
+            user = "mryall";
+            identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
+            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_prod_bastion";
+            identitiesOnly = true;
+          };
+          "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
+            hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
+            forwardAgent = true;
+            user = "mryall";
+            identityFile = "/Volumes/Q/k/id_rsa_delius_prod";
+            proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
+            identitiesOnly = true;
+          };
         };
       };
-    };
-    git = {
-      userName = "Matthew Ryall";
-      userEmail = "matthew.ryall@digital.justice.gov.uk";
-      signing = {
-        key = "0902EF0CB4879CEB";
-        signByDefault = true;
+      git = {
+        userName = "Matthew Ryall";
+        userEmail = "matthew.ryall@digital.justice.gov.uk";
+        signing = {
+          key = "0902EF0CB4879CEB";
+          signByDefault = true;
+        };
       };
     };
   };

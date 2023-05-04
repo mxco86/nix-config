@@ -37,7 +37,9 @@
   services = {
     skhd = {
       skhdConfig = ''
-        ralt - 1: open -a /Applications/Safari.app
+        ralt - 1: open /run/current-system/Applications/kitty.app
+        ralt - 2: open /run/current-system/Applications/Emacs.app
+        ralt - 3: open -a /Applications/Safari.app
         ralt - 4: open /Applications/Slack.app
         ralt - 6: open /run/current-system/Applications/kitty.app
         ralt - 7: open /run/current-system/Applications/Emacs.app
