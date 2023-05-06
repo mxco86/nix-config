@@ -31,7 +31,6 @@
     let
       machost = { system, host, username ? "mryall" }:
         darwin.lib.darwinSystem {
-          inherit inputs;
           inherit system;
           modules = [
             ./hosts/macos/${host}.nix { nixpkgs.overlays = [ emacs-overlay.overlay ]; }
@@ -59,7 +58,6 @@
             ./home-manager/nixos/${host}.nix
           ];
           specialArgs = {
-            inherit inputs;
             inherit username;
             pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; };
             nur = import nur {
