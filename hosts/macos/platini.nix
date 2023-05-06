@@ -25,12 +25,14 @@
     ];
 
     casks = [
+      "authy"
       "firefox"
       "mediaelch"
-      "jaikoz"
+      # "jaikoz"
       "steam"
       "origin"
       "spectacle"
+      "calibre"
     ];
   };
 

@@ -11,7 +11,6 @@
       stateVersion = "22.05";
 
       packages = with pkgs; [
-        authy
         bottom
         difftastic
         dogdns
@@ -23,6 +22,7 @@
         ncdu
         nixpkgs-fmt
         rnix-lsp
+        soco-cli
         sqlite
         # weechat
       ];

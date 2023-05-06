@@ -11,6 +11,7 @@
 
       packages = with pkgs; [
         anki
+        authy
         # discord
         unzip
         xclip
