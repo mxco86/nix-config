@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 
 {
   imports = [ ./base.nix ];
 
-  home-manager.users.mryall = { pkgs, ... }: {
+  home-manager.users.${username} = { pkgs, ... }: {
     home = {
       username = "mryall";
       homeDirectory = "/Users/mryall";
