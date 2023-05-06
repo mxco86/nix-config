@@ -33,6 +33,11 @@
           source = ./files/surfingkeys.conf;
           target = ".config/firefox/surfingkeys.conf";
         };
+        tridactyl = {
+          source = ./files/tridactyl_emacs_bindings;
+          target = ".config/firefox/tridactyl_emacs_bindings";
+        };
+
       };
     };
 
@@ -114,6 +119,7 @@
             settings = {
               "browser.urlbar.placeholderName" = "DuckDuckGo";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+              "ui.key.accelKey" = "91";
             };
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
@@ -121,6 +127,7 @@
               surfingkeys
               tab-session-manager
               tree-style-tab
+              tridactyl
             ];
           };
         };
