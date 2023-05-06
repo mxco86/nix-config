@@ -61,7 +61,7 @@
           specialArgs = {
             inherit inputs;
             inherit username;
-            pkgs = import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ emacs-overlay.overlay ]; };
+            pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
               nurpkgs = import nixpkgs { inherit system; };

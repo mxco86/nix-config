@@ -2,10 +2,16 @@
 
 {
   home-manager.users.${username} = { pkgs, ... }: {
+
+    nixpkgs = {
+      config = { allowUnfree = true; };
+    };
+
     home = {
       stateVersion = "22.05";
 
       packages = with pkgs; [
+        authy
         bottom
         difftastic
         dogdns
