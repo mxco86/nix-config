@@ -17,8 +17,8 @@ bind <A-v> scrollpage -1
 bind <Backspace> scrollpage -1
 bind <A->> scrollto 100
 bind <A-<> scrollto 0
-bind <C-n> scrollline 10
-bind <C-p> scrollline -10
+bind <C-n> scrollline 5
+bind <C-p> scrollline -5
 bind <C-u><C-Space> jumpprev
 bind n followpage next
 bind p followpage prev
