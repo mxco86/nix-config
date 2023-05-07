@@ -8,6 +8,7 @@
       packages = with pkgs; [
         chroma
         passff-host
+        tridactyl-native
       ];
     };
 

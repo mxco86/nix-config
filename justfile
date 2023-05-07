@@ -34,6 +34,6 @@ create-public-key:
     ssh-keygen -f ${HOME}/.ssh/id_rsa -y > ${HOME}/.ssh/id_rsa.pub
 
 [macos]
-install-passff:
-    rm -f ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/passff.json
-    ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/
+install-ff-native-messaging:
+    rm -f ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/*
+    ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/* ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/
