@@ -1,7 +1,7 @@
 { pkgs, username, ... }:
 
 {
-  imports = [ ../base.nix ];
+  imports = [ ../base.nix ./emacs-protocol-handler.nix ];
 
   home-manager.users.${username} = { pkgs, ... }: {
     home = {
