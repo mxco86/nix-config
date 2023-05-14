@@ -59,6 +59,7 @@
           ];
           specialArgs = {
             inherit username;
+            inherit inputs;
             pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
