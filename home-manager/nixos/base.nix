@@ -18,6 +18,14 @@
         xorg.xdpyinfo
         xorg.xmodmap
         ssm-session-manager-plugin
+        (makeDesktopItem {
+          name = "org-protocol";
+          exec = "emacsclient %u";
+          comment = "Org protocol";
+          desktopName = "org-protocol";
+          type = "Application";
+          mimeTypes = [ "x-scheme-handler/org-protocol" ];
+        })
       ];
 
       keyboard = { options = [ "ctrl:nocaps" ]; };
