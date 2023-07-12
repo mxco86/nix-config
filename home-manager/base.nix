@@ -123,6 +123,7 @@
             };
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
+              org-capture
               privacy-badger
               surfingkeys
               tab-session-manager
