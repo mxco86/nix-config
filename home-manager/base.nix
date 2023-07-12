@@ -201,6 +201,14 @@
         ];
       };
 
+      zellij = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          theme = "solarized-dark";
+        };
+      };
+
       kitty = {
         font = { name = "Fira Code"; };
         keybindings = {
