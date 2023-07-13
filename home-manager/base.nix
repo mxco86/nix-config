@@ -206,6 +206,9 @@
         enableZshIntegration = true;
         settings = {
           theme = "solarized-dark";
+          ui = {
+            pane_frames = { rounded_corners = true; };
+          };
         };
       };
 
