@@ -29,15 +29,10 @@
       sessionVariables = { EDITOR = "emacsclient"; };
 
       file = {
-        surfingkeys = {
-          source = ./files/surfingkeys.conf;
-          target = ".config/firefox/surfingkeys.conf";
-        };
         tridactyl = {
           source = ./files/tridactyl_emacs_bindings;
           target = ".config/firefox/tridactyl_emacs_bindings";
         };
-
       };
     };
 
@@ -125,9 +120,8 @@
               ghosttext
               org-capture
               privacy-badger
-              surfingkeys
+              sidebery
               tab-session-manager
-              tree-style-tab
               tridactyl
             ];
           };
@@ -296,6 +290,7 @@
           };
           window = {
             decorations = "none";
+            option_as_alt = "OnlyLeft";
           };
           colors = {
             primary = {
