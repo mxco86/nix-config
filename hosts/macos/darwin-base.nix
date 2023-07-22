@@ -68,7 +68,6 @@
     nix-daemon = { enable = true; };
     tailscale = {
       enable = true;
-      magicDNS = { enable = true; };
     };
   };
 
