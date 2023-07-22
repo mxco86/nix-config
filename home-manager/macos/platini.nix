@@ -5,8 +5,12 @@
 
   home-manager.users.mryall = { pkgs, ... }: {
     programs = {
-      kitty = {
-        enable = false;
+      alacritty = {
+        settings = {
+          font = {
+            size = 18;
+          };
+        };
       };
     };
   };
