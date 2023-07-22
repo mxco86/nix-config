@@ -186,81 +186,11 @@
         };
       };
 
-      kitty = {
-        font = { name = "Fira Code"; };
-        keybindings = {
-          "ctrl+shift+]" = "next_tab";
-          "ctrl+shift+[" = "previous_tab";
-          "ctrl+shift+t" = "no_op";
-        };
-        settings = {
-          # Fonts
-          macos_thicken_font = "0.75";
-
-          # Tabs
-          tab_bar_style = "hidden";
-          tab_bar_min_tabs = 2;
-
-          # Config
-          allow_remote_control = "yes";
-          active_border_color = "#93a1a1";
-          inactive_border_color = "#586e75";
-          window_padding_width = 3;
-          window_margin_width = 1;
-          placement_strategy = "top-left";
-          hide_window_decorations = "yes";
-          macos_option_as_alt = "yes";
-          copy_on_select = "yes";
-
-          # Color theme
-          background = "#002b36";
-          foreground = "#657b83";
-          cursor = "#93a1a1";
-          selection_background = "#586e75";
-
-          # Black
-          color0 = "#002b36";
-          color8 = "#073642";
-
-          # Red
-          color1 = "#dc322f";
-          color9 = "#cb4b16";
-
-          # Green
-          color2 = "#859900";
-          color10 = "#586e75";
-
-          # color2 = "#2aa198";
-          # color10 = "#2aa198";
-
-          # Yellow
-          color3 = "#b58900";
-          color11 = "#657b83";
-
-          # Blue
-          color4 = "#268bd2";
-          color12 = "#839496";
-
-          # Magenta
-          color5 = "#d33682";
-          color13 = "#6c71c4";
-
-          # Cyan
-          color6 = "#2aa198";
-          color14 = "#93a1a1";
-
-          # White
-          color7 = "#eee8d5";
-          color15 = "#fdf6e3";
-        };
-      };
-
       alacritty = {
         enable = true;
         settings = {
           env = { TERM = "xterm-256color"; };
           font = {
-            size = 18.0;
             normal = {
               family = "Iosevka";
             };

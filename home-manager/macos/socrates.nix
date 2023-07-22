@@ -1,14 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, username, ... }:
 
 {
   imports = [ ./personal.nix ];
 
-  home-manager.users.mryall = { pkgs, ... }: {
+  home-manager.users.${username} = { pkgs, ... }: {
     programs = {
-      kitty = {
-        enable = true;
+      alacritty = {
         settings = {
-          font_size = 16;
+          font = {
+            size = 16;
+          };
         };
       };
     };

@@ -23,7 +23,6 @@
 
     systemPackages = [
       pkgs.alacritty
-      x86pkgs.kitty
     ];
   };
 
