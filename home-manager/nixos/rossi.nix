@@ -28,7 +28,7 @@ in
         menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 12'";
         assigns = {
           "1" = [
-            { class = "^kitty$"; }
+            { class = "^Alacritty$"; }
           ];
           "4" = [{ class = "^Slack$"; }];
           "5" = [{ class = "^DBeaver$"; }];
@@ -71,9 +71,12 @@ in
     };
 
     programs = {
-      kitty = {
-        enable = true;
-        settings = { font_size = 12; };
+      alacritty = {
+        settings = {
+          font = {
+            size = 14;
+          };
+        };
       };
       i3status = {
         enable = true;

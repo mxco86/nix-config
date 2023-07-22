@@ -120,7 +120,7 @@
         fonts = {
           names = [ "FontAwesome" "Fira Code" ];
         };
-        terminal = "${pkgs.kitty}/bin/kitty";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
       };
     };
   };
