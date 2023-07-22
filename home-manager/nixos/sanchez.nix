@@ -21,7 +21,7 @@ in
       config = {
         menu = "rofi -modi drun -show drun -theme solarized -font 'Fira Code 22'";
         assigns = {
-          "1" = [{ class = "^kitty$"; }];
+          "1" = [{ class = "^Alacritty$"; }];
           "2" = [{ class = "^Emacs$"; }];
           "3" = [{ class = "^firefox$"; }];
           "4" = [{ class = "^Slack$"; }];
@@ -47,9 +47,12 @@ in
     };
 
     programs = {
-      kitty = {
-        enable = true;
-        settings = { font_size = 10; };
+      alacritty = {
+        settings = {
+          font = {
+            size = 10;
+          };
+        };
       };
       ssh = {
         controlPersist = "yes";
