@@ -118,7 +118,7 @@
           };
         };
         fonts = {
-          names = [ "FontAwesome" "Fira Code" ];
+          names = [ "FontAwesome" "Iosevka" ];
         };
         terminal = "${pkgs.alacritty}/bin/alacritty";
       };
