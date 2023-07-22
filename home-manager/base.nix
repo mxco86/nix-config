@@ -283,9 +283,9 @@
         settings = {
           env = { TERM = "xterm-256color"; };
           font = {
-            size = 20.0;
+            size = 18.0;
             normal = {
-              family = "HackGen Console NF";
+              family = "Iosevka";
             };
           };
           window = {

@@ -32,8 +32,7 @@
 
   fonts.fonts = with pkgs; [
     dejavu_fonts
-    hack-font
-    hackgen-nf-font
+    iosevka
     fira-code
     font-awesome
   ];
