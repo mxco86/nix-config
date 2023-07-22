@@ -16,8 +16,7 @@
 
   homebrew = {
     taps = [
-      "homebrew/core"
-      "homebrew/cask"
+      "homebrew/services"
     ];
 
     brews = [
@@ -26,6 +25,7 @@
 
     casks = [
       "firefox"
+      "spectacle"
       "vorta"
     ];
   };
