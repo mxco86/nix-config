@@ -19,7 +19,7 @@
     };
   };
   fonts = {
-    names = [ "FontAwesome" "Hack" ];
+    names = [ "FontAwesome" "Iosevka" ];
     size = size;
   };
   extraConfig = ''
