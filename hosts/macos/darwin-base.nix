@@ -23,6 +23,8 @@
 
     systemPackages = [
       pkgs.alacritty
+      pkgs.ansible
+      pkgs.dockutil
     ];
   };
 
