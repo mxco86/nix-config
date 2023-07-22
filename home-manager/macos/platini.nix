@@ -8,9 +8,6 @@
       kitty = {
         enable = false;
       };
-      tmux = {
-        terminal = "xterm-256color";
-      };
     };
   };
 }

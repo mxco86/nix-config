@@ -172,29 +172,6 @@
         ];
       };
 
-      tmux = {
-        enable = true;
-        shell = "${pkgs.zsh}/bin/zsh";
-        mouse = true;
-        keyMode = "emacs";
-        extraConfig = ''
-          set -g status-justify left
-          set -s escape-time 0
-          bind -n C-l next-window
-          bind -n C-h previous-window
-        '';
-        plugins = [
-          {
-            plugin = pkgs.tmuxPlugins.power-theme;
-            extraConfig = ''
-              set -g @tmux_power_theme '#93a1a1'
-            '';
-          }
-          pkgs.tmuxPlugins.tmux-fzf
-          pkgs.tmuxPlugins.tmux-thumbs
-        ];
-      };
-
       zellij = {
         enable = true;
         enableZshIntegration = true;
