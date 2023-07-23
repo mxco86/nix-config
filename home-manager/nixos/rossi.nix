@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  i3bar = import ./i3bar.nix { inherit pkgs; size = 10.0; };
+  i3bar = import ./i3bar.nix { inherit pkgs; size = 14.0; };
 in
 {
   imports = [ ./base.nix ];
@@ -36,7 +36,7 @@ in
         };
         bars = [ i3bar ];
         fonts = {
-          size = 10.0;
+          size = 14.0;
         };
         workspaceOutputAssign = [
           {
