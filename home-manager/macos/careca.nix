@@ -5,9 +5,12 @@
 
   home-manager.users.${username} = { pkgs, ... }: {
     programs = {
-      kitty = {
-        enable = true;
-        settings = { font_size = 16; };
+      alacritty = {
+        settings = {
+          font = {
+            size = 18;
+          };
+        };
       };
     };
   };
