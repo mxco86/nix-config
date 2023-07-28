@@ -26,7 +26,7 @@ in
 
     xsession.windowManager.i3 = {
       config = {
-        menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka'";
+        menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
         assigns = {
           "1" = [
             { class = "^Alacritty$"; }
