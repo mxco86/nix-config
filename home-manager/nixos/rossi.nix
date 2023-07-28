@@ -10,6 +10,7 @@ in
     home = {
       packages = with pkgs; [
         dbeaver
+        idea-community
       ];
     };
 
