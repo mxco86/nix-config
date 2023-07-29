@@ -74,7 +74,6 @@
 
   networking = {
     knownNetworkServices = [ "Wi-Fi" ];
-    dns = [ "192.168.1.66" ];
   };
 
   fonts = {

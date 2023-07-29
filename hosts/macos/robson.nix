@@ -3,7 +3,10 @@
 {
   imports = [ ../nix-base.nix ./darwin-base.nix ];
 
-  networking.hostName = "robson";
+  networking = {
+    hostName = "robson";
+    dns = [ "192.168.1.66" ];
+  };
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
