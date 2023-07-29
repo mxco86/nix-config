@@ -1,5 +1,7 @@
 { pkgs, nur, username, ... }:
-
+let
+  aspellEnv = pkgs.aspellWithDicts (d: [ d.en ]);
+in
 {
   home-manager.users.${username} = { pkgs, ... }: {
 
@@ -11,6 +13,7 @@
       stateVersion = "22.05";
 
       packages = with pkgs; [
+        aspellEnv
         bottom
         difftastic
         dogdns
@@ -29,6 +32,7 @@
       sessionVariables = { EDITOR = "emacsclient"; };
 
       file = {
+        ".aspell.conf".text = "data-dir ${aspellEnv}/lib/aspell";
         tridactyl = {
           source = ./files/tridactyl_emacs_bindings;
           target = ".config/firefox/tridactyl_emacs_bindings";
