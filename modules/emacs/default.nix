@@ -14,6 +14,7 @@ in
     environment.systemPackages = with pkgs;
       [
         emacs-all-the-icons-fonts
+        enchant
         ripgrep
         mu
         proselint
@@ -63,6 +64,7 @@ in
             groovy-mode
             haskell-mode
             helpful
+            jinx
             json-mode
             json-snatcher
             js2-mode
