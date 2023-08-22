@@ -12,24 +12,25 @@ in
       homeDirectory = "/Users/matthew.ryall";
 
       packages = with pkgs; [
-        # adoptopenjdk-hotspot-bin-11
         # adr-tools
         dbeaver
         # jetbrains.idea-community
-        # docker
-        # docker-compose
-        # minikube
         jwt-cli
-        # imagemagick
-        # python3
-        # pgformatter
+        jira-cli-go
+        pgformatter
         azure-cli
         kubectl
         kubelogin
         k9s
         ssm-session-manager-plugin
         tidyp
+        xh
       ];
+
+      sessionVariables = {
+        JIRA_EDITOR = "emacsclient";
+        JIRA_API_TOKEN = "";
+      };
     };
 
     programs = {
