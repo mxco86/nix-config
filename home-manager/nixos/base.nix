@@ -29,6 +29,19 @@
       ];
 
       keyboard = { options = [ "ctrl:nocaps" ]; };
+
+      sessionVariables = {
+        MOZ_ENABLE_WAYLAND = "1";
+        XDG_SESSION_TYPE = "wayland";
+        XDG_CURRENT_DESKTOP = "sway";
+      };
+
+      file = {
+        wofi = {
+          source = ../files/wofi_stylesheet.css;
+          target = ".config/wofi/style.css";
+        };
+      };
     };
 
     gtk = {
@@ -45,6 +58,30 @@
         enable = true;
         pass = { enable = true; };
       };
+
+      wofi = {
+        enable = true;
+        settings = {
+          stylesheet = "style.css";
+          width = 600;
+          height = 300;
+          location = "center";
+          show = "drun";
+          prompt = "Search...";
+          filter_rate = 100;
+          allow_markup = true;
+          no_actions = true;
+          halign = "fill";
+          orientation = "vertical";
+          content_halign = "fill";
+          insensitive = true;
+          allow_images = true;
+          image_size = 20;
+          key_up = "Control_L-p";
+          key_down = "Control_L-n";
+        };
+      };
+
 
       git = {
         extraConfig = {
@@ -97,8 +134,9 @@
       };
     };
 
-    xsession.windowManager.i3 = {
+    wayland.windowManager.sway = {
       enable = true;
+      systemd.enable = true;
       config = {
         modifier = "Mod4";
         keybindings =
