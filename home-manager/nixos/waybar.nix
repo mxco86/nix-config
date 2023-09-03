@@ -17,6 +17,9 @@
   "memory" = {
     format = "{}% ";
   };
+  "disk" = {
+    format = "{percentage_used}/{total} ";
+  };
   "backlight" = {
     "format" = "{percent}% {icon}";
     "states" = [ 0 50 ];
