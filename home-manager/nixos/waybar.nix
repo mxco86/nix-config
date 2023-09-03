@@ -1,8 +1,8 @@
-{ size, pkgs, ... }:
+{ modules-right, height, ... }:
 
 {
   position = "top";
-  height = 30;
+  height = height;
   modules-left = [
     "sway/workspaces"
     "sway/mode"
@@ -10,15 +10,7 @@
   modules-center = [
     "sway/window"
   ];
-  modules-right = [
-    "network"
-    "backlight"
-    "memory"
-    "cpu"
-    "pulseaudio"
-    "battery"
-    "clock"
-  ];
+  modules-right = modules-right;
   "cpu" = {
     format = "{usage}% ";
   };

@@ -1,7 +1,18 @@
 { pkgs, ... }:
 
 let
-  waybar = import ./waybar.nix;
+  waybar = import ./waybar.nix {
+    height = 30;
+    modules-right = [
+      "network"
+      "backlight"
+      "memory"
+      "cpu"
+      "pulseaudio"
+      "battery"
+      "clock"
+    ];
+  };
 in
 {
   imports = [ ./base.nix ];
