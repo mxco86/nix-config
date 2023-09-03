@@ -9,7 +9,6 @@ in
   home-manager.users.mryall = { pkgs, ... }: {
     home = {
       packages = with pkgs; [
-        dbeaver
         jetbrains.idea-community
       ];
     };
@@ -24,6 +23,8 @@ in
           middle_emulation disabled
           click_method clickfinger
         }
+
+        output DVI-D-1 transform 270
       '';
       config = {
         menu = "wofi";
@@ -34,12 +35,12 @@ in
           "6" = [{ class = "^firefox$"; }];
         };
         workspaceOutputAssign = [
-          { workspace = "1"; output = "DisplayPort-1"; }
-          { workspace = "2"; output = "DisplayPort-1"; }
-          { workspace = "3"; output = "DisplayPort-1"; }
-          { workspace = "4"; output = "DisplayPort-1"; }
-          { workspace = "5"; output = "DisplayPort-1"; }
-          { workspace = "6"; output = "DVI-D-0"; }
+          { workspace = "1"; output = "DP-2"; }
+          { workspace = "2"; output = "DP-2"; }
+          { workspace = "3"; output = "DP-2"; }
+          { workspace = "4"; output = "DP-2"; }
+          { workspace = "5"; output = "DP-2"; }
+          { workspace = "6"; output = "DVI-D-1"; }
         ];
         bars = [ ];
         fonts = {
@@ -69,7 +70,7 @@ in
                border: none;
                border-radius: 0;
                font-family: "Iosevka, FontAwesome";
-               font-size: 14px;
+               font-size: 18px;
                min-height: 0;
           }
 

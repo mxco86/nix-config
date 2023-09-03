@@ -26,32 +26,34 @@
   };
 
   environment = {
+    systemPackages = [ pkgs.chrysalis ];
+
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
-    systemPackages = [ pkgs.chrysalis ];
+
+    etc."greetd/environments".text = ''
+      sway
+    '';
   };
 
   services = {
-    xserver = {
-      libinput = {
-        enable = true;
-        touchpad = {
-          clickMethod = "clickfinger";
-          disableWhileTyping = true;
-          naturalScrolling = false;
-          scrollMethod = "twofinger";
-          tapping = false;
-          tappingDragLock = false;
-        };
-      };
-
-      synaptics = {
-        enable = false;
+    greetd = {
+      enable = true;
+      settings = {
+        default_session.command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd sway
+        '';
       };
     };
     udev.packages = [ pkgs.chrysalis ];
   };
+
+  programs = { sway = { enable = true; }; };
+
+  sound = { enable = true; };
+  hardware = { pulseaudio = { enable = true; }; };
+  nixpkgs = { config = { pulseaudio = true; }; };
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
