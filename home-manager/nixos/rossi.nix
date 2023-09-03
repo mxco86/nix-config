@@ -29,10 +29,9 @@ in
       config = {
         menu = "wofi";
         assigns = {
-          "1" = [{ class = "^Alacritty$"; }];
+          "1" = [{ app_id = "^Alacritty$"; }];
           "4" = [{ class = "^Slack$"; }];
-          "5" = [{ class = "^DBeaver$"; }];
-          "6" = [{ class = "^firefox$"; }];
+          "6" = [{ app_id = "^firefox$"; }];
         };
         workspaceOutputAssign = [
           { workspace = "1"; output = "DP-2"; }
@@ -81,7 +80,7 @@ in
             color: #fdf6e3;
           }
 
-          #network, #backlight, #cpu, #memory, #temperature, #battery, #pulseaudio, #clock {
+          #network, #backlight, #cpu, #memory, #temperature, #battery, #pulseaudio, #clock, #disk {
             background-color: #002b36;
             color: #fdf6e3;
           }
