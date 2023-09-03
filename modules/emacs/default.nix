@@ -21,7 +21,7 @@ in
         cmake
         cargo
         (aspellWithDicts (d: [ d.en ]))
-        ((emacsPackagesFor (emacs-git.override { withNativeCompilation = true; })).emacsWithPackages (epkgs:
+        ((emacsPackagesFor (emacs-git.override { withNativeCompilation = true; withPgtk = true; })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
             all-the-icons
             all-the-icons-completion
