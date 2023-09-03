@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  i3bar = import ./i3bar.nix { inherit pkgs; size = 14.0; };
+  waybar = import ./waybar.nix;
 in
 {
   imports = [ ./base.nix ];
@@ -14,61 +14,38 @@ in
       ];
     };
 
-    xresources = {
-      properties = {
-        "Xft.dpi" = 96;
-        "Xft.antialias" = true;
-        "Xft.rgba" = "rgb";
-        "Xft.hinting" = true;
-        "Xft.hintstyle" = "hintslight";
-      };
-    };
+    wayland.windowManager.sway = {
+      extraConfig = ''
+        input "type:keyboard" {
+          xkb_options ctrl:nocaps
+        }
 
-    xsession.windowManager.i3 = {
+        input "type:touchpad" {
+          middle_emulation disabled
+          click_method clickfinger
+        }
+      '';
       config = {
-        menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
+        menu = "wofi";
         assigns = {
-          "1" = [
-            { class = "^Alacritty$"; }
-          ];
+          "1" = [{ class = "^Alacritty$"; }];
           "4" = [{ class = "^Slack$"; }];
           "5" = [{ class = "^DBeaver$"; }];
           "6" = [{ class = "^firefox$"; }];
         };
-        bars = [ i3bar ];
+        workspaceOutputAssign = [
+          { workspace = "1"; output = "DisplayPort-1"; }
+          { workspace = "2"; output = "DisplayPort-1"; }
+          { workspace = "3"; output = "DisplayPort-1"; }
+          { workspace = "4"; output = "DisplayPort-1"; }
+          { workspace = "5"; output = "DisplayPort-1"; }
+          { workspace = "6"; output = "DVI-D-0"; }
+        ];
+        bars = [ ];
         fonts = {
           size = 14.0;
         };
-        workspaceOutputAssign = [
-          {
-            workspace = "1";
-            output = "DisplayPort-1";
-          }
-          {
-            workspace = "2";
-            output = "DisplayPort-1";
-          }
-          {
-            workspace = "3";
-            output = "DisplayPort-1";
-          }
-          {
-            workspace = "4";
-            output = "DisplayPort-1";
-          }
-          {
-            workspace = "5";
-            output = "DisplayPort-1";
-          }
-          {
-            workspace = "6
-              ";
-            output = "DVI-D-0";
-          }
-        ];
       };
-      extraConfig = ''
-    '';
     };
 
     programs = {
@@ -79,31 +56,35 @@ in
           };
         };
       };
-      i3status = {
+
+      waybar = {
         enable = true;
-        enableDefault = false;
-        general = {
-          colors = true;
-          color_good = "#6c71c4";
-          color_degraded = "#b58900";
-          color_bad = "#dc322f";
-          color_separator = "#657b83";
-          interval = 5;
-        };
-        modules = {
-          ipv6 = {
-            position = 1;
-          };
-          load = {
-            position = 2;
-          };
-          memory = {
-            position = 3;
-          };
-          "tztime local" = {
-            position = 4;
-          };
-        };
+        systemd.enable = true;
+        settings = [ waybar ];
+
+        style = ''
+          ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
+
+          * {
+               border: none;
+               border-radius: 0;
+               font-family: "Iosevka, FontAwesome";
+               font-size: 14px;
+               min-height: 0;
+          }
+
+          window#waybar {
+            background: transparent;
+            background-color: #002b36;
+            border-bottom: none;
+            color: #fdf6e3;
+          }
+
+          #network, #backlight, #cpu, #memory, #temperature, #battery, #pulseaudio, #clock {
+            background-color: #002b36;
+            color: #fdf6e3;
+          }
+        '';
       };
 
       ssh = {
