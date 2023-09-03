@@ -38,26 +38,12 @@
   # };
 
   services = {
-    xserver = {
+    greetd = {
       enable = true;
-      layout = "us";
-      autorun = true;
-      dpi = 210;
-
-      libinput = {
-        enable = true;
-        touchpad = {
-          clickMethod = "clickfinger";
-          disableWhileTyping = true;
-          naturalScrolling = false;
-          scrollMethod = "twofinger";
-          tapping = false;
-          tappingDragLock = false;
-        };
-      };
-
-      synaptics = {
-        enable = false;
+      settings = {
+        default_session.command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd sway
+        '';
       };
     };
 
@@ -70,13 +56,11 @@
     };
   };
 
-  sound = {
-    enable = true;
-  };
+  programs = { sway = { enable = true; }; };
 
-  hardware = {
-    pulseaudio.enable = true;
-  };
+  sound = { enable = true; };
+  hardware = { pulseaudio = { enable = true; }; };
+  nixpkgs = { config = { pulseaudio = true; }; };
 
   # Packages
   environment = {
@@ -85,6 +69,10 @@
 
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
+    '';
+
+    etc."greetd/environments".text = ''
+      sway
     '';
   };
 
