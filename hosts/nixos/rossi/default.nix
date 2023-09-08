@@ -31,29 +31,11 @@
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
-
-    etc."greetd/environments".text = ''
-      sway
-    '';
   };
 
   services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session.command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd sway
-        '';
-      };
-    };
     udev.packages = [ pkgs.chrysalis ];
   };
-
-  programs = { sway = { enable = true; }; };
-
-  sound = { enable = true; };
-  hardware = { pulseaudio = { enable = true; }; };
-  nixpkgs = { config = { pulseaudio = true; }; };
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
