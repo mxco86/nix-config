@@ -5,14 +5,34 @@
     systemPackages = with pkgs; [
       alacritty
     ];
+    etc."greetd/environments".text = ''
+      sway
+    '';
   };
 
-  programs = { };
+  programs = { sway = { enable = true; }; };
 
   services = {
     openssh = { enable = true; };
     tailscale = { enable = true; };
     dbus.packages = [ pkgs.dconf ];
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session.command = ''
+          ${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd sway
+        '';
+      };
+    };
+
   };
 
   # Enable the docker daemon

@@ -37,31 +37,6 @@
   #   keyMap = "us";
   # };
 
-  services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session.command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd sway
-        '';
-      };
-    };
-
-    actkbd = {
-      enable = true;
-      bindings = [
-        { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl s 10%-"; }
-        { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl s +10%"; }
-      ];
-    };
-  };
-
-  programs = { sway = { enable = true; }; };
-
-  sound = { enable = true; };
-  hardware = { pulseaudio = { enable = true; }; };
-  nixpkgs = { config = { pulseaudio = true; }; };
-
   # Packages
   environment = {
     systemPackages = with pkgs;
@@ -69,10 +44,6 @@
 
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
-    '';
-
-    etc."greetd/environments".text = ''
-      sway
     '';
   };
 

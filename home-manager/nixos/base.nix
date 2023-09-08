@@ -82,6 +82,35 @@
         };
       };
 
+      waybar = {
+        enable = true;
+        systemd.enable = true;
+
+        style = ''
+          ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
+
+          * {
+               border: none;
+               border-radius: 0;
+               font-family: "Iosevka, FontAwesome";
+               font-size: 14px;
+               min-height: 0;
+          }
+
+          window#waybar {
+            background: transparent;
+            background-color: #002b36;
+            border-bottom: none;
+            color: #fdf6e3;
+          }
+
+          #network, #backlight, #cpu, #memory, #temperature, #battery,
+          #wireplumber, #wireplumber.muted, #clock, #disk {
+            background-color: #002b36;
+            color: #fdf6e3;
+          }
+        '';
+      };
 
       git = {
         extraConfig = {
