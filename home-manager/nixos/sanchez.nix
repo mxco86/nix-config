@@ -8,7 +8,7 @@ let
       "backlight"
       "memory"
       "cpu"
-      "pulseaudio"
+      "wireplumber"
       "battery"
       "clock"
     ];
@@ -33,6 +33,12 @@ in
         output "eDP-1" {
           scale 2
         }
+
+        bindsym XF86AudioMute exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
+        bindsym XF86AudioLowerVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+        bindsym XF86MonBrightnessDown exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl s 10%-
+        bindsym XF86MonBrightnessUp exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl s 10%+
       '';
       config = {
         # menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
@@ -53,19 +59,6 @@ in
           size = 10.0;
         };
       };
-      # extraConfig = ''
-      #   # Remap keys
-      #   exec --no-startup-id ~/Config/system-config/thinkpad-x1/keyboard/setup.sh
-
-      #   # Backlight control keys
-      #   # bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-      #   # bindsym $mod+b exec --no-startup-id xbacklight -inc 5
-      #   # bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-      #   # bindsym $mod+n exec --no-startup-id xbacklight -dec 5
-
-      #   # bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+
-      #   # bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%-
-      # '';
     };
 
     programs = {

@@ -8,7 +8,7 @@ let
       "memory"
       "cpu"
       "disk"
-      "pulseaudio"
+      "wireplumber"
       "clock"
     ];
   };

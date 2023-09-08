@@ -40,17 +40,11 @@
     "format-disconnected" = "Disconnected ⚠";
     "interval" = 7;
   };
-  "pulseaudio" = {
+  "wireplumber" = {
     format = "{icon} {volume}%";
-    format-bluetooth = "{icon} {volume}%";
     format-muted = " 0%";
     format-icons = {
       "headphones" = "";
-      "handsfree" = "";
-      "headset" = "";
-      "phone" = "";
-      "portable" = "";
-      "car" = "";
       "default" = [ "" "" ];
     };
   };
