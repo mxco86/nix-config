@@ -203,6 +203,9 @@ in
             decorations = "none";
             option_as_alt = "OnlyLeft";
           };
+          mouse_bindings = [
+            { mouse = "Middle"; action = "PasteSelection"; }
+          ];
           colors = {
             primary = {
               background = "#002b36";

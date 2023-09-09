@@ -4,6 +4,7 @@
   environment = {
     systemPackages = with pkgs; [
       alacritty
+      wl-clipboard
     ];
     etc."greetd/environments".text = ''
       sway
