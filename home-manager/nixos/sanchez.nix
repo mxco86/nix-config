@@ -39,6 +39,7 @@ in
         bindsym XF86AudioLowerVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
         bindsym XF86MonBrightnessDown exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl s 10%-
         bindsym XF86MonBrightnessUp exec --no-startup-id ${pkgs.brightnessctl}/bin/brightnessctl s 10%+
+        bindsym XF86Display exec --no-startup-id swaymsg "output * dpms on"
       '';
       config = {
         # menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
