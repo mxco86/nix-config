@@ -127,20 +127,12 @@
 
     services = {
       syncthing = { enable = true; };
-      twmn = {
+      mako = {
         enable = true;
-        window = {
-          height = 28;
-          color = "#002b36";
-        };
-        text = {
-          color = "#6c71c4";
-          font = {
-            family = "Hack";
-            variant = "medium";
-            size = 18;
-          };
-        };
+        font = "Iosevka 12";
+        backgroundColor = "#002b36";
+        textColor = "#fdf6e3";
+        borderColor = "#b58900";
       };
       gpg-agent = {
         enable = true;
