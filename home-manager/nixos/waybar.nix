@@ -11,6 +11,12 @@
     "sway/window"
   ];
   modules-right = modules-right;
+  "clock" = {
+    "tooltip-format" = "<tt><small>{calendar}</small></tt>";
+    "calendar" = {
+      format = { "today" = "<span><b><u>{}</u></b></span>"; };
+    };
+  };
   "cpu" = {
     format = "{usage}% ";
   };
