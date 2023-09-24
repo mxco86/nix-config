@@ -22,6 +22,9 @@
   };
   "memory" = {
     format = "{}% ";
+    tooltip-format = ''
+      Main: {used:0.1f}GiB / {total:0.1f}GiB
+      Swap: {swapUsed:0.1f}GiB / {swapTotal:0.1f}GiB'';
   };
   "disk" = {
     format = "{percentage_used}/{total} ";
