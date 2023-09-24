@@ -12,12 +12,15 @@
       packages = with pkgs; [
         anki
         authy
+        beets
+        picard
         # discord
         unzip
         xclip
         xorg.xdpyinfo
         xorg.xmodmap
         ssm-session-manager-plugin
+        soco-cli
         (makeDesktopItem {
           name = "org-protocol";
           exec = "emacsclient %u";
