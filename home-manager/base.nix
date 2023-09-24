@@ -125,7 +125,6 @@ in
               org-capture
               privacy-badger
               sidebery
-              tab-session-manager
               tridactyl
             ];
           };
