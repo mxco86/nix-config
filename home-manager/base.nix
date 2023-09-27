@@ -152,10 +152,13 @@ in
           prompt = { theme = "pure"; };
         };
         localVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10"; };
-        initExtra = "
-        bindkey \"\e[1;3D\" backward-word
-        bindkey \"\e[1;3C\" forward-word
-      ";
+        initExtraFirst = ''
+          [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+        '';
+        initExtra = ''
+          bindkey "\e[1;3D" backward-word
+          bindkey "\e[1;3C" forward-word
+        '';
       };
 
       direnv = {
