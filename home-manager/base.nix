@@ -126,6 +126,7 @@ in
               privacy-badger
               sidebery
               tridactyl
+              ublock-origin
             ];
           };
         };
