@@ -32,6 +32,10 @@ in
         input "type:touchpad" {
           middle_emulation disabled
           click_method clickfinger
+          dwt enabled
+          pointer_accel 0.3
+          accel_profile adaptive
+          natural_scroll disabled
         }
 
         output DVI-D-1 transform 270
