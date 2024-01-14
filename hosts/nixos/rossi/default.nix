@@ -22,19 +22,67 @@
       enable = true;
       enableStrongSwan = true;
     };
-    firewall = { checkReversePath = "loose"; allowedTCPPorts = [ 8083 ]; };
+    firewall = {
+      checkReversePath = "loose";
+      allowedTCPPorts = [ 8083 2080 8384 22000 44831 ];
+      allowedUDPPorts = [ 22000 21027 ];
+    };
   };
 
   environment = {
-    systemPackages = [ pkgs.chrysalis ];
+    systemPackages = [ pkgs.chrysalis pkgs.nfs-utils ];
 
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
+
+    variables = {
+      ROC_ENABLE_PRE_VEGA = "1";
+    };
   };
 
   services = {
     udev.packages = [ pkgs.chrysalis ];
+    udisks2 = { enable = true; };
+    transmission = {
+      enable = true;
+      openFirewall = true;
+    };
+    syncthing = {
+      enable = true;
+      user = "mryall";
+      guiAddress = "0.0.0.0:8384";
+    };
+    calibre-web = {
+      enable = true;
+      openFirewall = true;
+      user = "mryall";
+      group = "users";
+      listen = {
+        ip = "100.108.44.78";
+      };
+      options = {
+        calibreLibrary = "/home/mryall/Books/Calibre/";
+        enableBookConversion = true;
+      };
+    };
+    prometheus = {
+      exporters = {
+        node = {
+          enable = true;
+          port = 9100;
+          enabledCollectors = [
+            "logind"
+            "systemd"
+          ];
+          disabledCollectors = [
+            "textfile"
+          ];
+          openFirewall = true;
+          firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
+        };
+      };
+    };
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;

@@ -16,7 +16,10 @@
 
   services = {
     openssh = { enable = true; };
-    tailscale = { enable = true; };
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
     dbus.packages = [ pkgs.dconf ];
 
     pipewire = {

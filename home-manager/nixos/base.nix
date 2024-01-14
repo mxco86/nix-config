@@ -129,7 +129,6 @@
     };
 
     services = {
-      syncthing = { enable = true; };
       mako = {
         enable = true;
         font = "Iosevka 12";
