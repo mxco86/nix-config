@@ -51,6 +51,8 @@
     syncthing = {
       enable = true;
       user = "mryall";
+      dataDir = "/home/mryall/";
+      configDir = "/home/mryall/.config/syncthing/";
       guiAddress = "0.0.0.0:8384";
     };
     calibre-web = {
