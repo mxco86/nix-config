@@ -159,6 +159,7 @@ in
         initExtra = ''
           bindkey "\e[1;3D" backward-word
           bindkey "\e[1;3C" forward-word
+          unsetopt pathdirs
         '';
       };
 
@@ -188,7 +189,7 @@ in
             pane_frames = { rounded_corners = true; };
           };
           keybinds = {
-            unbind = [ "Ctrl g" "Ctrl p" "Ctrl n" "Ctrl b" ];
+            unbind = [ "Ctrl g" "Ctrl p" "Ctrl n" "Ctrl b" "Ctrl h" "Ctrl s" "Ctrl q" ];
           };
         };
       };
