@@ -27,7 +27,7 @@
       Swap: {swapUsed:0.1f}GiB / {swapTotal:0.1f}GiB'';
   };
   "disk" = {
-    format = "{percentage_used}/{total} ";
+    format = "{used}/{total} ";
   };
   "backlight" = {
     "format" = "{percent}% {icon}";

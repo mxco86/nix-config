@@ -8,6 +8,7 @@ let
       "backlight"
       "memory"
       "cpu"
+      "disk"
       "wireplumber"
       "battery"
       "clock"
