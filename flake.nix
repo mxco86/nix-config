@@ -39,6 +39,7 @@
           ];
           specialArgs = {
             inherit username;
+            inherit nixpkgs;
             x86pkgs = import nixpkgs {
               system = "x86_64-darwin";
               overlays = [ emacs-overlay.overlay ];
@@ -60,6 +61,7 @@
           specialArgs = {
             inherit username;
             inherit inputs;
+            inherit nixpkgs;
             pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
