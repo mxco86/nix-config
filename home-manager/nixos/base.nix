@@ -20,7 +20,9 @@
         xorg.xdpyinfo
         xorg.xmodmap
         ssm-session-manager-plugin
+        yubikey-manager
         soco-cli
+        trippy
         (makeDesktopItem {
           name = "org-protocol";
           exec = "emacsclient %u";
