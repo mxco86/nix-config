@@ -120,10 +120,10 @@
 
       firefox = {
         package = (pkgs.firefox.override {
-          extraNativeMessagingHosts = [
+          nativeMessagingHosts = [
+            pkgs.tridactyl-native
             pkgs.passff-host
           ];
-          cfg = { enableTridactylNative = true; };
         });
       };
     };
