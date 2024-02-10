@@ -119,6 +119,7 @@ in
               "browser.urlbar.placeholderName" = "DuckDuckGo";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "ui.key.accelKey" = "91";
+              "devtools.editor.keymap" = "emacs";
             };
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
