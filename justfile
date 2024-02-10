@@ -37,3 +37,6 @@ create-public-key:
 install-ff-native-messaging:
     rm -f ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/*
     ln -s ${HOME}/.nix-profile/lib/mozilla/native-messaging-hosts/* ${HOME}/Library/Application\ Support/Mozilla/NativeMessagingHosts/
+
+rebuild-nix-remote:
+    nixos-rebuild switch --use-remote-sudo --flake /etc/nixos --builders "ssh://mryall@rossi x86_64-linux - - - big-parallel" -j 0 -v
