@@ -17,6 +17,11 @@
           credential = { helper = "osxkeychain"; };
         };
       };
+      alacritty = {
+        window = {
+          option_as_alt = "OnlyLeft";
+        };
+      };
       firefox = {
         package = pkgs.runCommand "firefox-0.0.0" { } "mkdir $out";
         profiles = {
