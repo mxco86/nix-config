@@ -79,7 +79,7 @@ bind <C-x>tm mute toggle
 bind <A-g>a tabaudio
 bind <C-x>u undo
 bind <C-/> undo
-bind <C-t> tabnew
+bind <C-t> tabnew --focus-address-bar
 bind <C-w> tabclose
 
 " Pages
