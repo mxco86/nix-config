@@ -91,35 +91,7 @@ in
           "github.com" = {
             hostname = "github.com";
             user = "git";
-            identityFile = "~/mnt/k/id_rsa_moj";
-            identitiesOnly = true;
-          };
-          "*.delius-core-dev.internal *.delius.probation.hmpps.dsd.io *.delius-core.probation.hmpps.dsd.io 10.161.* 10.162.* !*.pre-prod.delius.probation.hmpps.dsd.io !*.stage.delius.probation.hmpps.dsd.io !*.perf.delius.probation.hmpps.dsd.io" = {
-            user = "mryall";
-            identityFile = "~/mnt/k/id_rsa_delius";
-            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_dev_bastion";
-            identitiesOnly = true;
-          };
-          "ssh.bastion-dev.probation.hmpps.dsd.io moj_dev_bastion awsdevgw" = {
-            hostname = "ssh.bastion-dev.probation.hmpps.dsd.io";
-            forwardAgent = true;
-            user = "mryall";
-            identityFile = "~/mnt/k/id_rsa_delius";
-            proxyCommand = "sh -c \"aws ssm start-session --target i-094ea35e707a320d4 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
-            identitiesOnly = true;
-          };
-          "*.probation.service.justice.gov.uk *.pre-prod.delius.probation.hmpps.dsd.io *.stage.delius.probation.hmpps.dsd.io 10.160.*" = {
-            user = "mryall";
-            identityFile = "~/mnt/k/id_rsa_delius_prod";
-            proxyCommand = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p moj_prod_bastion";
-            identitiesOnly = true;
-          };
-          "ssh.bastion-prod.probation.hmpps.dsd.io moj_prod_bastion awsprodgw" = {
-            hostname = "ssh.bastion-prod.probation.hmpps.dsd.io";
-            forwardAgent = true;
-            user = "mryall";
-            identityFile = "~/mnt/k/id_rsa_delius_prod";
-            proxyCommand = "sh -c \"aws ssm start-session --target i-0fba91ad072312e75 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\"";
+            identityFile = "~/mnt/k/id_rsa";
             identitiesOnly = true;
           };
         };
