@@ -27,7 +27,8 @@ bind p followpage prev
 " should be removed some day
 bind <C-c><C-n> followpage next
 bind <C-c><C-p> followpage prev
-
+bind <C-x>[ scrollto 0
+bind <C-x>] scrollto 100
 
 " Commands
 bind <A-x> fillcmdline_notrail
@@ -78,6 +79,8 @@ bind <C-x>tm mute toggle
 bind <A-g>a tabaudio
 bind <C-x>u undo
 bind <C-/> undo
+bind <C-t> tabnew
+bind <C-w> tabclose
 
 " Pages
 bind R reload
