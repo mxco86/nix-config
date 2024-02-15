@@ -189,8 +189,18 @@ in
           ui = {
             pane_frames = { rounded_corners = true; };
           };
-          keybinds = {
-            unbind = [ "Ctrl g" "Ctrl p" "Ctrl n" "Ctrl b" "Ctrl h" "Ctrl s" "Ctrl q" ];
+          "keybinds clear-defaults=true" = {
+            normal = { };
+            tab = {
+              "bind \"n\"" = { "NewTab; SwitchToMode" = "Normal"; };
+              "bind \"h\"" = { "GoToPreviousTab; SwitchToMode" = "Normal"; };
+              "bind \"l\"" = { "GoToNextTab; SwitchToMode" = "Normal"; };
+              "bind \"Alt t\"" = { "SwitchToMode" = "Normal"; };
+            };
+            shared_except = {
+              _args = [ "tab" ];
+              "bind \"Alt t\"" = { "SwitchToMode" = "tab"; };
+            };
           };
         };
       };
