@@ -208,7 +208,10 @@ in
       alacritty = {
         enable = true;
         settings = {
-          env = { TERM = "xterm-256color"; };
+          env = {
+            TERM = "xterm-256color";
+            COLORTERM = "truecolor";
+          };
           font = {
             normal = {
               family = "Iosevka";
