@@ -121,6 +121,10 @@ in
               "ui.key.accelKey" = "91";
               "devtools.editor.keymap" = "emacs";
             };
+            search = {
+              force = true;
+              default = "DuckDuckGo";
+            };
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
               org-capture
