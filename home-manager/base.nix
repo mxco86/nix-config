@@ -116,6 +116,7 @@ in
           mryall = {
             id = 0;
             settings = {
+              "browser.uidensity" = 1;
               "browser.urlbar.placeholderName" = "DuckDuckGo";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "ui.key.accelKey" = "91";
@@ -125,6 +126,9 @@ in
               force = true;
               default = "DuckDuckGo";
             };
+            userChrome = ''
+              #TabsToolbar { visibility: collapse !important; }
+            '';
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
               org-capture

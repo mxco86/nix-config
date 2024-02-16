@@ -82,7 +82,7 @@ in
             marginalia
             minions
             modus-themes
-            mood-line
+            # mood-line
             nix-mode
             npm-mode
             ob-kotlin

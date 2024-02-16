@@ -97,40 +97,6 @@ in
           };
         };
       };
-
-      firefox = {
-        profiles = {
-          mryall = {
-            settings = {
-              "browser.uidensity" = 1;
-            };
-            userChrome = ''
-              #TabsToolbar { visibility: collapse !important; }
-
-              #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-                  display:none;
-              }
-
-              #urlbar { font-size: 12pt !important }
-              #statuspanel { font-size: 12pt !important }
-              #main-menubar { font-size: 12pt !important }
-
-              menubar, menubutton, menulist, menu, menuitem,
-              textbox, findbar, toolbar, tab, tree, tooltip {
-                font-size: 12pt !important;
-              }
-
-              .tabbrowser-tab {
-                 min-height: var(--tab-min-height) !important;
-                 overflow: visible !important;
-                 font-size: 12pt !important;
-                 background: 0 !important;
-                 border: 0 !important;
-              }
-            '';
-          };
-        };
-      };
       git = {
         userName = "Matthew Ryall";
         userEmail = "matthew.ryall@digital.justice.gov.uk";

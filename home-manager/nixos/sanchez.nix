@@ -101,11 +101,7 @@ in
           mryall = {
             settings = {
               "layout.css.devPixelsPerPx" = "1.5";
-              "browser.uidensity" = 1;
             };
-            userChrome = ''
-              #TabsToolbar { visibility: collapse !important; }
-            '';
           };
         };
       };
