@@ -124,6 +124,9 @@ in
               "ui.key.accelKey" = "91";
               "devtools.editor.keymap" = "emacs";
             };
+            userChrome = ''
+              #TabsToolbar { visibility: collapse !important; }
+            '';
             search = {
               force = true;
               default = "DuckDuckGo";
