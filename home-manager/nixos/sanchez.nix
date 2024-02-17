@@ -96,15 +96,6 @@ in
         settings = [ waybar ];
       };
 
-      firefox = {
-        profiles = {
-          mryall = {
-            settings = {
-              "layout.css.devPixelsPerPx" = "1.5";
-            };
-          };
-        };
-      };
       git = {
         userName = "Matthew Ryall";
         userEmail = "matthew@mexico86.co.uk";

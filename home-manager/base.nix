@@ -75,18 +75,21 @@ in
             diff = "auto";
             status = "auto";
           };
-
           push = { default = "simple"; };
           pull = { ff = "only"; };
           github = { user = "mxco86"; };
-          diff = { tool = "difftastic"; };
-          difftool = { prompt = false; };
+          diff = {
+            tool = "difftastic";
+            algorithm = "histogram";
+          };
           difftool = {
+            prompt = false;
             difftastic = {
               cmd = ''difft "$LOCAL" "$REMOTE"'';
             };
           };
           pager = { difftool = true; };
+          merge = { conflictstyle = "zdiff3"; };
         };
       };
 
@@ -116,7 +119,6 @@ in
           mryall = {
             id = 0;
             settings = {
-              "browser.uidensity" = 1;
               "browser.urlbar.placeholderName" = "DuckDuckGo";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "ui.key.accelKey" = "91";
@@ -126,9 +128,6 @@ in
               force = true;
               default = "DuckDuckGo";
             };
-            userChrome = ''
-              #TabsToolbar { visibility: collapse !important; }
-            '';
             extensions = with nur.repos.rycee.firefox-addons; [
               ghosttext
               org-capture

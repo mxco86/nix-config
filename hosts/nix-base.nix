@@ -17,14 +17,9 @@
     '';
   };
 
-  nixpkgs = {
-    config = { allowUnfree = true; };
-  };
-
   environment = {
     systemPackages = with pkgs; [
       vim
-      tailscale
       cachix
       python3
     ];

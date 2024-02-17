@@ -62,7 +62,7 @@
             inherit username;
             inherit inputs;
             inherit nixpkgs;
-            pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; };
+            pkgs = import nixpkgs { inherit system; overlays = [ emacs-overlay.overlay ]; config.allowUnfree = true; };
             nur = import nur {
               pkgs = import nixpkgs { inherit system; };
               nurpkgs = import nixpkgs { inherit system; };
