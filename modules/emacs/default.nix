@@ -132,6 +132,7 @@ in
           ++ [
             epkgs.nongnuPackages.org-contrib
             epkgs.nongnuPackages.eat
+            epkgs.treesit-grammars.with-all-grammars
           ]))
       ];
   };
