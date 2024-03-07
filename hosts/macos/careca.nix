@@ -33,6 +33,8 @@
       "spectacle"
       "vorta"
       "slack"
+      "1password"
+      "1password-cli"
     ];
   };
 
