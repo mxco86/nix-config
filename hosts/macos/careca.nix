@@ -22,7 +22,6 @@
     ];
 
     brews = [
-      "syncthing"
       "docker"
       "docker-compose"
       "colima"
@@ -30,26 +29,30 @@
 
     casks = [
       "firefox"
-      "spectacle"
+      "rectangle"
       "vorta"
       "slack"
       "1password"
       "1password-cli"
+      "miro"
     ];
   };
 
   services = {
     skhd = {
       skhdConfig = ''
-        ralt - 1: open /run/current-system/Applications/Alacritty.app
-        ralt - 2: open /run/current-system/Applications/Emacs.app
-        ralt - 3: open -a /Applications/Safari.app
-        ralt - 4: open /Applications/Slack.app
-        ralt - 5: open ~/Applications/Home\ Manager\ Apps/DBeaver.app
-        ralt - 6: open /run/current-system/Applications/Alacritty.app; zellij action go-to-tab 1
-        ralt - 8: open -a ~/Applications/Homebrew\ Apps/Firefox.app
-        ralt - 9: open /Applications/Miro.app
+        ralt - 1: open -a /Applications/Safari.app
+        ralt - 2: open /Applications/Slack.app
+        ralt - 3: open -a ~/Applications/Homebrew\ Apps/Firefox.app
+        ralt - 4: open /run/current-system/Applications/Alacritty.app; zellij action go-to-tab 1
+        ralt - 5: open /run/current-system/Applications/Alacritty.app;
+        ralt - 6: open /run/current-system/Applications/Emacs.app
+        ralt - 7: open ~/Applications/Homebrew\ Apps/Miro.app
+        ralt - 9: open ~/Applications/Home\ Manager\ Apps/DBeaver.app
       '';
     };
   };
 }
+
+
+

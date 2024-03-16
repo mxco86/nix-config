@@ -94,16 +94,10 @@ in
       };
 
       gpg = { enable = true; };
-      bat = { enable = true; };
-      broot = {
-        enable = true;
-        enableZshIntegration = true;
-      };
       zoxide = {
         enable = true;
         enableZshIntegration = true;
       };
-      htop = { enable = true; };
       jq = { enable = true; };
       password-store = {
         enable = true;
@@ -123,6 +117,7 @@ in
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "ui.key.accelKey" = "91";
               "devtools.editor.keymap" = "emacs";
+              "sidebar.position_start" = false;
             };
             userChrome = ''
               #TabsToolbar { visibility: collapse !important; }
@@ -200,11 +195,23 @@ in
             pane_frames = { rounded_corners = true; };
           };
           "keybinds clear-defaults=true" = {
-            normal = { };
+            normal = {
+              "bind \"Alt 1\"" = { "GoToTab" = 1; };
+              "bind \"Alt 2\"" = { "GoToTab" = 2; };
+              "bind \"Alt 3\"" = { "GoToTab" = 3; };
+              "bind \"Alt 4\"" = { "GoToTab" = 4; };
+              "bind \"Alt 5\"" = { "GoToTab" = 5; };
+              "bind \"Alt 6\"" = { "GoToTab" = 6; };
+              "bind \"Alt 7\"" = { "GoToTab" = 7; };
+              "bind \"Alt 8\"" = { "GoToTab" = 8; };
+              "bind \"Alt 9\"" = { "GoToTab" = 9; };
+              "bind \"Alt 0\"" = { "GoToTab" = 10; };
+            };
             tab = {
-              "bind \"n\"" = { "NewTab; SwitchToMode" = "Normal"; };
+              "bind \"c\"" = { "NewTab; SwitchToMode" = "Normal"; };
               "bind \"h\"" = { "GoToPreviousTab; SwitchToMode" = "Normal"; };
               "bind \"l\"" = { "GoToNextTab; SwitchToMode" = "Normal"; };
+              "bind \"n\"" = { "GoToNextTab; SwitchToMode" = "Normal"; };
               "bind \"Alt t\"" = { "SwitchToMode" = "Normal"; };
             };
             shared_except = {
