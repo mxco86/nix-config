@@ -26,7 +26,8 @@ in {
           natural_scroll disabled
         }
 
-        output DVI-D-1 transform 270
+        output DVI-D-1 transform 270 position 0 0
+        output DP-1 transform 270 position 1200 0
 
         bindsym XF86AudioMute exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+
@@ -37,33 +38,37 @@ in {
         menu = "fuzzel";
         assigns = {
           "1" = [{ app_id = "^Alacritty$"; }];
-          "4" = [{ class = "^Slack$"; }];
-          "6" = [{ app_id = "^firefox$"; }];
+          "2" = [{ app_id = "^firefox$"; }];
+          "7" = [{ class = "^Slack$"; }];
         };
         workspaceOutputAssign = [
           {
             workspace = "1";
-            output = "DP-2";
+            output = "DVI-D-1";
           }
           {
             workspace = "2";
-            output = "DP-2";
+            output = "DVI-D-1";
           }
           {
             workspace = "3";
-            output = "DP-2";
+            output = "DVI-D-1";
           }
           {
             workspace = "4";
-            output = "DP-2";
+            output = "DVI-D-1";
           }
           {
             workspace = "5";
-            output = "DP-2";
+            output = "DVI-D-1";
           }
           {
             workspace = "6";
-            output = "DVI-D-1";
+            output = "DP-1";
+          }
+          {
+            workspace = "7";
+            output = "DP-1";
           }
         ];
         bars = [ ];
@@ -92,6 +97,7 @@ in {
           };
         };
       };
+
       git = {
         userName = "Matthew Ryall";
         userEmail = "matthew.ryall@digital.justice.gov.uk";

@@ -19,8 +19,8 @@ in {
         # slack
         # isync
         ncdu
+        nil
         nixpkgs-fmt
-        rnix-lsp
         soco-cli
         sqlite
         # weechat
@@ -159,7 +159,7 @@ in {
       zsh = {
         enable = true;
         enableCompletion = true;
-        enableAutosuggestions = true;
+        autosuggestion = { enable = true; };
         defaultKeymap = "emacs";
         history = { ignoreDups = true; };
         plugins = [{

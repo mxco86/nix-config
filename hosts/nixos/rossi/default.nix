@@ -36,9 +36,7 @@
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
 
-    variables = {
-      ROC_ENABLE_PRE_VEGA = "1";
-    };
+    variables = { ROC_ENABLE_PRE_VEGA = "1"; };
   };
 
   services = {
@@ -60,26 +58,24 @@
       openFirewall = true;
       user = "mryall";
       group = "users";
-      listen = {
-        ip = "100.108.44.78";
-      };
+      listen = { ip = "100.108.44.78"; };
       options = {
         calibreLibrary = "/home/mryall/Books/Calibre/";
         enableBookConversion = true;
       };
+    };
+    ollama = {
+      enable = true;
+      # acceleration = "rocm";
+      environmentVariables = { OLLAMA_MODELS = "/tank/one/models/"; };
     };
     prometheus = {
       exporters = {
         node = {
           enable = true;
           port = 9100;
-          enabledCollectors = [
-            "logind"
-            "systemd"
-          ];
-          disabledCollectors = [
-            "textfile"
-          ];
+          enabledCollectors = [ "logind" "systemd" ];
+          disabledCollectors = [ "textfile" ];
           openFirewall = true;
           firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
         };

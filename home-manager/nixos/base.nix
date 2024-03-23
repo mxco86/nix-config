@@ -115,7 +115,7 @@
         enable = true;
         enableSshSupport = true;
         enableExtraSocket = true;
-        pinentryFlavor = "qt";
+        pinentryPackage = pkgs.pinentry-qt;
         defaultCacheTtl = 34560000;
         maxCacheTtl = 34560000;
         defaultCacheTtlSsh = 34560000;
