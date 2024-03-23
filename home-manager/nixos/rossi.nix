@@ -3,26 +3,13 @@
 let
   waybar = import ./waybar.nix {
     height = 40;
-    modules-right = [
-      "network"
-      "memory"
-      "cpu"
-      "disk"
-      "wireplumber"
-      "clock"
-    ];
+    modules-right = [ "network" "memory" "cpu" "disk" "wireplumber" "clock" ];
   };
-in
-{
+in {
   imports = [ ./base.nix ];
 
   home-manager.users.mryall = { pkgs, ... }: {
-    home = {
-      packages = with pkgs; [
-        jetbrains.idea-community
-        calibre
-      ];
-    };
+    home = { packages = with pkgs; [ jetbrains.idea-community calibre ]; };
 
     wayland.windowManager.sway = {
       extraConfig = ''
@@ -47,39 +34,47 @@ in
         bindsym XF86AudioPlay exec --no-startup-id swaymsg "output * dpms on"
       '';
       config = {
-        menu = "wofi";
+        menu = "fuzzel";
         assigns = {
           "1" = [{ app_id = "^Alacritty$"; }];
           "4" = [{ class = "^Slack$"; }];
           "6" = [{ app_id = "^firefox$"; }];
         };
         workspaceOutputAssign = [
-          { workspace = "1"; output = "DP-2"; }
-          { workspace = "2"; output = "DP-2"; }
-          { workspace = "3"; output = "DP-2"; }
-          { workspace = "4"; output = "DP-2"; }
-          { workspace = "5"; output = "DP-2"; }
-          { workspace = "6"; output = "DVI-D-1"; }
+          {
+            workspace = "1";
+            output = "DP-2";
+          }
+          {
+            workspace = "2";
+            output = "DP-2";
+          }
+          {
+            workspace = "3";
+            output = "DP-2";
+          }
+          {
+            workspace = "4";
+            output = "DP-2";
+          }
+          {
+            workspace = "5";
+            output = "DP-2";
+          }
+          {
+            workspace = "6";
+            output = "DVI-D-1";
+          }
         ];
         bars = [ ];
-        fonts = {
-          size = 14.0;
-        };
+        fonts = { size = 14.0; };
       };
     };
 
     programs = {
-      alacritty = {
-        settings = {
-          font = {
-            size = 14;
-          };
-        };
-      };
+      alacritty = { settings = { font = { size = 14; }; }; };
 
-      waybar = {
-        settings = [ waybar ];
-      };
+      waybar = { settings = [ waybar ]; };
 
       ssh = {
         controlPersist = "yes";
@@ -100,7 +95,10 @@ in
       git = {
         userName = "Matthew Ryall";
         userEmail = "matthew.ryall@digital.justice.gov.uk";
-        signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
+        signing = {
+          key = "0902EF0CB4879CEB";
+          signByDefault = true;
+        };
       };
     };
   };

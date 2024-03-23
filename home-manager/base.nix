@@ -1,13 +1,9 @@
 { pkgs, nur, username, ... }:
-let
-  aspellEnv = pkgs.aspellWithDicts (d: [ d.en ]);
-in
-{
+let aspellEnv = pkgs.aspellWithDicts (d: [ d.en ]);
+in {
   home-manager.users.${username} = { pkgs, ... }: {
 
-    nixpkgs = {
-      config = { allowUnfree = true; };
-    };
+    nixpkgs = { config = { allowUnfree = true; }; };
 
     home = {
       stateVersion = "22.05";
@@ -28,6 +24,7 @@ in
         soco-cli
         sqlite
         # weechat
+        zoom-us
       ];
       sessionVariables = { EDITOR = "emacsclient"; };
 
@@ -84,9 +81,7 @@ in
           };
           difftool = {
             prompt = false;
-            difftastic = {
-              cmd = ''difft "$LOCAL" "$REMOTE"'';
-            };
+            difftastic = { cmd = ''difft "$LOCAL" "$REMOTE"''; };
           };
           pager = { difftool = true; };
           merge = { conflictstyle = "zdiff3"; };
@@ -94,6 +89,27 @@ in
       };
 
       gpg = { enable = true; };
+      bat = { enable = true; };
+      broot = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          verbs = [
+            {
+              key = "ctrl-n";
+              execution = ":line_down";
+            }
+            {
+              key = "ctrl-p";
+              execution = ":line_up";
+            }
+            {
+              key = "Enter";
+              execution = ":panel_right";
+            }
+          ];
+        };
+      };
       zoxide = {
         enable = true;
         enableZshIntegration = true;
@@ -101,11 +117,12 @@ in
       jq = { enable = true; };
       password-store = {
         enable = true;
-        package = pkgs.pass.withExtensions (exts: [
-          # exts.pass-import
-          # exts.pass-audit
-          # exts.pass-otp
-        ]);
+        package = pkgs.pass.withExtensions (exts:
+          [
+            # exts.pass-import
+            # exts.pass-audit
+            # exts.pass-otp
+          ]);
       };
       firefox = {
         enable = true;
@@ -171,9 +188,7 @@ in
 
       direnv = {
         enable = true;
-        nix-direnv = {
-          enable = true;
-        };
+        nix-direnv = { enable = true; };
         enableZshIntegration = true;
       };
 
@@ -191,9 +206,7 @@ in
         enableZshIntegration = true;
         settings = {
           theme = "solarized-dark";
-          ui = {
-            pane_frames = { rounded_corners = true; };
-          };
+          ui = { pane_frames = { rounded_corners = true; }; };
           "keybinds clear-defaults=true" = {
             normal = {
               "bind \"Alt 1\"" = { "GoToTab" = 1; };
@@ -229,18 +242,13 @@ in
             TERM = "xterm-256color";
             COLORTERM = "truecolor";
           };
-          font = {
-            normal = {
-              family = "Iosevka";
-            };
-          };
-          window = {
-            decorations = "none";
-          };
+          font = { normal = { family = "Iosevka"; }; };
+          window = { decorations = "none"; };
           mouse = {
-            bindings = [
-              { mouse = "Middle"; action = "PasteSelection"; }
-            ];
+            bindings = [{
+              mouse = "Middle";
+              action = "PasteSelection";
+            }];
           };
           colors = {
             primary = {

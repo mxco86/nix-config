@@ -40,45 +40,23 @@
         XDG_SESSION_TYPE = "wayland";
         XDG_CURRENT_DESKTOP = "sway";
       };
-
-      file = {
-        wofi = {
-          source = ../files/wofi_stylesheet.css;
-          target = ".config/wofi/style.css";
-        };
-      };
     };
 
     gtk = {
       enable = true;
-      gtk3 = {
-        extraConfig = {
-          gtk-key-theme-name = "Emacs";
-        };
-      };
+      gtk3 = { extraConfig = { gtk-key-theme-name = "Emacs"; }; };
     };
 
     programs = {
-      wofi = {
+      fuzzel = {
         enable = true;
         settings = {
-          stylesheet = "style.css";
-          width = 600;
-          height = 300;
-          location = "center";
-          show = "drun";
-          prompt = "Search...";
-          filter_rate = 100;
-          allow_markup = true;
-          no_actions = true;
-          halign = "fill";
-          orientation = "vertical";
-          content_halign = "fill";
-          insensitive = true;
-          allow_images = true;
-          image_size = 20;
-          key_up = "Control_L-p";
-          key_down = "Control_L-n";
+          main = { font = "Iosevka"; };
+          colors = {
+            background = "#002b36fa";
+            selection = "#073642fa";
+            border = "#928374fa";
+          };
         };
       };
 
@@ -114,18 +92,13 @@
 
       git = {
         extraConfig = {
-          credential = {
-            helper = "git-credential-libsecret";
-          };
+          credential = { helper = "git-credential-libsecret"; };
         };
       };
 
       firefox = {
         package = (pkgs.firefox.override {
-          nativeMessagingHosts = [
-            pkgs.tridactyl-native
-            pkgs.passff-host
-          ];
+          nativeMessagingHosts = [ pkgs.tridactyl-native pkgs.passff-host ];
         });
       };
     };
@@ -159,11 +132,10 @@
       systemd.enable = true;
       config = {
         modifier = "Mod4";
-        keybindings =
-          let modifier = "Mod4"; in
-          pkgs.lib.mkOptionDefault {
-            "${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";
-          };
+        keybindings = let modifier = "Mod4";
+        in pkgs.lib.mkOptionDefault {
+          "${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";
+        };
         focus = { newWindow = "focus"; };
         workspaceAutoBackAndForth = true;
         colors = {
@@ -175,9 +147,7 @@
             text = "#fdf6e3";
           };
         };
-        fonts = {
-          names = [ "FontAwesome" "Iosevka" ];
-        };
+        fonts = { names = [ "FontAwesome" "Iosevka" ]; };
         terminal = "${pkgs.alacritty}/bin/alacritty";
       };
     };

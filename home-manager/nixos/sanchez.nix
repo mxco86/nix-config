@@ -14,11 +14,12 @@ let
       "clock"
     ];
   };
-in
-{
+in {
   imports = [ ./base.nix ];
 
   home-manager.users.mryall = { pkgs, ... }: {
+
+    home.packages = with pkgs; [ codeium ];
 
     wayland.windowManager.sway = {
       extraConfig = ''
@@ -48,7 +49,7 @@ in
       '';
       config = {
         # menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
-        menu = "wofi";
+        menu = "fuzzel";
         assigns = {
           "1" = [{ class = "^Alacritty$"; }];
           "2" = [{ class = "^Emacs$"; }];
@@ -61,20 +62,12 @@ in
           # { command = "signal-desktop"; }
           # { command = "mako"; }
         ];
-        fonts = {
-          size = 10.0;
-        };
+        fonts = { size = 10.0; };
       };
     };
 
     programs = {
-      alacritty = {
-        settings = {
-          font = {
-            size = 12;
-          };
-        };
-      };
+      alacritty = { settings = { font = { size = 12; }; }; };
       ssh = {
         controlPersist = "yes";
         controlMaster = "auto";
@@ -92,14 +85,15 @@ in
         };
       };
 
-      waybar = {
-        settings = [ waybar ];
-      };
+      waybar = { settings = [ waybar ]; };
 
       git = {
         userName = "Matthew Ryall";
         userEmail = "matthew@mexico86.co.uk";
-        signing = { key = "0902EF0CB4879CEB"; signByDefault = true; };
+        signing = {
+          key = "0902EF0CB4879CEB";
+          signByDefault = true;
+        };
       };
     };
   };
