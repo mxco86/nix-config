@@ -150,6 +150,7 @@ in {
               sidebery
               tridactyl
               ublock-origin
+              i-dont-care-about-cookies
             ];
           };
         };
