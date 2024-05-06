@@ -10,8 +10,8 @@
       stateVersion = "22.05";
 
       packages = with pkgs; [
-        anki
-        authy
+        # anki
+        # authy
         beets
         picard
         # discord
@@ -20,7 +20,7 @@
         xorg.xdpyinfo
         xorg.xmodmap
         ssm-session-manager-plugin
-        yubikey-manager
+        # yubikey-manager
         soco-cli
         trippy
         (makeDesktopItem {

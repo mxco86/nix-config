@@ -2,11 +2,7 @@
 
 {
   environment = {
-    systemPackages = with pkgs; [
-      alacritty
-      wl-clipboard
-      nfs-utils
-    ];
+    systemPackages = with pkgs; [ alacritty wl-clipboard nfs-utils ];
     etc."greetd/environments".text = ''
       sway
     '';
@@ -16,6 +12,7 @@
 
   services = {
     openssh = { enable = true; };
+
     tailscale = {
       enable = true;
       useRoutingFeatures = "client";
@@ -45,9 +42,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    groups = {
-      mryall = { gid = 1000; };
-    };
+    groups = { mryall = { gid = 1000; }; };
     users = {
       mryall = {
         isNormalUser = true;

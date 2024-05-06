@@ -8,7 +8,7 @@
   time = { timeZone = "Europe/London"; };
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     registry.nixpkgs.flake = nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -18,20 +18,11 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      vim
-      cachix
-      python3
-    ];
+    systemPackages = with pkgs; [ vim cachix python3 ];
     pathsToLink = [ "/share/zsh" ];
   };
 
-  fonts.packages = with pkgs; [
-    dejavu_fonts
-    iosevka
-    fira-code
-    font-awesome
-  ];
+  fonts.packages = with pkgs; [ dejavu_fonts iosevka fira-code font-awesome ];
 
   programs = {
     zsh = { enable = true; };
