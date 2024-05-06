@@ -47,6 +47,19 @@
       gtk3 = { extraConfig = { gtk-key-theme-name = "Emacs"; }; };
     };
 
+    xdg = {
+      desktopEntries = {
+        miro = {
+          name = "Miro";
+          genericName = "Web Browser";
+          exec = "firefox -new-instance -P miro";
+          terminal = false;
+          categories = [ "Application" "WebBrowser" ];
+          mimeType = [ "text/html" "text/xml" ];
+        };
+      };
+    };
+
     programs = {
       fuzzel = {
         enable = true;
