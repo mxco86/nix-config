@@ -1,5 +1,7 @@
 { pkgs, nur, username, ... }:
-let aspellEnv = pkgs.aspellWithDicts (d: [ d.en ]);
+let
+  aspellEnv = pkgs.aspellWithDicts (d: [ d.en ]);
+  firefoxCfg = import ./firefox.nix { };
 in {
   home-manager.users.${username} = { pkgs, ... }: {
 
@@ -129,6 +131,21 @@ in {
         profiles = {
           mryall = {
             id = 0;
+            settings = firefoxCfg.settings;
+            userChrome = firefoxCfg.userChrome;
+            search = firefoxCfg.search;
+            extensions = with nur.repos.rycee.firefox-addons; [
+              ghosttext
+              org-capture
+              privacy-badger
+              sidebery
+              tridactyl
+              ublock-origin
+              i-dont-care-about-cookies
+            ];
+          };
+          miro = {
+            id = 1;
             settings = {
               "browser.urlbar.placeholderName" = "DuckDuckGo";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -144,17 +161,13 @@ in {
               default = "DuckDuckGo";
             };
             extensions = with nur.repos.rycee.firefox-addons; [
-              ghosttext
-              org-capture
               privacy-badger
               sidebery
-              tridactyl
               ublock-origin
               i-dont-care-about-cookies
             ];
           };
         };
-
       };
 
       zsh = {

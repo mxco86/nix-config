@@ -14,6 +14,8 @@ let
       "clock"
     ];
   };
+
+  firefoxCfg = import ../firefox.nix { };
 in {
   imports = [ ./base.nix ];
 
@@ -93,6 +95,17 @@ in {
         signing = {
           key = "0902EF0CB4879CEB";
           signByDefault = true;
+        };
+      };
+
+      firefox = {
+        profiles = {
+          mryall = {
+            settings = firefoxCfg.settings // {
+              "layout.css.devPixelsPerPx" = "1.5";
+              "browser.uidensity" = 1;
+            };
+          };
         };
       };
     };
