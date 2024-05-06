@@ -7,16 +7,16 @@
   imports =
     [ "${inputs.nixpkgs}/nixos/modules/installer/scan/not-detected.nix" ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/f0b9baf9-a71e-4714-bb81-1f4aa77e9053";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/f0b9baf9-a71e-4714-bb81-1f4aa77e9053";
+    fsType = "ext4";
+  };
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/fdda8f51-6db5-4274-9039-9ac7b65d74aa"; }];
@@ -25,5 +25,8 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # High-DPI console
-  console.font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+  console.font =
+    lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
+
+  services.throttled.enable = lib.mkForce false;
 }

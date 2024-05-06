@@ -23,10 +23,11 @@
     };
 
     nur = { url = "github:nix-community/NUR/master"; };
+    nixos-hardware = { url = "github:NixOS/nixos-hardware/master"; };
   };
 
   outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs
-    , ... }@inputs:
+    , nixos-hardware, ... }@inputs:
     let
       machost = { system, host, username ? "mryall" }:
         darwin.lib.darwinSystem {
@@ -50,14 +51,14 @@
             };
           };
         };
-      nixoshost = { system, host, username ? "mryall" }:
+      nixoshost = { system, host, username ? "mryall", extraModules }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/nixos/${host}
             home-manager.nixosModules.home-manager
             ./home-manager/nixos/${host}.nix
-          ];
+          ] ++ extraModules;
           specialArgs = {
             inherit username;
             inherit inputs;
@@ -114,6 +115,8 @@
         sanchez = nixoshost {
           system = "x86_64-linux";
           host = "sanchez";
+          extraModules =
+            [ nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen ];
         };
         rossi = nixoshost {
           system = "x86_64-linux";
