@@ -58,6 +58,7 @@ in {
           flycheck-yamllint
           forge
           git-timemachine
+          git-link
           go-eldoc
           go-mode
           gptel
@@ -97,6 +98,7 @@ in {
           paredit
           pdf-tools
           prettier-js
+          pr-review
           python-mode
           racer
           racket-mode
