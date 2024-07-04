@@ -1,15 +1,18 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../nix-base.nix ./darwin-base.nix ];
+  imports = [
+    ../nix-base.nix
+    ./darwin-base.nix
+  ];
 
-  networking.hostName = "careca";
+  # networking.hostName = "careca";
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
   nix = {
     settings = {
-      max-jobs = 8;
+      max-jobs = 12;
       cores = 0;
     };
   };
@@ -19,6 +22,7 @@
 
     taps = [
       "homebrew/services"
+      "nikitabobko/tap"
     ];
 
     brews = [
@@ -35,6 +39,9 @@
       "1password"
       "1password-cli"
       "miro"
+      "dbeaver-community"
+      "aerospace"
+      "raycast"
     ];
   };
 
@@ -48,11 +55,9 @@
         ralt - 5: open /run/current-system/Applications/Alacritty.app;
         ralt - 6: open /run/current-system/Applications/Emacs.app
         ralt - 7: open ~/Applications/Homebrew\ Apps/Miro.app
-        ralt - 9: open ~/Applications/Home\ Manager\ Apps/DBeaver.app
+        ralt - 8: open -a ~/Applications/Homebrew\ Apps/Firefox.app
+        ralt - 9: open ~/Applications/Homebrew\ Apps/DBeaver.app
       '';
     };
   };
 }
-
-
-

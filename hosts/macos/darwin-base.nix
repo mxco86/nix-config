@@ -12,9 +12,9 @@
     home = "/Users/mryall";
   };
 
-  users.users."matthew.ryall" = {
-    name = "matthew.ryall";
-    home = "/Users/matthew.ryall";
+  users.users."matt.ryall" = {
+    name = "matt.ryall";
+    home = "/Users/matt.ryall";
   };
 
   environment = {
