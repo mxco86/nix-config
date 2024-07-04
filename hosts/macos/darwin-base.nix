@@ -1,4 +1,9 @@
-{ config, pkgs, x86pkgs, ... }:
+{
+  config,
+  pkgs,
+  x86pkgs,
+  ...
+}:
 
 {
   imports = [ ../nix-base.nix ];
@@ -62,10 +67,11 @@
   services = {
     skhd = {
       enable = true;
-      skhdConfig = ''
-      '';
+      skhdConfig = '''';
     };
-    nix-daemon = { enable = true; };
+    nix-daemon = {
+      enable = true;
+    };
     tailscale = {
       enable = true;
     };
@@ -76,7 +82,9 @@
   };
 
   fonts = {
-    fontDir = { enable = true; };
+    fontDir = {
+      enable = true;
+    };
   };
 
   homebrew = {
