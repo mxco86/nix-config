@@ -2,10 +2,15 @@
 
 {
 
-  imports = [ ../modules/emacs ../cachix.nix ];
+  imports = [
+    ../modules/emacs
+    ../cachix.nix
+  ];
 
   # Set your time zone.
-  time = { timeZone = "Europe/London"; };
+  time = {
+    timeZone = "Europe/London";
+  };
 
   nix = {
     package = pkgs.nixVersions.latest;
@@ -18,14 +23,30 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [ vim cachix python3 ];
+    systemPackages = with pkgs; [
+      vim
+      cachix
+      python3
+    ];
     pathsToLink = [ "/share/zsh" ];
   };
 
-  fonts.packages = with pkgs; [ dejavu_fonts iosevka fira-code font-awesome ];
+  fonts.packages = with pkgs; [
+    dejavu_fonts
+    iosevka
+    fira-code
+    font-awesome
+  ];
 
   programs = {
-    zsh = { enable = true; };
-    emacsWithMJRPackages = { enable = true; };
+    zsh = {
+      enable = true;
+    };
+    fish = {
+      enable = true;
+    };
+    emacsWithMJRPackages = {
+      enable = true;
+    };
   };
 }

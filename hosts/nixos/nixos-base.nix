@@ -2,16 +2,26 @@
 
 {
   environment = {
-    systemPackages = with pkgs; [ alacritty wl-clipboard nfs-utils ];
+    systemPackages = with pkgs; [
+      alacritty
+      wl-clipboard
+      nfs-utils
+    ];
     etc."greetd/environments".text = ''
       sway
     '';
   };
 
-  programs = { sway = { enable = true; }; };
+  programs = {
+    sway = {
+      enable = true;
+    };
+  };
 
   services = {
-    openssh = { enable = true; };
+    openssh = {
+      enable = true;
+    };
 
     tailscale = {
       enable = true;

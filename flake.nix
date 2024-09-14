@@ -104,13 +104,14 @@
           ];
         };
     in {
-      devShell = let pkglist = pkgs: [ pkgs.nixfmt pkgs.nixpkgs-fmt pkgs.nil ];
-      in inputs.nixpkgs.lib.listToAttrs (map (system: {
-        name = system;
-        value = nixpkgs.legacyPackages.${system}.mkShell {
-          nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
-        };
-      }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
+      devShell =
+        let pkglist = pkgs: [ pkgs.nixfmt-rfc-style pkgs.nixpkgs-fmt pkgs.nil ];
+        in inputs.nixpkgs.lib.listToAttrs (map (system: {
+          name = system;
+          value = nixpkgs.legacyPackages.${system}.mkShell {
+            nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
+          };
+        }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
       nixosConfigurations = {
         sanchez = nixoshost {
           system = "x86_64-linux";
