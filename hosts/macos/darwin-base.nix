@@ -23,8 +23,11 @@
   };
 
   environment = {
-    shells = [ pkgs.zsh ];
-    loginShell = "${pkgs.zsh}";
+    shells = [
+      pkgs.zsh
+      pkgs.fish
+    ];
+    loginShell = "${pkgs.fish}";
 
     systemPackages = [
       pkgs.alacritty

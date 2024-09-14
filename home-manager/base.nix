@@ -121,36 +121,16 @@ in
             };
           };
         };
-
         gpg = {
           enable = true;
         };
         bat = {
           enable = true;
         };
-        broot = {
-          enable = true;
-          enableZshIntegration = true;
-          settings = {
-            verbs = [
-              {
-                key = "ctrl-n";
-                execution = ":line_down";
-              }
-              {
-                key = "ctrl-p";
-                execution = ":line_up";
-              }
-              {
-                key = "Enter";
-                execution = ":panel_right";
-              }
-            ];
-          };
-        };
         zoxide = {
           enable = true;
           enableZshIntegration = true;
+          enableFishIntegration = true;
         };
         jq = {
           enable = true;
@@ -247,6 +227,15 @@ in
           '';
         };
 
+        fish = {
+          enable = true;
+        };
+
+        eza = {
+          enable = true;
+          enableFishIntegration = true;
+        };
+
         direnv = {
           enable = true;
           nix-direnv = {
@@ -258,6 +247,7 @@ in
         fzf = {
           enable = true;
           enableZshIntegration = true;
+          enableFishIntegration = true;
           defaultOptions = [
             "--color dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254"
             "--color info:254,prompt:37,spinner:108,pointer:235,marker:235"
@@ -266,7 +256,7 @@ in
 
         zellij = {
           enable = true;
-          enableZshIntegration = true;
+          enableFishIntegration = true;
           settings = {
             theme = "solarized-dark";
             ui = {
@@ -401,6 +391,7 @@ in
         dircolors = {
           enable = true;
           enableZshIntegration = true;
+          enableFishIntegration = true;
         };
       };
     };
