@@ -21,15 +21,33 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nur = { url = "github:nix-community/NUR/master"; };
-    nixos-hardware = { url = "github:NixOS/nixos-hardware/master"; };
+    nur = {
+      url = "github:nix-community/NUR/master";
+    };
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
   };
 
-  outputs = { self, nixpkgs, darwin, emacs-overlay, nur, home-manager, deploy-rs
-    , nixos-hardware, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      darwin,
+      emacs-overlay,
+      nur,
+      home-manager,
+      deploy-rs,
+      nixos-hardware,
+      ...
+    }@inputs:
     let
-      machost = { system, host, username ? "mryall" }:
+      machost =
+        {
+          system,
+          host,
+          username ? "mryall",
+        }:
         darwin.lib.darwinSystem {
           inherit system;
           modules = [
@@ -51,7 +69,13 @@
             };
           };
         };
-      nixoshost = { system, host, username ? "mryall", extraModules }:
+      nixoshost =
+        {
+          system,
+          host,
+          username ? "mryall",
+          extraModules,
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
@@ -74,50 +98,73 @@
             };
           };
         };
-      rpihost = { host }:
+      rpihost =
+        { host }:
         nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            (let pkgs = nixpkgs.legacyPackages.aarch64-linux;
-            in {
-              system.stateVersion = "22.05";
-              nixpkgs = {
-                buildPlatform.system = "x86_64-linux";
-                hostPlatform.system = "aarch64-linux";
-              };
-              networking = { wireless.enable = true; };
-              console = {
-                earlySetup = true;
-                packages = with pkgs; [ terminus_font ];
-                font = nixpkgs.lib.mkDefault
-                  "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-              };
-              users.users.mryall = {
-                isNormalUser = true;
-                home = "/home/mryall";
-                description = "Matthew";
-                extraGroups = [ "wheel" "networkmanager" ];
-                hashedPassword = "";
-              };
-            })
+            (
+              let
+                pkgs = nixpkgs.legacyPackages.aarch64-linux;
+              in
+              {
+                system.stateVersion = "22.05";
+                nixpkgs = {
+                  buildPlatform.system = "x86_64-linux";
+                  hostPlatform.system = "aarch64-linux";
+                };
+                networking = {
+                  wireless.enable = true;
+                };
+                console = {
+                  earlySetup = true;
+                  packages = with pkgs; [ terminus_font ];
+                  font = nixpkgs.lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+                };
+                users.users.mryall = {
+                  isNormalUser = true;
+                  home = "/home/mryall";
+                  description = "Matthew";
+                  extraGroups = [
+                    "wheel"
+                    "networkmanager"
+                  ];
+                  hashedPassword = "";
+                };
+              }
+            )
           ];
         };
-    in {
+    in
+    {
       devShell =
-        let pkglist = pkgs: [ pkgs.nixfmt-rfc-style pkgs.nixpkgs-fmt pkgs.nil ];
-        in inputs.nixpkgs.lib.listToAttrs (map (system: {
-          name = system;
-          value = nixpkgs.legacyPackages.${system}.mkShell {
-            nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
-          };
-        }) [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ]);
+        let
+          pkglist = pkgs: [
+            pkgs.nixfmt-rfc-style
+            pkgs.nixpkgs-fmt
+            pkgs.nil
+          ];
+        in
+        inputs.nixpkgs.lib.listToAttrs (
+          map
+            (system: {
+              name = system;
+              value = nixpkgs.legacyPackages.${system}.mkShell {
+                nativeBuildInputs = pkglist nixpkgs.legacyPackages.${system};
+              };
+            })
+            [
+              "x86_64-darwin"
+              "x86_64-linux"
+              "aarch64-darwin"
+            ]
+        );
       nixosConfigurations = {
         sanchez = nixoshost {
           system = "x86_64-linux";
           host = "sanchez";
-          extraModules =
-            [ nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen ];
+          extraModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen ];
         };
         rossi = nixoshost {
           system = "x86_64-linux";
@@ -133,7 +180,7 @@
         careca = machost {
           system = "aarch64-darwin";
           host = "careca";
-          username = "matthew.ryall";
+          username = "matt.ryall";
         };
         platini = machost {
           system = "x86_64-darwin";
@@ -148,13 +195,11 @@
       deploy.nodes.host.profiles.system = {
         user = "root";
         hostname = "129.151.93.130";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos
-          self.nixosConfigurations.host;
+        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.host;
       };
 
       # This is highly advised, and will prevent many possible mistakes
-      checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 
 }
