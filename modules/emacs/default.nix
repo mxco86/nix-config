@@ -95,6 +95,7 @@ in
             marginalia
             minions
             modus-themes
+            # mood-line
             nix-mode
             npm-mode
             ob-kotlin
@@ -118,6 +119,7 @@ in
             rg
             rust-mode
             simple-httpd
+            smart-shift
             spaceline
             sqlformat
             terraform-mode
