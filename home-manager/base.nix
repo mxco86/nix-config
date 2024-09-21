@@ -229,6 +229,26 @@ in
 
         fish = {
           enable = true;
+          interactiveShellInit = ''
+            set -U fish_color_operator 00a6b2
+            set -U fish_color_escape 00a6b2
+            set -U fish_color_autosuggestion 586e75
+            set -U fish_color_comment 586e75
+            set -U fish_color_param 839496
+            set -U fish_color_error dc322f
+            set -U fish_color_end 268bd2
+            set -U fish_color_redirection 6c71c4
+            set -U fish_color_quote 657b83
+            set -U fish_color_command 93a1a1
+            set -U pure_color_git_branch pure_color_info
+            set -U pure_color_git_dirty pure_color_info
+          '';
+          plugins = with pkgs.fishPlugins; [
+            {
+              name = "pure";
+              src = pure.src;
+            }
+          ];
         };
 
         eza = {

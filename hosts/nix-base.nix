@@ -28,7 +28,10 @@
       cachix
       python3
     ];
-    pathsToLink = [ "/share/zsh" ];
+    pathsToLink = [
+      "/share/zsh"
+      "/share/fish"
+    ];
   };
 
   fonts.packages = with pkgs; [
