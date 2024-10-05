@@ -95,7 +95,6 @@ in
             marginalia
             minions
             modus-themes
-            # mood-line
             nix-mode
             npm-mode
             ob-kotlin
@@ -107,7 +106,9 @@ in
             org-roam
             org-roam-ui
             ox-hugo
+            ox-gfm
             paredit
+            password-store
             pdf-tools
             prettier-js
             pr-review
@@ -133,6 +134,7 @@ in
             visual-fill-column
             web-mode
             websocket
+            winum
             which-key
             yaml-mode
           ])
