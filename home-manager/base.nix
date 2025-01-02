@@ -35,7 +35,7 @@ in
           # isync
           # ncdu
           nil
-          nixpkgs-fmt
+          alejandra
           # soco-cli
           sqlite
           trippy
@@ -47,7 +47,7 @@ in
         };
 
         file = {
-          ".aspell.conf".text = "data-dir ${aspellEnv}/lib/aspell";
+          # ".aspell.conf".text = "data-dir ${aspellEnv}/lib/aspell";
           tridactyl = {
             source = ./files/tridactyl_emacs_bindings;
             target = ".config/firefox/tridactyl_emacs_bindings";

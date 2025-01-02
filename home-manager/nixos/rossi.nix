@@ -23,8 +23,10 @@ in
     {
       home = {
         packages = with pkgs; [
-          jetbrains.idea-community
-          calibre
+          # jetbrains.idea-community
+          unigine-superposition
+          digikam
+          darktable
         ];
       };
 
@@ -43,8 +45,14 @@ in
             natural_scroll disabled
           }
 
-          output DVI-D-1 transform 270 position 0 0
-          output DP-1 transform 270 position 1200 0
+          input "7119:2208:HID_1bcf:08a0_Mouse" {
+            accel_profile adaptive
+            pointer_accel -1
+            natural_scroll disabled
+          }
+
+          # output DVI-D-1 transform 270 position 0 0
+          # output DP-1 transform 270 position 1200 0
 
           bindsym XF86AudioMute exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
           bindsym XF86AudioRaiseVolume exec --no-startup-id ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+

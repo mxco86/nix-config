@@ -140,11 +140,11 @@
     {
       devShell =
         let
-          pkglist = pkgs: [
-            pkgs.nixfmt-rfc-style
-            pkgs.nixpkgs-fmt
-            pkgs.nil
-          ];
+          pkglist =
+            pkgs: with pkgs; [
+              alejandra
+              nil
+            ];
         in
         inputs.nixpkgs.lib.listToAttrs (
           map
@@ -164,11 +164,16 @@
         sanchez = nixoshost {
           system = "x86_64-linux";
           host = "sanchez";
-          extraModules = [ nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen ];
+          extraModules = [
+            nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ];
         };
         rossi = nixoshost {
           system = "x86_64-linux";
           host = "rossi";
+          extraModules = [
+            nixos-hardware.nixosModules.common-gpu-amd
+          ];
         };
         rpi = rpihost { host = "test"; };
       };
