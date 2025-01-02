@@ -22,7 +22,7 @@ in
         stateVersion = "22.05";
 
         packages = with pkgs; [
-          # aspellEnv
+          aspellEnv
           bottom
           difftastic
           # dogdns
@@ -47,10 +47,14 @@ in
         };
 
         file = {
-          # ".aspell.conf".text = "data-dir ${aspellEnv}/lib/aspell";
+          ".aspell.conf".text = "data-dir ${aspellEnv}/lib/aspell";
           tridactyl = {
             source = ./files/tridactyl_emacs_bindings;
             target = ".config/firefox/tridactyl_emacs_bindings";
+          };
+          vale = {
+            source = ./files/vale.ini;
+            target = ".config/vale/.vale.ini";
           };
         };
       };

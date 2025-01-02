@@ -25,6 +25,7 @@
           # yubikey-manager
           soco-cli
           trippy
+          vale
           (makeDesktopItem {
             name = "org-protocol";
             exec = "emacsclient %u";
