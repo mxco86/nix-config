@@ -27,6 +27,7 @@
       vim
       cachix
       python3
+      nix-search
     ];
     pathsToLink = [
       "/share/zsh"
