@@ -103,6 +103,7 @@ cmd-alt-ctrl-6 = 'workspace 6'
 cmd-alt-ctrl-7 = 'workspace 7'
 cmd-alt-ctrl-8 = 'workspace 8'
 cmd-alt-ctrl-9 = 'workspace 9'
+cmd-alt-ctrl-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-alt-ctrl-shift-1 = 'move-node-to-workspace 1'
@@ -114,12 +115,25 @@ cmd-alt-ctrl-shift-6 = 'move-node-to-workspace 6'
 cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
 cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
 cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
+cmd-alt-ctrl-shift-0 = 'move-node-to-workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 # cmd-alt-ctrl-shift-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 cmd-alt-ctrl-shift-tab = 'move-node-to-monitor --wrap-around next'
 cmd-alt-ctrl-shift-w = 'move-workspace-to-monitor --wrap-around next'
+
+[workspace-to-monitor-force-assignment]
+1 = 1
+2 = 1
+3 = 1
+4 = 1
+5 = 1
+6 = 2
+7 = 2
+8 = 2
+9 = 2
+10 = 2
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 # alt-shift-semicolon = 'mode service'

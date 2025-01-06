@@ -1,20 +1,29 @@
-{ pkgs, username, ... }:
-
 {
-  imports = [ ../base.nix ./emacs-protocol-handler.nix ];
+  pkgs,
+  username,
+  ...
+}: {
+  imports = [../base.nix ./emacs-protocol-handler.nix];
 
-  home-manager.users.${username} = { pkgs, ... }: {
+  home-manager.users.${username} = {pkgs, ...}: {
     home = {
       packages = with pkgs; [
         chroma
         passff-host
       ];
+
+      file = {
+        vale = {
+          source = ../files/vale.ini;
+          target = "Library/Application Support/vale/.vale.ini";
+        };
+      };
     };
 
     programs = {
       git = {
         extraConfig = {
-          credential = { helper = "osxkeychain"; };
+          credential = {helper = "osxkeychain";};
         };
       };
       alacritty = {
@@ -25,7 +34,7 @@
         };
       };
       firefox = {
-        package = pkgs.runCommand "firefox-0.0.0" { } "mkdir $out";
+        package = pkgs.runCommand "firefox-0.0.0" {} "mkdir $out";
         profiles = {
           mryall = {
             userChrome = ''

@@ -3,10 +3,8 @@
   pkgs,
   x86pkgs,
   ...
-}:
-
-{
-  imports = [ ../nix-base.nix ];
+}: {
+  imports = [../nix-base.nix];
 
   nix = {
     configureBuildUsers = true;
@@ -27,7 +25,6 @@
       pkgs.zsh
       pkgs.fish
     ];
-    loginShell = "${pkgs.fish}";
 
     systemPackages = [
       pkgs.alacritty
@@ -35,14 +32,11 @@
     ];
   };
 
-  # Application environment
-  launchd.user.envVariables.PATH = config.environment.systemPath;
-
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  programs = { };
+  programs = {};
 
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
@@ -81,13 +75,7 @@
   };
 
   networking = {
-    knownNetworkServices = [ "Wi-Fi" ];
-  };
-
-  fonts = {
-    fontDir = {
-      enable = true;
-    };
+    knownNetworkServices = ["Wi-Fi"];
   };
 
   homebrew = {
