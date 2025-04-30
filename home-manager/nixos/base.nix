@@ -45,6 +45,15 @@
           XDG_SESSION_TYPE = "wayland";
           XDG_CURRENT_DESKTOP = "sway";
         };
+
+        file = {
+          vale = {
+            source = ./files/vale.ini;
+            target = ".config/vale/.vale.ini";
+          };
+        };
+      };
+
       };
 
       gtk = {

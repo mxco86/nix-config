@@ -6,10 +6,6 @@
 }: {
   imports = [../nix-base.nix];
 
-  nix = {
-    configureBuildUsers = true;
-  };
-
   users.users.mryall = {
     name = "mryall";
     home = "/Users/mryall";
@@ -65,9 +61,6 @@
     skhd = {
       enable = true;
       skhdConfig = '''';
-    };
-    nix-daemon = {
-      enable = true;
     };
     tailscale = {
       enable = true;
