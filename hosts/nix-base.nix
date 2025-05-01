@@ -1,7 +1,8 @@
-{ nixpkgs, pkgs, ... }:
-
 {
-
+  nixpkgs,
+  pkgs,
+  ...
+}: {
   imports = [
     ../modules/emacs
     ../cachix.nix

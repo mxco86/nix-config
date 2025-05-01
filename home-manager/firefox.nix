@@ -1,4 +1,4 @@
-{ }: {
+{}: {
   settings = {
     "browser.urlbar.placeholderName" = "DuckDuckGo";
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
