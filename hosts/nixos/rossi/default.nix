@@ -1,13 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   homepage-config = import ./homepage.nix;
-in
-{
+in {
   imports = [
     ./hardware-configuration.nix
     ../../nix-base.nix
@@ -17,7 +13,7 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   networking = {
     hostName = "rossi";
@@ -26,7 +22,6 @@ in
     interfaces.enp4s0.useDHCP = true;
     networkmanager = {
       enable = true;
-      enableStrongSwan = true;
     };
     firewall = {
       checkReversePath = "loose";
@@ -49,15 +44,11 @@ in
       chrysalis
       nfs-utils
       caddy
-      clinfo
+      # clinfo
     ];
 
-    etc."ipsec.secrets".text = ''
-      include ipsec.d/ipsec.nm-l2tp.secrets
-    '';
-
     variables = {
-      ROC_ENABLE_PRE_VEGA = "1";
+      # ROC_ENABLE_PRE_VEGA = "1";
     };
   };
   programs = {
@@ -72,7 +63,7 @@ in
     };
   };
   services = {
-    udev.packages = [ pkgs.chrysalis ];
+    udev.packages = [pkgs.chrysalis];
     udisks2 = {
       enable = true;
     };
@@ -103,7 +94,7 @@ in
     ollama = {
       enable = true;
       # acceleration = "rocm";
-      models = "/tank/one/models";
+      # models = "/tank/one/models";
     };
 
     prometheus = {
@@ -115,13 +106,13 @@ in
             "logind"
             "systemd"
           ];
-          disabledCollectors = [ "textfile" ];
+          disabledCollectors = ["textfile"];
           openFirewall = true;
           firewallFilter = "-i br0 -p tcp -m tcp --dport 9100";
         };
       };
     };
-    homepage-dashboard = homepage-config { };
+    homepage-dashboard = homepage-config {};
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
