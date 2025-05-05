@@ -137,7 +137,7 @@ in {
         package = pkgs.pass.withExtensions (exts: [
           # exts.pass-import
           # exts.pass-audit
-          # exts.pass-otp
+          exts.pass-otp
         ]);
       };
       firefox = {
