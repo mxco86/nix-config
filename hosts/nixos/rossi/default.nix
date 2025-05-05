@@ -94,7 +94,9 @@ in {
     ollama = {
       enable = true;
       # acceleration = "rocm";
-      # models = "/tank/one/models";
+      models = "/tank/one/ollama/models";
+      user = "ollama";
+      group = "ollama";
     };
 
     prometheus = {
