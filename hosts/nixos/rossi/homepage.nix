@@ -3,6 +3,7 @@ let
 in
   {}: {
     enable = true;
+    allowedHosts = "localhost:8082,rossi:8082";
     settings = {
       title = "Homepage";
       headerStyle = "clean";
@@ -41,6 +42,15 @@ in
               {
                 abbr = "NX";
                 href = "https://search.nixos.org/options";
+                icon = "si-nixos.svg";
+              }
+            ];
+          }
+          {
+            home-manager = [
+              {
+                abbr = "NXHM";
+                href = "https://home-manager-options.extranix.com/";
                 icon = "si-nixos.svg";
               }
             ];
