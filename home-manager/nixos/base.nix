@@ -145,10 +145,12 @@
     services = {
       mako = {
         enable = true;
-        font = "Iosevka 12";
-        backgroundColor = "#002b36";
-        textColor = "#fdf6e3";
-        borderColor = "#b58900";
+        settings = {
+          font = "Iosevka 12";
+          backgroundColor = "#002b36";
+          textColor = "#fdf6e3";
+          borderColor = "#b58900";
+        };
       };
       gpg-agent = {
         enable = true;

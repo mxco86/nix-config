@@ -2,6 +2,7 @@
   pkgs,
   nur,
   username,
+  lib,
   ...
 }: let
   aspellEnv = pkgs.aspellWithDicts (d: [d.en]);
@@ -147,20 +148,22 @@ in {
             settings = firefoxCfg.settings;
             userChrome = firefoxCfg.userChrome;
             search = firefoxCfg.search;
-            extensions = with nur.repos.rycee.firefox-addons; [
-              ghosttext
-              org-capture
-              privacy-badger
-              sidebery
-              tridactyl
-              ublock-origin
-              i-dont-care-about-cookies
-            ];
+            extensions = {
+              packages = with nur.repos.rycee.firefox-addons; [
+                ghosttext
+                org-capture
+                privacy-badger
+                sidebery
+                tridactyl
+                ublock-origin
+                i-dont-care-about-cookies
+              ];
+            };
           };
           miro = {
             id = 1;
             settings = {
-              "browser.urlbar.placeholderName" = "DuckDuckGo";
+              "browser.urlbar.placeholderName" = "ddg";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "ui.key.accelKey" = "91";
               "devtools.editor.keymap" = "emacs";
@@ -171,14 +174,16 @@ in {
             '';
             search = {
               force = true;
-              default = "DuckDuckGo";
+              default = "ddg";
             };
-            extensions = with nur.repos.rycee.firefox-addons; [
-              privacy-badger
-              sidebery
-              ublock-origin
-              i-dont-care-about-cookies
-            ];
+            extensions = {
+              packages = with nur.repos.rycee.firefox-addons; [
+                privacy-badger
+                sidebery
+                ublock-origin
+                i-dont-care-about-cookies
+              ];
+            };
           };
         };
       };
@@ -213,14 +218,14 @@ in {
         localVariables = {
           ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10";
         };
-        initExtraFirst = ''
-          [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-        '';
-        initExtra = ''
-          bindkey "\e[1;3D" backward-word
-          bindkey "\e[1;3C" forward-word
-          unsetopt pathdirs
-        '';
+        initContent = lib.mkMerge [
+          (lib.mkBefore ''
+              [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return '')
+          ''            bindkey "\e[1;3D" backward-word
+                        bindkey "\e[1;3C" forward-word
+                        unsetopt pathdirs
+          ''
+        ];
       };
 
       fish = {

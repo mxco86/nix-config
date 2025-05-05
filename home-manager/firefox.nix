@@ -1,6 +1,6 @@
 {}: {
   settings = {
-    "browser.urlbar.placeholderName" = "DuckDuckGo";
+    "browser.urlbar.placeholderName" = "ddg";
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     "ui.key.accelKey" = "91";
     "devtools.editor.keymap" = "emacs";
@@ -9,6 +9,7 @@
   userChrome = "#TabsToolbar { visibility: collapse !important; }";
   search = {
     force = true;
-    default = "DuckDuckGo";
+    default = "ddg";
   };
+  autoDisableScopes = 0;
 }
