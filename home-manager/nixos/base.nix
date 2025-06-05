@@ -196,7 +196,7 @@
             "Iosevka"
           ];
         };
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = "${pkgs.ghostty}/bin/ghostty";
       };
     };
   };

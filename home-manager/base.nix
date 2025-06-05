@@ -409,6 +409,15 @@ in {
         };
       };
 
+      ghostty = {
+        enable = true;
+        enableFishIntegration = true;
+        clearDefaultKeybinds = true;
+        settings = {
+          font-family = "Iosevka";
+        };
+      };
+
       dircolors = {
         enable = true;
         enableZshIntegration = true;
