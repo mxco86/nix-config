@@ -142,7 +142,7 @@ in
                 type = "qnap";
                 url = "https://192.168.1.121";
                 username = "admin";
-                password = "L1ch3n);";
+                password = "";
               };
             };
           }
