@@ -45,6 +45,9 @@ in {
       nfs-utils
       caddy
       # clinfo
+      aider-chat
+      exiftool
+      audacity
     ];
 
     variables = {
@@ -124,6 +127,33 @@ in {
       };
     };
     homepage-dashboard = homepage-config {};
+    cgit = {
+      repos = {
+        enable = true;
+        scanPath = "/home/cgit";
+        user = "cgit";
+        group = "cgit";
+      };
+    };
+    photoprism = {
+      enable = true;
+      address = "0.0.0.0";
+      originalsPath = "/tank/one/Photos/PhotoPrism";
+      settings = {
+        PHOTOPRISM_ADMIN_USER = "admin";
+        PHOTOPRISM_ADMIN_PASSWORD = "admin";
+        PHOTOPRISM_LOG_LEVEL = "debug";
+      };
+    };
+    paperless = {
+      enable = true;
+      address = "0.0.0.0";
+      dataDir = "/tank/one/paperless";
+      settings = {
+        PAPERLESS_OCR_USER_ARGS = { "continue_on_soft_render_error" = true; };
+      };
+    };
+
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;

@@ -116,6 +116,9 @@ in {
           merge = {
             conflictstyle = "zdiff3";
           };
+          safe = {
+            directory = "/home/cgit/ps.git";
+          };
         };
       };
       gpg = {

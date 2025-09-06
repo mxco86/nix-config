@@ -27,6 +27,8 @@ in
           unigine-superposition
           digikam
           darktable
+          ansible
+          audacity
         ];
       };
 

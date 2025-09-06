@@ -7,7 +7,7 @@ rebuild-nix:
 
 [linux]
 rebuild-nix:
-    nixos-rebuild switch --use-remote-sudo --flake {{nixosNix}}
+    nixos-rebuild switch --sudo --flake {{nixosNix}}
 
 [macos]
 install-nix:
