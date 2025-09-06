@@ -23,6 +23,7 @@
     };
     nur = {
       url = "github:nix-community/NUR/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -175,6 +176,11 @@
             nixos-hardware.nixosModules.common-gpu-amd
           ];
         };
+        platini = nixoshost {
+          system = "x86_64-linux";
+          host = "platini";
+          extraModules = [ ];
+        };
         rpi = rpihost { host = "test"; };
       };
       darwinConfigurations = {
@@ -186,10 +192,6 @@
           system = "aarch64-darwin";
           host = "careca";
           username = "matt.ryall";
-        };
-        platini = machost {
-          system = "x86_64-darwin";
-          host = "platini";
         };
         robson = machost {
           system = "x86_64-darwin";
@@ -206,5 +208,4 @@
       # This is highly advised, and will prevent many possible mistakes
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
-
 }
