@@ -53,8 +53,17 @@ in {
 
       ssh = {
         enable = true;
-        compression = true;
-        forwardAgent = true;
+        matchBlocks = {
+          "*" = {
+            compression = true;
+            forwardAgent = true;
+            controlPersist = "yes";
+            controlMaster = "auto";
+            controlPath = "/tmp/%r@%h:%p";
+            serverAliveInterval = 20;
+            serverAliveCountMax = 2;
+          };
+        };
       };
 
       git = {
