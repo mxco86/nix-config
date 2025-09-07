@@ -72,10 +72,6 @@
   # Packages
   environment = {
     systemPackages = with pkgs; [brightnessctl];
-
-    etc."ipsec.secrets".text = ''
-      include ipsec.d/ipsec.nm-l2tp.secrets
-    '';
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
