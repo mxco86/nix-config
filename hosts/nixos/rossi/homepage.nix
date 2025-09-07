@@ -128,7 +128,7 @@ in
               icon = "si-raspberrypi.svg";
               widget = {
                 type = "tailscale";
-                deviceid = "nSZvTY4CNTRL";
+                deviceid = "nSg4GueJz721CNTRL";
                 key = tailscale-key;
               };
             };

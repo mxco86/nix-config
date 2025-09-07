@@ -150,10 +150,9 @@ in {
       address = "0.0.0.0";
       dataDir = "/tank/one/paperless";
       settings = {
-        PAPERLESS_OCR_USER_ARGS = { "continue_on_soft_render_error" = true; };
+        PAPERLESS_OCR_USER_ARGS = {"continue_on_soft_render_error" = true;};
       };
     };
-
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;

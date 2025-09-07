@@ -1,7 +1,10 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports = [ ./base.nix ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [./base.nix];
 
   programs = {
     git = {

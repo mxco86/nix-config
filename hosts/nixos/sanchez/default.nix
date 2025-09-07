@@ -1,12 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, ... }:
-
-{
-  imports =
-    [ ./hardware-configuration.nix ../../nix-base.nix ../nixos-base.nix ];
+{pkgs, ...}: {
+  imports = [./hardware-configuration.nix ../../nix-base.nix ../nixos-base.nix];
 
   boot = {
     loader = {
@@ -22,20 +18,36 @@
     domain = "mexico86.co.uk";
     networkmanager = {
       enable = true;
-      enableStrongSwan = true;
     };
     useDHCP = false;
     interfaces.enp0s31f6.useDHCP = true;
     interfaces.wlp0s20f3.useDHCP = true;
     firewall = {
-      allowedTCPPorts = [ 80 443 445 3400 3445 3500 3401 3405 4070 4444 8083 8384 22000 44831 ];
-      allowedTCPPortRanges = [{ from = 1400; to = 1410; }];
-      allowedUDPPorts = [ 2869 10243 5353 6969 35382 22000 21027 ];
+      allowedTCPPorts = [80 443 445 3400 3445 3500 3401 3405 4070 4444 8083 8384 22000 44831];
+      allowedTCPPortRanges = [
+        {
+          from = 1400;
+          to = 1410;
+        }
+      ];
+      allowedUDPPorts = [2869 10243 5353 6969 35382 22000 21027];
       allowedUDPPortRanges = [
-        { from = 136; to = 139; }
-        { from = 1900; to = 1901; }
-        { from = 10280; to = 10284; }
-        { from = 40000; to = 60000; }
+        {
+          from = 136;
+          to = 139;
+        }
+        {
+          from = 1900;
+          to = 1901;
+        }
+        {
+          from = 10280;
+          to = 10284;
+        }
+        {
+          from = 40000;
+          to = 60000;
+        }
       ];
       checkReversePath = "loose";
     };
@@ -59,8 +71,7 @@
 
   # Packages
   environment = {
-    systemPackages = with pkgs;
-      [ brightnessctl ];
+    systemPackages = with pkgs; [brightnessctl];
 
     etc."ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets

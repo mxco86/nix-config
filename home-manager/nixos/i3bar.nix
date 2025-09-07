@@ -1,6 +1,8 @@
-{ size, pkgs, ... }:
-
 {
+  size,
+  pkgs,
+  ...
+}: {
   position = "top";
   statusCommand = "${pkgs.i3status}/bin/i3status";
   colors = {
@@ -19,7 +21,7 @@
     };
   };
   fonts = {
-    names = [ "FontAwesome" "Iosevka" ];
+    names = ["FontAwesome" "Iosevka"];
     size = size;
   };
   extraConfig = ''

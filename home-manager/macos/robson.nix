@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports = [ ./personal.nix ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [./personal.nix];
 
-  home-manager.users.mryall = { pkgs, ... }: {
+  home-manager.users.mryall = {...}: {
     programs = {
       kitty = {
         enable = true;

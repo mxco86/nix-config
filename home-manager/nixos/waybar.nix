@@ -1,6 +1,8 @@
-{ modules-right, height, ... }:
-
 {
+  modules-right,
+  height,
+  ...
+}: {
   position = "top";
   height = height;
   modules-left = [
@@ -14,7 +16,7 @@
   "clock" = {
     "tooltip-format" = "<tt><small>{calendar}</small></tt>";
     "calendar" = {
-      format = { "today" = "<span><b><u>{}</u></b></span>"; };
+      format = {"today" = "<span><b><u>{}</u></b></span>";};
     };
   };
   "cpu" = {
@@ -31,8 +33,8 @@
   };
   "backlight" = {
     "format" = "{percent}% {icon}";
-    "states" = [ 0 50 ];
-    "format-icons" = [ "" "" ];
+    "states" = [0 50];
+    "format-icons" = ["" ""];
   };
   "battery" = {
     "states" = {
@@ -41,7 +43,7 @@
       "critical" = 15;
     };
     "format" = "{capacity}% {icon}";
-    "format-icons" = [ "" "" "" "" "" ];
+    "format-icons" = ["" "" "" "" ""];
   };
   "network" = {
     "format-wifi" = "{essid} ({signalStrength}%) ";
@@ -54,7 +56,7 @@
     format-muted = " 0%";
     format-icons = {
       "headphones" = "";
-      "default" = [ "" "" ];
+      "default" = ["" ""];
     };
   };
 }

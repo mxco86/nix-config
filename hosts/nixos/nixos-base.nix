@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment = {
     systemPackages = with pkgs; [
       alacritty
@@ -27,7 +25,7 @@
       enable = true;
       useRoutingFeatures = "client";
     };
-    dbus.packages = [ pkgs.dconf ];
+    dbus.packages = [pkgs.dconf];
 
     pipewire = {
       enable = true;
@@ -44,7 +42,6 @@
         '';
       };
     };
-
   };
 
   # Enable the docker daemon

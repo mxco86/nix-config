@@ -1,9 +1,11 @@
-{ pkgs, username, ... }:
-
 {
-  imports = [ ./personal.nix ];
+  pkgs,
+  username,
+  ...
+}: {
+  imports = [./personal.nix];
 
-  home-manager.users.${username} = { pkgs, ... }: {
+  home-manager.users.${username} = {pkgs, ...}: {
     programs = {
       alacritty = {
         settings = {

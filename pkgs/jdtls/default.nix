@@ -1,14 +1,12 @@
-{ stdenv
-, lib
-, fetchurl
-, writeShellScriptBin
-, jdk17
-, symlinkJoin
-, pkgs
-}:
-
-let
-
+{
+  stdenv,
+  lib,
+  fetchurl,
+  writeShellScriptBin,
+  jdk17,
+  symlinkJoin,
+  pkgs,
+}: let
   version = "1.8.0";
   binName = "jdt-language-server-1.8.0-202201261434";
 
@@ -18,7 +16,6 @@ let
   };
 
   jdtls = stdenv.mkDerivation rec {
-
     name = "eclipse-jdt-language-server-${version}";
     inherit src;
 
@@ -42,7 +39,6 @@ let
       '';
       platforms = platforms.linux;
     };
-
   };
 
   jdtlsWrapper = writeShellScriptBin "jdtls" ''
@@ -65,9 +61,8 @@ let
       -data "/tmp/jdtls-ws" \
       "$@"
   '';
-
 in
-symlinkJoin {
-  name = "jdtls";
-  paths = [ jdtls jdtlsWrapper ];
-}
+  symlinkJoin {
+    name = "jdtls";
+    paths = [jdtls jdtlsWrapper];
+  }

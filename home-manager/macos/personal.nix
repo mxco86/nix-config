@@ -1,9 +1,13 @@
-{ config, lib, pkgs, username, ... }:
-
 {
-  imports = [ ./base.nix ];
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}: {
+  imports = [./base.nix];
 
-  home-manager.users.${username} = { pkgs, ... }: {
+  home-manager.users.${username} = {pkgs, ...}: {
     home = {
       username = "mryall";
       homeDirectory = "/Users/mryall";
