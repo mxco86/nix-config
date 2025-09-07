@@ -15,7 +15,7 @@
 in {
   imports = [./base.nix];
 
-  home-manager.users.mryall = {pkgs, ...}: {
+  home-manager.users.mryall = {...}: {
     home = {
       packages = with pkgs; [
       ];

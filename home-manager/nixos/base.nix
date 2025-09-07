@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [../base.nix];
 
-  home-manager.users.mryall = {pkgs, ...}: {
+  home-manager.users.mryall = {...}: {
     home = {
       username = "mryall";
       homeDirectory = "/home/mryall";

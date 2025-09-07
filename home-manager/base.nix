@@ -8,13 +8,7 @@
   aspellEnv = pkgs.aspellWithDicts (d: [d.en]);
   firefoxCfg = import ./firefox.nix {};
 in {
-  home-manager.users.${username} = {pkgs, ...}: {
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-      };
-    };
-
+  home-manager.users.${username} = {...}: {
     home = {
       stateVersion = "22.05";
 
