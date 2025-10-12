@@ -22,6 +22,7 @@ in {
       codeium
       picard
       czkawka
+      yubikey-manager
     ];
 
     wayland.windowManager.sway = {
@@ -51,13 +52,11 @@ in {
         bindsym XF86Display exec --no-startup-id swaymsg "output * dpms on"
       '';
       config = {
-        # menu = "rofi -modi drun -show drun -theme solarized -font 'Iosevka 14'";
         menu = "fuzzel";
         assigns = {
           "1" = [{class = "^Alacritty$";}];
           "2" = [{class = "^Emacs$";}];
           "3" = [{class = "^firefox$";}];
-          "4" = [{class = "^Slack$";}];
         };
         bars = [];
         startup = [

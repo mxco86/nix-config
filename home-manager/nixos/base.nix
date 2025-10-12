@@ -8,19 +8,9 @@
       stateVersion = "22.05";
 
       packages = with pkgs; [
-        # anki
-        # authy
         beets
-        # picard
-        # discord
         unzip
-        # xclip
-        # xorg.xdpyinfo
-        # xorg.xmodmap
-        # ssm-session-manager-plugin
-        # yubikey-manager
         soco-cli
-        trippy
         vale
         (makeDesktopItem {
           name = "org-protocol";

@@ -16,22 +16,16 @@ in {
         aspellEnv
         bottom
         difftastic
-        # dogdns
-        # duf
+        dogdns
+        duf
         du-dust
         fd
         iftop
         just
-        # slack
-        # isync
-        # ncdu
         nil
         alejandra
-        # soco-cli
         sqlite
         trippy
-        # weechat
-        # zoom-us
       ];
       sessionVariables = {
         EDITOR = "emacsclient";
@@ -422,6 +416,7 @@ in {
         clearDefaultKeybinds = true;
         settings = {
           font-family = "Iosevka";
+          shell-integration-features = "ssh-env";
         };
       };
 

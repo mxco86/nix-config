@@ -18,12 +18,13 @@ in {
   home-manager.users.mryall = {...}: {
     home = {
       packages = with pkgs; [
-        # jetbrains.idea-community
         unigine-superposition
         digikam
         darktable
         ansible
         audacity
+        yubikey-manager
+        picard
       ];
     };
 
