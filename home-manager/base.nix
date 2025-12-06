@@ -18,7 +18,7 @@ in {
         difftastic
         dogdns
         duf
-        du-dust
+        dust
         fd
         iftop
         just
