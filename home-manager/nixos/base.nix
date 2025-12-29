@@ -113,7 +113,7 @@
       };
 
       git = {
-        extraConfig = {
+        settings = {
           credential = {
             helper = "git-credential-libsecret";
           };

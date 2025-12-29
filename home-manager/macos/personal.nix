@@ -15,8 +15,11 @@
 
     programs = {
       git = {
-        userName = "Matthew Ryall";
-        userEmail = "matthew@mexico86.co.uk";
+        settings = {
+          user = {
+            email = "matthew@mexico86.co.uk";
+          };
+        };
       };
       ssh = {
         matchBlocks = {

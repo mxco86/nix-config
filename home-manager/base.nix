@@ -60,23 +60,27 @@ in {
           };
         };
       };
-
-      git = {
+      delta = {
         enable = true;
-        delta.enable = true;
-        delta.options = {
+        enableGitIntegration = true;
+        options = {
           features = "side-by-side";
           syntax-theme = "Solarized (dark)";
         };
-        aliases = {
-          st = "status";
-          ci = "commit";
-          co = "checkout";
-          br = "branch";
-          ix = "diff --cached";
-          lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        };
-        extraConfig = {
+      };
+
+      git = {
+        enable = true;
+        settings = {
+          user = {name = "Matthew Ryall";};
+          alias = {
+            st = "status";
+            ci = "commit";
+            co = "checkout";
+            br = "branch";
+            ix = "diff --cached";
+            lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+          };
           core = {
             editor = "${pkgs.emacs}/bin/emacsclient";
             whitespace = "nowarn";
@@ -119,6 +123,7 @@ in {
           };
         };
       };
+
       gpg = {
         enable = true;
       };

@@ -126,8 +126,11 @@ in {
       };
 
       git = {
-        userName = "Matthew Ryall";
-        userEmail = "matthew.ryall@digital.justice.gov.uk";
+        settings = {
+          user = {
+            email = "matthew.ryall@digital.justice.gov.uk";
+          };
+        };
         signing = {
           key = "0902EF0CB4879CEB";
           signByDefault = true;
