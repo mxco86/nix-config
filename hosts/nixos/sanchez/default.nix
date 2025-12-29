@@ -13,6 +13,13 @@
     };
   };
 
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    secrets = {
+      tailscale-api-key = {};
+    };
+  };
+
   networking = {
     hostName = "sanchez";
     domain = "mexico86.co.uk";
