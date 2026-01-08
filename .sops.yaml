@@ -1,9 +1,0 @@
-keys:
-  - &admin_matt C32BEB7716640618E34DAAD667749BF6E1BDC2A5
-  - &sanchez ae9b55bcc9ca1e4165cc8ae5f01dc14d60777b05
-creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
-    key_groups:
-    - pgp:
-      - *admin_matt
-      - *sanchez

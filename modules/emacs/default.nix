@@ -109,7 +109,7 @@ in {
               password-store
               pdf-tools
               prettier-js
-              pr-review
+              # pr-review
               python-mode
               racer
               racket-mode

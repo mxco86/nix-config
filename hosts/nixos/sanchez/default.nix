@@ -13,11 +13,8 @@
     };
   };
 
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    secrets = {
-      tailscale-api-key = {};
-    };
+  age.secrets = {
+    tailscale-api-key.file = ./secrets.age;
   };
 
   networking = {

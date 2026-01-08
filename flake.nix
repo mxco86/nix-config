@@ -28,8 +28,8 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -43,7 +43,7 @@
     home-manager,
     deploy-rs,
     nixos-hardware,
-    sops-nix,
+    agenix,
     ...
   } @ inputs: let
     machost = {
@@ -91,7 +91,7 @@
             ./hosts/nixos/${host}
             home-manager.nixosModules.home-manager
             ./home-manager/nixos/${host}.nix
-            sops-nix.nixosModules.sops
+            agenix.nixosModules.default
           ]
           ++ extraModules;
         specialArgs = {

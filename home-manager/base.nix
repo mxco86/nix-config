@@ -26,6 +26,7 @@ in {
         alejandra
         sqlite
         trippy
+        opencode
       ];
       sessionVariables = {
         EDITOR = "emacsclient";
