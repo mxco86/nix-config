@@ -16,7 +16,7 @@ in {
         aspellEnv
         bottom
         difftastic
-        dogdns
+        doggo
         duf
         dust
         fd
