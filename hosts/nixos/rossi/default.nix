@@ -1,8 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: let
-  homepage-config = import ./homepage.nix;
+{
+  pkgs,
+  config,
+  ...
+}: let
+  homepage-config = import ./homepage.nix config;
 in {
   imports = [
     ./hardware-configuration.nix
@@ -14,6 +18,11 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
+  age.secrets = {
+    homepage-dashboard-env.file = ../../../secrets/rossi/homepage-dashboard-env.age;
+    kavita.file = ../../../secrets/rossi/kavita.age;
+  };
 
   networking = {
     hostName = "rossi";
@@ -54,6 +63,7 @@ in {
       # ROC_ENABLE_PRE_VEGA = "1";
     };
   };
+
   programs = {
     xwayland = {
       enable = true;
@@ -72,6 +82,7 @@ in {
     };
     transmission = {
       enable = true;
+      package = pkgs.transmission_4;
       openFirewall = true;
     };
     syncthing = {
@@ -93,6 +104,11 @@ in {
         calibreLibrary = "/home/mryall/Books/Calibre/";
         enableBookConversion = true;
       };
+    };
+
+    kavita = {
+      enable = true;
+      tokenKeyFile = "${config.age.secrets.kavita.path}";
     };
     ollama = {
       enable = true;
@@ -131,6 +147,7 @@ in {
       repos = {
         enable = true;
         scanPath = "/home/cgit";
+        gitHttpBackend.checkExportOkFiles = false;
         user = "cgit";
         group = "cgit";
       };

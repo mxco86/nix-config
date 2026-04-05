@@ -110,6 +110,10 @@ in {
         };
       };
 
+      calibre = {
+        enable = true;
+      };
+
       waybar = {
         settings = [waybar];
       };
