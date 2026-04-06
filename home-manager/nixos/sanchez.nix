@@ -105,6 +105,10 @@ in {
         };
       };
 
+      calibre = {
+        enable = true;
+      };
+
       firefox = {
         profiles = {
           mryall = {
