@@ -93,7 +93,7 @@ in {
       guiAddress = "0.0.0.0:8384";
     };
     calibre-web = {
-      enable = true;
+      enable = false;
       openFirewall = true;
       user = "mryall";
       group = "users";
