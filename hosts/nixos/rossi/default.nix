@@ -105,7 +105,6 @@ in {
         enableBookConversion = true;
       };
     };
-
     kavita = {
       enable = true;
       tokenKeyFile = "${config.age.secrets.kavita.path}";
@@ -169,6 +168,10 @@ in {
       settings = {
         PAPERLESS_OCR_USER_ARGS = {"continue_on_soft_render_error" = true;};
       };
+    };
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
     };
   };
 
