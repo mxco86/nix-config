@@ -72,7 +72,7 @@
         enable = true;
         settings = {
           main = {
-            font = "Iosevka";
+            font = "Iosevka Curly";
           };
           colors = {
             background = "#002b36fa";
@@ -92,7 +92,7 @@
           * {
                border: none;
                border-radius: 0;
-               font-family: "Iosevka, FontAwesome";
+               font-family: "IosevkaCurly, FontAwesome";
                font-size: 14px;
                min-height: 0;
           }
@@ -136,7 +136,7 @@
       mako = {
         enable = true;
         settings = {
-          font = "Iosevka 12";
+          font = "Iosevka Curly 12";
           backgroundColor = "#002b36";
           textColor = "#fdf6e3";
           borderColor = "#b58900";

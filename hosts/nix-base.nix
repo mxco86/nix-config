@@ -38,9 +38,22 @@
 
   fonts.packages = with pkgs; [
     dejavu_fonts
-    iosevka
     fira-code
     font-awesome
+    (iosevka.override {
+      privateBuildPlan = ''
+        [buildPlans.IosevkaCurly]
+        family = "Iosevka Curly"
+        spacing = "normal"
+        serifs = "sans"
+        noCvSs = true
+        exportGlyphNames = false
+
+        [buildPlans.IosevkaCurly.variants]
+        inherits = "ss20"
+      '';
+      set = "Curly";
+    })
   ];
 
   programs = {

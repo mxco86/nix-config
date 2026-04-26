@@ -21,7 +21,7 @@
     };
   };
   fonts = {
-    names = ["FontAwesome" "Iosevka"];
+    names = ["FontAwesome" "Iosevka Curly"];
     size = size;
   };
   extraConfig = ''
