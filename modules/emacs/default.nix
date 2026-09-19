@@ -52,7 +52,6 @@ in {
               dap-mode
               diff-hl
               docker
-              docker-compose-mode
               dockerfile-mode
               dumb-jump
               editorconfig

@@ -163,10 +163,6 @@
       systemd.enable = true;
       config = {
         modifier = "Mod4";
-        keybindings = let
-          modifier = "Mod4";
-        in
-          pkgs.lib.mkOptionDefault {"${modifier}+p" = "exec ${pkgs.rofi-pass}/bin/rofi-pass";};
         focus = {
           newWindow = "focus";
         };
