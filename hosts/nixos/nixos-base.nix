@@ -4,14 +4,19 @@
       alacritty
       wl-clipboard
       nfs-utils
+      niri
     ];
     etc."greetd/environments".text = ''
       sway
+      niri
     '';
   };
 
   programs = {
     sway = {
+      enable = true;
+    };
+    niri = {
       enable = true;
     };
   };
@@ -60,6 +65,7 @@
           "audio"
           "docker"
           "mryall"
+          "dialout"
         ];
         shell = pkgs.fish;
         openssh = {

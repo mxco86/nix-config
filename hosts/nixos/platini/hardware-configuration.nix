@@ -24,6 +24,7 @@
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/67E3-17ED";
+    fsType = "vfat";
   };
 
   swapDevices = [];

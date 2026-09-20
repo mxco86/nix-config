@@ -80,11 +80,11 @@ in {
       git = {
         settings = {
           user = {
-            email = "matthew.ryall@digital.justice.gov.uk";
+            email = "matthew@mexico86.co.uk";
           };
         };
         signing = {
-          key = "0902EF0CB4879CEB";
+          key = "BD8C42FD9CA89784";
           signByDefault = true;
         };
       };
@@ -95,8 +95,8 @@ in {
             settings =
               firefoxCfg.settings
               // {
-                "layout.css.devPixelsPerPx" = "2";
-                "browser.uidensity" = 1.2;
+                "layout.css.devPixelsPerPx" = "1";
+                "browser.uidensity" = 1;
               };
           };
         };

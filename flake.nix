@@ -84,6 +84,11 @@
           inherit system;
           overlays = [emacs-overlay.overlay];
           config.allowUnfree = true;
+          config.permittedInsecurePackages = [
+            "broadcom-sta-6.30.223.271-59-6.18.38"
+            "broadcom-sta-6.30.223.271-63-6.18.49"
+            "broadcom-sta-6.30.223.271-63-6.18.52"
+          ];
         };
 
         modules =
