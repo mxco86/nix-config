@@ -117,7 +117,7 @@ in {
       group = "ollama";
     };
     open-webui = {
-      enable = true;
+      enable = false;
       host = "0.0.0.0";
       environment = {
         ANONYMIZED_TELEMETRY = "False";
@@ -175,7 +175,11 @@ in {
     };
   };
 
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd = {
+    tmpfiles.rules = [
+      "w /sys/class/drm/card1/device/power_dpm_force_performance_level - - - - high"
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
