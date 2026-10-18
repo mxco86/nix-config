@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -27,10 +27,16 @@
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    glide = {
+      url = "github:glide-browser/glide.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
@@ -62,10 +68,6 @@
         specialArgs = {
           inherit username;
           inherit nixpkgs;
-          x86pkgs = import nixpkgs {
-            system = "x86_64-darwin";
-            overlays = [emacs-overlay.overlay];
-          };
           nur = import nur {
             pkgs = import nixpkgs {inherit system;};
             nurpkgs = import nixpkgs {inherit system;};

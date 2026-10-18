@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  x86pkgs,
   ...
 }: {
   imports = [../nix-base.nix];

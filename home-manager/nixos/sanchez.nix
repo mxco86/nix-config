@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  nur,
+  inputs,
+  ...
+}: let
   waybar = import ./waybar.nix {
     height = 30;
     modules-right = [
@@ -17,12 +22,16 @@
 in {
   imports = [./base.nix];
 
+  home-manager.extraSpecialArgs = {inherit inputs;};
+
   home-manager.users.mryall = {...}: {
+    imports = [inputs.glide.homeModules.default];
+
     home.packages = with pkgs; [
-      codeium
       picard
       czkawka
       yubikey-manager
+      jai-jail
     ];
 
     wayland.windowManager.sway = {
@@ -59,11 +68,7 @@ in {
           "3" = [{class = "^firefox$";}];
         };
         bars = [];
-        startup = [
-          # { command = "librewolf"; }
-          # { command = "signal-desktop"; }
-          # { command = "mako"; }
-        ];
+        startup = [];
         fonts = {
           size = 10.0;
         };
@@ -107,6 +112,34 @@ in {
 
       calibre = {
         enable = true;
+      };
+
+      glide-browser = {
+        enable = true;
+        profiles = {
+          mryall = {
+            id = 0;
+            settings =
+              firefoxCfg.settings
+              // {
+                "layout.css.devPixelsPerPx" = "1.5";
+                "browser.uidensity" = 1;
+              };
+            userChrome = firefoxCfg.userChrome;
+            search = firefoxCfg.search;
+            extensions = {
+              packages = with nur.repos.rycee.firefox-addons; [
+                ghosttext
+                org-capture
+                privacy-badger
+                sidebery
+                tridactyl
+                ublock-origin
+                i-dont-care-about-cookies
+              ];
+            };
+          };
+        };
       };
 
       firefox = {
