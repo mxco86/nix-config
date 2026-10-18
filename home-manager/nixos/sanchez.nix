@@ -84,13 +84,11 @@ in {
         };
       };
       ssh = {
-        matchBlocks = {
-          "github.com" = {
-            hostname = "github.com";
-            user = "git";
-            identityFile = "~/mnt/k/id_rsa.pub";
-            identitiesOnly = true;
-          };
+        settings."github.com" = {
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "~/mnt/k/id_rsa.pub";
+          IdentitiesOnly = true;
         };
       };
 

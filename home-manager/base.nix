@@ -8,7 +8,10 @@
   aspellEnv = pkgs.aspellWithDicts (d: [d.en]);
   firefoxCfg = import ./firefox.nix {};
 in {
-  home-manager.users.${username} = {...}: {
+  home-manager.users.${username} = {
+    config,
+    ...
+  }: {
     home = {
       stateVersion = "22.05";
 
@@ -49,16 +52,14 @@ in {
       ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
-          "*" = {
-            compression = true;
-            forwardAgent = true;
-            controlPersist = "yes";
-            controlMaster = "auto";
-            controlPath = "/tmp/%r@%h:%p";
-            serverAliveInterval = 20;
-            serverAliveCountMax = 2;
-          };
+        settings."*" = {
+          Compression = true;
+          ForwardAgent = true;
+          ControlPersist = "yes";
+          ControlMaster = "auto";
+          ControlPath = "/tmp/%r@%h:%p";
+          ServerAliveInterval = 20;
+          ServerAliveCountMax = 2;
         };
       };
       delta = {
@@ -146,9 +147,13 @@ in {
           # exts.pass-audit
           exts.pass-otp
         ]);
+        settings = {
+          PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
+        };
       };
       firefox = {
         enable = true;
+        configPath = ".mozilla/firefox";
         profiles = {
           mryall = {
             id = 0;
