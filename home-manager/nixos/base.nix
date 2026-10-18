@@ -12,6 +12,7 @@
         unzip
         soco-cli
         vale
+        jai-jail
         (makeDesktopItem {
           name = "org-protocol";
           exec = "emacsclient %u";

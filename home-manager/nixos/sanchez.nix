@@ -31,7 +31,6 @@ in {
       picard
       czkawka
       yubikey-manager
-      jai-jail
     ];
 
     wayland.windowManager.sway = {
